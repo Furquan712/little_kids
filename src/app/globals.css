@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #fdf6ef;
+  --blush: #f9e1dd;
+  --blush-soft: #fbeae7;
+  --sage: #e9ead9;
+  --sage-soft: #f1f2e6;
+  --rose: #dd8f89;
+  --rose-dark: #c97a73;
+  --coral: #e8646b;
+  --gold: #e3ac4d;
+  --lavender: #c9b6d8;
+  --ink: #3c2e29;
+  --body: #7a655e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--cream);
+  --color-blush: var(--blush);
+  --color-blush-soft: var(--blush-soft);
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-rose: var(--rose);
+  --color-rose-dark: var(--rose-dark);
+  --color-coral: var(--coral);
+  --color-gold: var(--gold);
+  --color-lavender: var(--lavender);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --font-heading: var(--font-fredoka);
+  --font-hand: var(--font-caveat);
+  --font-body: var(--font-lora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body), serif;
+}
+
+::selection {
+  background: var(--rose);
+  color: #fff;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 8s ease-in-out infinite;
 }
