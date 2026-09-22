@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Caveat, Lora } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -26,14 +28,16 @@ export const metadata: Metadata = {
     "Trusted babysitters, loving care and unforgettable moments. Background-checked, experienced and flexible childcare for your family.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const messages = await getMessages();
+
   return (
     <html
       lang="en"
       className={`${fredoka.variable} ${caveat.variable} ${lora.variable} scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink antialiased overflow-x-hidden">
-        {children}
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

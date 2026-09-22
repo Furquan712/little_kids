@@ -1,0 +1,300 @@
+{
+  "common": {
+    "appName": "Nanny Platform",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "next": "Seguinte",
+    "back": "Voltar",
+    "submit": "Enviar",
+    "loading": "A carregar...",
+    "requiredField": "Este campo é obrigatório",
+    "optional": "opcional",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "yes": "Sim",
+    "no": "Não",
+    "close": "Fechar",
+    "genericError": "Ocorreu um erro. Tente novamente."
+  },
+  "nav": {
+    "souBaba": "Sou Babá",
+    "souFamilia": "Sou Família",
+    "login": "Entrar",
+    "logout": "Sair",
+    "dashboard": "Painel"
+  },
+  "auth": {
+    "register": {
+      "babaTitle": "Sou Babá — Registar",
+      "familiaTitle": "Sou Família — Registar",
+      "fullName": "Nome completo",
+      "email": "Email",
+      "phone": "Telefone",
+      "whatsapp": "WhatsApp",
+      "password": "Palavra-passe",
+      "confirmPassword": "Confirmar palavra-passe",
+      "province": "Província",
+      "city": "Cidade",
+      "consent": "Li e aceito os termos e a política de privacidade, e autorizo o tratamento dos meus dados pessoais",
+      "needDescription": "Descreva a sua necessidade (idade das crianças, requisitos especiais)",
+      "submit": "Registar",
+      "alreadyHaveAccount": "Já tem conta?",
+      "loginLink": "Entrar",
+      "selectProvince": "Selecione a província",
+      "selectCity": "Selecione a cidade",
+      "success": "Registo efetuado. Verifique o seu email para confirmar a conta."
+    },
+    "login": {
+      "title": "Entrar",
+      "identifier": "Email ou telefone",
+      "password": "Palavra-passe",
+      "submit": "Entrar",
+      "forgotPassword": "Esqueceu a palavra-passe?",
+      "noAccount": "Ainda não tem conta?",
+      "registerBabaLink": "Registar como Babá",
+      "registerFamiliaLink": "Registar como Família"
+    },
+    "forgotPassword": {
+      "title": "Recuperar palavra-passe",
+      "identifier": "Email",
+      "submit": "Enviar link de recuperação",
+      "backToLogin": "Voltar a entrar",
+      "checkEmail": "Se existir uma conta com este email, enviámos um link de recuperação."
+    },
+    "resetPassword": {
+      "title": "Nova palavra-passe",
+      "newPassword": "Nova palavra-passe",
+      "confirmPassword": "Confirmar nova palavra-passe",
+      "submit": "Redefinir palavra-passe",
+      "success": "Palavra-passe redefinida. Já pode entrar.",
+      "invalidToken": "Este link é inválido ou expirou."
+    },
+    "verifyEmail": {
+      "title": "Verificação de email",
+      "success": "Email verificado com sucesso.",
+      "invalidToken": "Este link é inválido.",
+      "expired": "Este link expirou. Solicite um novo."
+    },
+    "errors": {
+      "invalidCredentials": "Email/telefone ou palavra-passe incorretos.",
+      "accountSuspended": "Esta conta está suspensa. Contacte o suporte.",
+      "emailAlreadyUsed": "Este email já está registado.",
+      "phoneAlreadyUsed": "Este telefone já está registado.",
+      "passwordTooShort": "A palavra-passe deve ter pelo menos 8 caracteres.",
+      "passwordMismatch": "As palavras-passe não coincidem.",
+      "consentRequired": "É necessário aceitar os termos para continuar.",
+      "invalidEmail": "Email inválido.",
+      "invalidPhone": "Telefone inválido.",
+      "required": "Este campo é obrigatório.",
+      "rateLimited": "Demasiadas tentativas. Tente novamente mais tarde.",
+      "tokenInvalid": "Link inválido.",
+      "tokenExpired": "Link expirado.",
+      "contactRequired": "Indique pelo menos um email ou telefone.",
+      "unknown": "Ocorreu um erro inesperado."
+    }
+  },
+  "dashboard": {
+    "welcome": "Olá, {name}",
+    "nannyNextStep": "Complete o seu perfil",
+    "familyNextStep": "Descreva a família e comece a procurar babás",
+    "settingsLink": "Definições da conta",
+    "profileStatus": "Estado do perfil",
+    "profileCompletion": "Perfil {percent}% completo"
+  },
+  "settings": {
+    "title": "Definições da conta",
+    "fullName": "Nome completo",
+    "email": "Email",
+    "phone": "Telefone",
+    "whatsapp": "WhatsApp",
+    "province": "Província",
+    "city": "Cidade",
+    "save": "Guardar alterações",
+    "saved": "Alterações guardadas.",
+    "changePassword": "Alterar palavra-passe",
+    "currentPassword": "Palavra-passe atual",
+    "newPassword": "Nova palavra-passe",
+    "confirmPassword": "Confirmar nova palavra-passe",
+    "passwordChanged": "Palavra-passe alterada."
+  },
+  "nannyProfile": {
+    "steps": {
+      "personal": "Dados pessoais",
+      "experience": "Experiência",
+      "availability": "Disponibilidade",
+      "documents": "Documentos",
+      "review": "Revisão"
+    },
+    "personal": {
+      "birthDate": "Data de nascimento",
+      "age": "{age} anos",
+      "languages": "Idiomas falados",
+      "addLanguage": "Adicionar idioma"
+    },
+    "experience": {
+      "yearsExperience": "Anos de experiência",
+      "ageGroupsLabel": "Faixas etárias com que já trabalhou",
+      "ageGroups": {
+        "INFANT": "Bebés",
+        "TODDLER": "Crianças pequenas",
+        "SCHOOL_AGE": "Idade escolar"
+      },
+      "skillsLabel": "Competências",
+      "skills": {
+        "FIRST_AID": "Primeiros socorros",
+        "COOKING": "Cozinhar",
+        "HOMEWORK_HELP": "Apoio aos trabalhos de casa",
+        "SPECIAL_NEEDS": "Necessidades especiais",
+        "OTHER": "Outra"
+      },
+      "otherSkillsPlaceholder": "Descreva outras competências"
+    },
+    "availability": {
+      "employmentTypeLabel": "Tipo de emprego",
+      "employmentType": {
+        "FULL_TIME": "Tempo inteiro",
+        "PART_TIME": "Meio período"
+      },
+      "liveInLabel": "Regime",
+      "liveIn": {
+        "LIVE_IN": "Interna",
+        "LIVE_OUT": "Externa"
+      },
+      "weeklyGridLabel": "Disponibilidade semanal",
+      "days": {
+        "MON": "Segunda",
+        "TUE": "Terça",
+        "WED": "Quarta",
+        "THU": "Quinta",
+        "FRI": "Sexta",
+        "SAT": "Sábado",
+        "SUN": "Domingo"
+      },
+      "from": "Das",
+      "to": "Às",
+      "salaryMin": "Salário mínimo (AOA)",
+      "salaryMax": "Salário máximo (AOA)",
+      "salaryUnitLabel": "Unidade salarial",
+      "salaryUnit": {
+        "MONTHLY": "Mensal",
+        "HOURLY": "Por hora"
+      },
+      "bio": "Apresentação (bio)"
+    },
+    "documents": {
+      "photoLabel": "Fotografia de perfil",
+      "idLabel": "Documento de identificação",
+      "referenceLabel": "Referências (opcional)",
+      "certificateLabel": "Certificados (opcional)",
+      "medicalLabel": "Registos médicos",
+      "upload": "Carregar ficheiro",
+      "remove": "Remover",
+      "sizeLimitError": "O ficheiro excede o tamanho máximo permitido (5 MB).",
+      "typeNotAllowedError": "Tipo de ficheiro não permitido."
+    },
+    "review": {
+      "summaryTitle": "Reveja o seu perfil",
+      "submitForReview": "Submeter para revisão",
+      "submitted": "Perfil submetido para revisão.",
+      "lockedNotice": "O perfil está em revisão; os campos principais estão bloqueados."
+    },
+    "status": {
+      "DRAFT": "Rascunho",
+      "PENDING_REVIEW": "Em revisão",
+      "APPROVED": "Aprovado",
+      "NEEDS_CORRECTION": "Correção necessária",
+      "NOT_AVAILABLE": "Indisponível",
+      "IN_NEGOTIATION": "Em negociação",
+      "PLACED": "Colocada"
+    },
+    "correctionNotes": {
+      "title": "Notas de correção do administrador"
+    }
+  },
+  "admin": {
+    "nannies": {
+      "title": "Babás",
+      "filters": "Filtros",
+      "statusLabel": "Estado",
+      "provinceLabel": "Província",
+      "verifiedLabel": "Verificada",
+      "detailTitle": "Detalhe da babá",
+      "approve": "Aprovar",
+      "requestCorrection": "Pedir correção",
+      "markVerified": "Marcar como verificada",
+      "suspend": "Suspender",
+      "setNotAvailable": "Marcar indisponível",
+      "setInNegotiation": "Marcar em negociação",
+      "setPlaced": "Marcar colocada",
+      "correctionFieldLabel": "Campo ou documento",
+      "correctionNoteLabel": "Nota de correção",
+      "confirmSuspend": "Tem a certeza que quer suspender esta conta?",
+      "actionSuccess": "Ação concluída.",
+      "applyStatus": "Aplicar"
+    }
+  },
+  "familySearch": {
+    "title": "Procurar babás",
+    "filters": {
+      "title": "Filtros",
+      "province": "Província",
+      "city": "Cidade",
+      "experience": "Experiência mínima (anos)",
+      "employmentType": "Tipo de emprego",
+      "liveIn": "Regime",
+      "ageGroups": "Faixas etárias",
+      "languages": "Idiomas",
+      "salaryRange": "Faixa salarial (AOA)",
+      "apply": "Aplicar filtros"
+    },
+    "resultCard": {
+      "verifiedBadge": "Verificada",
+      "yearsExperience": "{years} anos de experiência",
+      "viewProfile": "Ver perfil"
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "newest": "Mais recentes",
+      "experience": "Experiência",
+      "salary": "Salário"
+    },
+    "publicProfile": {
+      "summaryTitle": "Resumo",
+      "experienceTitle": "Experiência",
+      "skillsTitle": "Competências",
+      "availabilityTitle": "Disponibilidade",
+      "badgesTitle": "Certificações"
+    },
+    "favorite": {
+      "add": "Adicionar aos favoritos",
+      "remove": "Remover dos favoritos",
+      "shortlistedTitle": "Babás favoritas"
+    },
+    "request": {
+      "requestThisNanny": "Pedir esta babá",
+      "generalTitle": "Pedir uma babá",
+      "childrenAges": "Idades das crianças",
+      "needs": "Necessidades",
+      "liveIn": "Regime",
+      "startDate": "Data de início",
+      "budgetMin": "Orçamento mínimo (AOA)",
+      "budgetMax": "Orçamento máximo (AOA)",
+      "specialRequirements": "Requisitos especiais",
+      "submit": "Enviar pedido",
+      "success": "Pedido enviado com sucesso."
+    }
+  },
+  "familyDashboard": {
+    "activeRequestsTitle": "Pedidos ativos",
+    "requestStatus": {
+      "NEW": "Novo",
+      "MATCHING": "Em correspondência",
+      "INTERVIEWING": "Em entrevistas",
+      "PROPOSED": "Proposto",
+      "APPROVED": "Aprovado",
+      "CONTRACTED": "Contratado",
+      "CLOSED": "Encerrado"
+    }
+  }
+}
