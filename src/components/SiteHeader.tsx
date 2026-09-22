@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Menu, X, ArrowUpRight, Sun } from "lucide-react";
 
 const NAV_LINKS = [
@@ -68,12 +69,26 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="hidden shrink-0 items-center gap-1.5 rounded-full bg-rose px-5 py-2.5 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg hover:shadow-rose/40 xl:inline-flex"
-        >
-          Book a Babysitter <ArrowUpRight className="h-4 w-4" />
-        </a>
+        <div className="hidden shrink-0 items-center gap-4 xl:flex">
+          <Link href="/registrar/baba" className="font-body text-sm font-medium text-ink hover:text-rose">
+            Sou Babá
+          </Link>
+          <Link href="/registrar/familia" className="font-body text-sm font-medium text-ink hover:text-rose">
+            Sou Família
+          </Link>
+          <Link
+            href="/login"
+            className="font-body text-sm font-medium text-ink hover:text-rose"
+          >
+            Entrar
+          </Link>
+          <a
+            href="#contact"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-5 py-2.5 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg hover:shadow-rose/40"
+          >
+            Book a Babysitter <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -108,6 +123,29 @@ export default function SiteHeader() {
               {link.label}
             </a>
           ))}
+          <div className="mt-2 flex flex-col gap-1 border-t border-blush pt-3">
+            <Link
+              href="/registrar/baba"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
+            >
+              Sou Babá
+            </Link>
+            <Link
+              href="/registrar/familia"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
+            >
+              Sou Família
+            </Link>
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
+            >
+              Entrar
+            </Link>
+          </div>
           <a
             href="#contact"
             onClick={() => setOpen(false)}
