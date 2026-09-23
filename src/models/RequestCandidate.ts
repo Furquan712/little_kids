@@ -11,6 +11,7 @@ const requestCandidateSchema = new Schema(
     },
     availabilityConfirmed: { type: Boolean, default: false },
     isRecommended: { type: Boolean, default: false },
+    recommendationNote: { type: String, default: "" },
   },
   { timestamps: true },
 );

@@ -53,7 +53,14 @@ export default async function FamilyDashboardPage() {
                     <TableCell>
                       {request.startDate ? new Date(request.startDate).toLocaleDateString("pt-AO") : "—"}
                     </TableCell>
-                    <TableCell className="max-w-xs truncate">{request.needs}</TableCell>
+                    <TableCell className="max-w-xs truncate">
+                      <Link
+                        href={`/familia/pedidos/${request._id.toString()}`}
+                        className="text-plat-primary-strong underline"
+                      >
+                        {request.needs}
+                      </Link>
+                    </TableCell>
                     <TableCell>
                       <Badge>{t(`familyDashboard.requestStatus.${request.status}`)}</Badge>
                     </TableCell>

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { LayoutDashboard, UserRound, Settings } from "lucide-react";
+import { LayoutDashboard, UserRound, Settings, Mail } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
@@ -17,6 +17,7 @@ export default async function NannyLayout({ children }: { children: React.ReactN
       href: "/baba/perfil/dados-pessoais",
       icon: <UserRound className="h-4 w-4" />,
     },
+    { label: t("nannyInvitations.title"), href: "/baba/convites", icon: <Mail className="h-4 w-4" /> },
     { label: t("dashboard.settingsLink"), href: "/baba/configuracoes", icon: <Settings className="h-4 w-4" /> },
   ];
 

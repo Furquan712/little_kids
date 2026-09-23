@@ -319,7 +319,99 @@
       "confirmSuspend": "Are you sure you want to suspend this account?",
       "actionSuccess": "Action completed.",
       "applyStatus": "Apply"
+    },
+    "families": {
+      "title": "Families",
+      "requestsCount": "{count} requests",
+      "detailTitle": "Family detail",
+      "needDescription": "Described need",
+      "suspend": "Suspend",
+      "reactivate": "Reactivate",
+      "confirmSuspend": "Are you sure you want to suspend this account?",
+      "requestsTitle": "Requests",
+      "actionSuccess": "Action completed.",
+      "statusLabel": "Status",
+      "provinceLabel": "Province"
+    },
+    "requests": {
+      "title": "Requests",
+      "filters": "Filters",
+      "statusLabel": "Status",
+      "familyColumn": "Family",
+      "needsColumn": "Need",
+      "detailTitle": "Request detail",
+      "familyInfoTitle": "Family",
+      "requirementsTitle": "Requirements",
+      "childrenAges": "Children's ages",
+      "needs": "Needs",
+      "liveIn": "Arrangement",
+      "startDate": "Start date",
+      "budget": "Budget",
+      "specialRequirements": "Special requirements",
+      "matchingPanelTitle": "Matching panel",
+      "searchCandidates": "Search candidates",
+      "addAsCandidate": "Add as candidate",
+      "candidatesTitle": "Candidates",
+      "removeCandidate": "Remove",
+      "noCandidatesYet": "No candidates yet.",
+      "noResults": "No available nannies found.",
+      "contactStatus": {
+        "CONTACTED": "Contacted",
+        "INTERESTED": "Interested",
+        "NOT_INTERESTED": "Not interested"
+      },
+      "availabilityConfirmed": "Availability confirmed",
+      "scheduleInterview": "Schedule interview",
+      "rescheduleInterview": "Reschedule",
+      "scheduledAtLabel": "Date and time",
+      "modeLabel": "Mode",
+      "interviewMode": {
+        "IN_PERSON": "In person",
+        "PHONE": "Phone",
+        "VIDEO": "Video"
+      },
+      "interviewStatus": {
+        "SCHEDULED": "Scheduled",
+        "DONE": "Done",
+        "NO_SHOW": "No-show",
+        "CANCELLED": "Cancelled"
+      },
+      "recordOutcome": "Record outcome",
+      "outcomeLabel": "Outcome",
+      "notesLabel": "Notes",
+      "scoreLabel": "Score (0-10)",
+      "recommendTitle": "Recommend to family",
+      "recommendNoteLabel": "Recommendation text",
+      "recommendSubmit": "Send recommendation",
+      "selectUpToThree": "Select up to 3 candidates",
+      "actionSuccess": "Action completed."
     }
+  },
+  "nannyInvitations": {
+    "title": "Interview invitations",
+    "childrenAges": "Children's ages",
+    "needs": "Needs",
+    "liveIn": "Arrangement",
+    "startDate": "Start date",
+    "budget": "Budget",
+    "specialRequirements": "Special requirements",
+    "accept": "Accept",
+    "decline": "Decline",
+    "status": {
+      "CONTACTED": "Awaiting your response",
+      "INTERESTED": "Accepted by you",
+      "NOT_INTERESTED": "Declined by you"
+    },
+    "empty": "No invitations at the moment."
+  },
+  "familyRequestDetail": {
+    "title": "Request detail",
+    "recommendationsTitle": "Recommended nannies",
+    "approve": "Approve this nanny",
+    "askOtherOptions": "Ask for other options",
+    "noRecommendationsYet": "No recommendations yet. Our team is working on your request.",
+    "approvedNotice": "Request approved. Our team will prepare the contract.",
+    "closedNotice": "This request has been closed."
   },
   "familySearch": {
     "title": "Search nannies",
