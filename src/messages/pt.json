@@ -15,7 +15,11 @@
     "yes": "Sim",
     "no": "Não",
     "close": "Fechar",
-    "genericError": "Ocorreu um erro. Tente novamente."
+    "genericError": "Ocorreu um erro. Tente novamente.",
+    "showPassword": "Mostrar palavra-passe",
+    "hidePassword": "Ocultar palavra-passe",
+    "collapseSidebar": "Recolher menu",
+    "expandSidebar": "Expandir menu"
   },
   "nav": {
     "souBaba": "Sou Babá",
@@ -109,6 +113,20 @@
       "quoteLine2": "uma parceria de confiança para a sua família.",
       "cta": "Começar agora",
       "rights": "Todos os direitos reservados."
+    }
+  },
+  "contactPage": {
+    "title": "Fale connosco",
+    "subtitle": "Tem uma dúvida sobre a plataforma, o registo ou uma colocação em curso? A nossa equipa responde o mais rápido possível.",
+    "nameLabel": "Nome",
+    "emailLabel": "Email",
+    "messageLabel": "Mensagem",
+    "submit": "Enviar mensagem",
+    "success": "Mensagem enviada. Entraremos em contacto em breve.",
+    "responseNote": "Respondemos normalmente dentro de 1 dia útil.",
+    "errors": {
+      "unknown": "Não foi possível enviar a mensagem. Tente novamente.",
+      "rateLimited": "Demasiadas tentativas. Tente novamente mais tarde."
     }
   },
   "auth": {
@@ -318,7 +336,12 @@
       "correctionNoteLabel": "Nota de correção",
       "confirmSuspend": "Tem a certeza que quer suspender esta conta?",
       "actionSuccess": "Ação concluída.",
-      "applyStatus": "Aplicar"
+      "applyStatus": "Aplicar",
+      "editProfile": "Editar perfil",
+      "editTitle": "Editar babá",
+      "accountSectionTitle": "Conta",
+      "saveChanges": "Guardar alterações",
+      "changesSaved": "Alterações guardadas."
     },
     "families": {
       "title": "Famílias",
@@ -331,7 +354,11 @@
       "requestsTitle": "Pedidos",
       "actionSuccess": "Ação concluída.",
       "statusLabel": "Estado",
-      "provinceLabel": "Província"
+      "provinceLabel": "Província",
+      "editProfile": "Editar perfil",
+      "editTitle": "Editar família",
+      "saveChanges": "Guardar alterações",
+      "changesSaved": "Alterações guardadas."
     },
     "requests": {
       "title": "Pedidos",

@@ -13,12 +13,12 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   const NAV_LINKS = [
-    { key: "home", href: "#top" },
-    { key: "services", href: "#services" },
-    { key: "whyUs", href: "#why-us" },
-    { key: "howItWorks", href: "#how-it-works" },
-    { key: "testimonials", href: "#testimonials" },
-    { key: "contact", href: "#contact" },
+    { key: "home", href: "/#top" },
+    { key: "services", href: "/#services" },
+    { key: "whyUs", href: "/#why-us" },
+    { key: "howItWorks", href: "/#how-it-works" },
+    { key: "testimonials", href: "/#testimonials" },
+    { key: "contact", href: "/contacto" },
   ] as const;
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function SiteHeader() {
       </div>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         {/* Logo */}
-        <a href="#top" className="group flex flex-col">
+        <Link href="/#top" className="group flex flex-col">
           <span className="relative flex items-center gap-1.5 font-heading text-2xl font-semibold leading-none sm:text-3xl">
             <svg viewBox="0 0 24 24" fill="var(--coral)" className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true">
               <path d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 4.3 2.4C10.4 4.7 12.3 3.7 14.3 4c3.5.5 5.3 4.1 3.7 7.7C15.5 16.4 12 21 12 21Z" />
@@ -59,25 +59,33 @@ export default function SiteHeader() {
           <span className="mt-0.5 pl-6 text-[10px] font-semibold tracking-[0.18em] text-body sm:text-[11px]">
             {t("home.footer.tagline")}
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-7 font-body text-[15px] text-ink xl:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.key}
-              href={link.href}
-              onClick={() => setActive(link.key)}
-              className={`relative pb-1 transition-colors hover:text-rose ${
-                active === link.key ? "text-rose" : ""
-              }`}
-            >
-              {t(`nav.${link.key}`)}
-              {active === link.key && (
-                <span className="absolute -bottom-0.5 left-0 h-[3px] w-full rounded-full bg-rose" />
-              )}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isRoute = !link.href.includes("#");
+            const className = `relative pb-1 transition-colors hover:text-rose ${
+              active === link.key ? "text-rose" : ""
+            }`;
+            const content = (
+              <>
+                {t(`nav.${link.key}`)}
+                {active === link.key && (
+                  <span className="absolute -bottom-0.5 left-0 h-[3px] w-full rounded-full bg-rose" />
+                )}
+              </>
+            );
+            return isRoute ? (
+              <Link key={link.key} href={link.href} onClick={() => setActive(link.key)} className={className}>
+                {content}
+              </Link>
+            ) : (
+              <a key={link.key} href={link.href} onClick={() => setActive(link.key)} className={className}>
+                {content}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
@@ -121,21 +129,25 @@ export default function SiteHeader() {
         }`}
       >
         <nav className="flex flex-col gap-1 px-5 pb-5 font-body text-ink">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.key}
-              href={link.href}
-              onClick={() => {
-                setActive(link.key);
-                setOpen(false);
-              }}
-              className={`rounded-xl px-3 py-2.5 transition-colors ${
-                active === link.key ? "bg-blush-soft text-rose" : "hover:bg-blush-soft"
-              }`}
-            >
-              {t(`nav.${link.key}`)}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isRoute = !link.href.includes("#");
+            const className = `rounded-xl px-3 py-2.5 transition-colors ${
+              active === link.key ? "bg-blush-soft text-rose" : "hover:bg-blush-soft"
+            }`;
+            const handleClick = () => {
+              setActive(link.key);
+              setOpen(false);
+            };
+            return isRoute ? (
+              <Link key={link.key} href={link.href} onClick={handleClick} className={className}>
+                {t(`nav.${link.key}`)}
+              </Link>
+            ) : (
+              <a key={link.key} href={link.href} onClick={handleClick} className={className}>
+                {t(`nav.${link.key}`)}
+              </a>
+            );
+          })}
           <div className="mt-2 flex flex-col gap-1 border-t border-blush pt-3">
             <Link
               href="/login"

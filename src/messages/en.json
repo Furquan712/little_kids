@@ -15,7 +15,11 @@
     "yes": "Yes",
     "no": "No",
     "close": "Close",
-    "genericError": "Something went wrong. Please try again."
+    "genericError": "Something went wrong. Please try again.",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "collapseSidebar": "Collapse menu",
+    "expandSidebar": "Expand menu"
   },
   "nav": {
     "souBaba": "I'm a Nanny",
@@ -109,6 +113,20 @@
       "quoteLine2": "a trusted partnership for your family.",
       "cta": "Get started",
       "rights": "All rights reserved."
+    }
+  },
+  "contactPage": {
+    "title": "Get in touch",
+    "subtitle": "Have a question about the platform, registration, or an ongoing placement? Our team responds as quickly as possible.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "submit": "Send message",
+    "success": "Message sent. We'll get back to you soon.",
+    "responseNote": "We usually respond within 1 business day.",
+    "errors": {
+      "unknown": "Couldn't send the message. Please try again.",
+      "rateLimited": "Too many attempts. Please try again later."
     }
   },
   "auth": {
@@ -318,7 +336,12 @@
       "correctionNoteLabel": "Correction note",
       "confirmSuspend": "Are you sure you want to suspend this account?",
       "actionSuccess": "Action completed.",
-      "applyStatus": "Apply"
+      "applyStatus": "Apply",
+      "editProfile": "Edit profile",
+      "editTitle": "Edit nanny",
+      "accountSectionTitle": "Account",
+      "saveChanges": "Save changes",
+      "changesSaved": "Changes saved."
     },
     "families": {
       "title": "Families",
@@ -331,7 +354,11 @@
       "requestsTitle": "Requests",
       "actionSuccess": "Action completed.",
       "statusLabel": "Status",
-      "provinceLabel": "Province"
+      "provinceLabel": "Province",
+      "editProfile": "Edit profile",
+      "editTitle": "Edit family",
+      "saveChanges": "Save changes",
+      "changesSaved": "Changes saved."
     },
     "requests": {
       "title": "Requests",

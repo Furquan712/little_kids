@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { loginSchema, type LoginInput } from "@/features/auth/schemas";
 import { loginAction } from "@/features/auth/actions";
@@ -53,7 +54,7 @@ export function LoginForm() {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="password">{t("auth.login.password")}</Label>
-        <Input id="password" type="password" {...register("password")} />
+        <PasswordInput id="password" {...register("password")} />
         {errors.password && <p className="text-sm text-plat-danger">{t("common.requiredField")}</p>}
       </div>
 

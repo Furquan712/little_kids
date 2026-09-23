@@ -3,6 +3,13 @@ import bcrypt from "bcryptjs";
 import { User } from "@/models/User";
 import { FamilyProfile } from "@/models/FamilyProfile";
 import { NannyProfile } from "@/models/NannyProfile";
+import { Favorite } from "@/models/Favorite";
+import { NannyRequest } from "@/models/NannyRequest";
+import { RequestCandidate } from "@/models/RequestCandidate";
+import { Interview } from "@/models/Interview";
+import { Placement } from "@/models/Placement";
+import { Contract } from "@/models/Contract";
+import { Signature } from "@/models/Signature";
 
 const MONGODB_URI = process.env.MONGODB_URI ?? "mongodb://127.0.0.1:27017/nanny_platform";
 
@@ -46,6 +53,9 @@ const NANNIES = [
     yearsExperience: 4,
     ageGroups: ["INFANT", "SCHOOL_AGE"],
     skills: ["FIRST_AID", "SPECIAL_NEEDS"],
+    correctionNotes: [
+      { field: "documents.id", note: "O documento de identificação está ilegível, por favor carregue novamente." },
+    ],
   },
   {
     fullName: "Eva Santos",
@@ -57,7 +67,61 @@ const NANNIES = [
     ageGroups: ["INFANT", "TODDLER", "SCHOOL_AGE"],
     skills: ["FIRST_AID", "COOKING", "HOMEWORK_HELP"],
   },
+  {
+    fullName: "Fátima Neto",
+    email: "fatima.neto@example.com",
+    province: "Luanda",
+    city: "Cacuaco",
+    status: "IN_NEGOTIATION" as const,
+    yearsExperience: 5,
+    ageGroups: ["TODDLER", "SCHOOL_AGE"],
+    skills: ["COOKING", "HOMEWORK_HELP"],
+  },
+  {
+    fullName: "Isabel Costa",
+    email: "isabel.costa@example.com",
+    province: "Huambo",
+    city: "Huambo",
+    status: "IN_NEGOTIATION" as const,
+    yearsExperience: 7,
+    ageGroups: ["INFANT", "SCHOOL_AGE"],
+    skills: ["FIRST_AID", "HOMEWORK_HELP"],
+    interviewed: true,
+  },
+  {
+    fullName: "Joana Pinto",
+    email: "joana.pinto@example.com",
+    province: "Malanje",
+    city: "Malanje",
+    status: "IN_NEGOTIATION" as const,
+    yearsExperience: 4,
+    ageGroups: ["TODDLER"],
+    skills: ["COOKING", "SPECIAL_NEEDS"],
+    interviewed: true,
+  },
+  {
+    fullName: "Graça Lima",
+    email: "graca.lima@example.com",
+    province: "Luanda",
+    city: "Talatona",
+    status: "PLACED" as const,
+    yearsExperience: 10,
+    ageGroups: ["INFANT", "TODDLER", "SCHOOL_AGE"],
+    skills: ["FIRST_AID", "COOKING", "HOMEWORK_HELP"],
+  },
+  {
+    fullName: "Helena Rosa",
+    email: "helena.rosa@example.com",
+    province: "Benguela",
+    city: "Lobito",
+    status: "NOT_AVAILABLE" as const,
+    yearsExperience: 2,
+    ageGroups: ["INFANT"],
+    skills: ["FIRST_AID"],
+  },
 ];
+
+const APPROVED_LIKE_STATUSES = ["APPROVED", "IN_NEGOTIATION", "NOT_AVAILABLE", "PLACED"];
 
 const FAMILIES = [
   { fullName: "Família Fernandes", email: "familia.fernandes@example.com", province: "Luanda", city: "Luanda" },
@@ -103,6 +167,8 @@ async function main() {
   });
   console.log("Admin:", admin.email);
 
+  const nannyUsers: Record<string, mongoose.Types.ObjectId> = {};
+
   for (const nanny of NANNIES) {
     const user = await upsertUser({
       role: "NANNY",
@@ -111,6 +177,7 @@ async function main() {
       province: nanny.province,
       city: nanny.city,
     });
+    nannyUsers[nanny.email] = user._id;
 
     await NannyProfile.findOneAndUpdate(
       { userId: user._id },
@@ -130,14 +197,18 @@ async function main() {
         salaryUnit: "MONTHLY",
         bio: `Babá com ${nanny.yearsExperience} anos de experiência.`,
         status: nanny.status,
-        verified: nanny.status === "APPROVED",
+        verified: APPROVED_LIKE_STATUSES.includes(nanny.status),
+        interviewed: "interviewed" in nanny ? nanny.interviewed : false,
+        correctionNotes: "correctionNotes" in nanny ? nanny.correctionNotes : [],
         submittedAt: nanny.status === "DRAFT" ? undefined : new Date(),
-        approvedAt: nanny.status === "APPROVED" ? new Date() : undefined,
+        approvedAt: APPROVED_LIKE_STATUSES.includes(nanny.status) ? new Date() : undefined,
       },
       { upsert: true },
     );
     console.log("Nanny:", user.email, nanny.status);
   }
+
+  const familyUsers: Record<string, mongoose.Types.ObjectId> = {};
 
   for (const family of FAMILIES) {
     const user = await upsertUser({
@@ -147,6 +218,7 @@ async function main() {
       province: family.province,
       city: family.city,
     });
+    familyUsers[family.email] = user._id;
 
     await FamilyProfile.findOneAndUpdate(
       { userId: user._id },
@@ -156,6 +228,200 @@ async function main() {
     console.log("Family:", user.email);
   }
 
+  // --- Relationship / pipeline data (favorites, requests, candidates,
+  // interviews, contracts) is demo data with no natural unique key, so we
+  // wipe and recreate it on every run to keep the seed idempotent. This
+  // is safe for this dev-only seed script, but re-running it will discard
+  // any requests/favorites/contracts you've created by hand while testing.
+  const fernandes = familyUsers["familia.fernandes@example.com"];
+  const rodrigues = familyUsers["familia.rodrigues@example.com"];
+  const neto = familyUsers["familia.neto@example.com"];
+
+  const seedFamilyIds = [fernandes, rodrigues, neto];
+  const oldRequests = await NannyRequest.find({ familyId: { $in: seedFamilyIds } });
+  const oldRequestIds = oldRequests.map((r) => r._id);
+  const oldCandidates = await RequestCandidate.find({ requestId: { $in: oldRequestIds } });
+  const oldCandidateIds = oldCandidates.map((c) => c._id);
+  const oldPlacements = await Placement.find({ requestId: { $in: oldRequestIds } });
+  const oldPlacementIds = oldPlacements.map((p) => p._id);
+  const oldContracts = await Contract.find({ placementId: { $in: oldPlacementIds } });
+  const oldContractIds = oldContracts.map((c) => c._id);
+
+  await Signature.deleteMany({ contractId: { $in: oldContractIds } });
+  await Contract.deleteMany({ _id: { $in: oldContractIds } });
+  await Placement.deleteMany({ _id: { $in: oldPlacementIds } });
+  await Interview.deleteMany({ candidateId: { $in: oldCandidateIds } });
+  await RequestCandidate.deleteMany({ _id: { $in: oldCandidateIds } });
+  await NannyRequest.deleteMany({ _id: { $in: oldRequestIds } });
+  await Favorite.deleteMany({ familyId: { $in: seedFamilyIds } });
+
+  await Favorite.create([
+    { familyId: fernandes, nannyId: nannyUsers["ana.silva@example.com"] },
+    { familyId: fernandes, nannyId: nannyUsers["eva.santos@example.com"] },
+    { familyId: rodrigues, nannyId: nannyUsers["eva.santos@example.com"] },
+  ]);
+  console.log("Favorites: 3 created");
+
+  // Request 1 — brand new, no candidates yet.
+  await NannyRequest.create({
+    familyId: fernandes,
+    childrenAges: [5, 8],
+    needs: "Preciso de apoio nas manhãs para levar as crianças à escola",
+    liveIn: "LIVE_OUT",
+    startDate: new Date("2026-11-01"),
+    budgetMin: 30000,
+    budgetMax: 45000,
+    specialRequirements: "",
+    status: "NEW",
+  });
+
+  // Request 2 — MATCHING: one candidate shortlisted, awaiting her response.
+  const req2 = await NannyRequest.create({
+    familyId: rodrigues,
+    childrenAges: [7],
+    needs: "Procuro babá para as tardes e apoio escolar",
+    liveIn: "LIVE_OUT",
+    startDate: new Date("2026-11-15"),
+    budgetMin: 35000,
+    budgetMax: 50000,
+    specialRequirements: "",
+    status: "MATCHING",
+  });
+  await RequestCandidate.create({
+    requestId: req2._id,
+    nannyId: nannyUsers["fatima.neto@example.com"],
+    contactStatus: "CONTACTED",
+    availabilityConfirmed: false,
+  });
+
+  // Request 3 — PROPOSED: two interviewed candidates recommended, waiting
+  // on the family's decision (a live "Approve" / "Ask for other options"
+  // scenario to test end to end).
+  const req3 = await NannyRequest.create({
+    familyId: neto,
+    childrenAges: [1, 1],
+    needs: "Preciso de uma babá interna para dois bebés gémeos",
+    liveIn: "LIVE_IN",
+    startDate: new Date("2026-11-10"),
+    budgetMin: 50000,
+    budgetMax: 70000,
+    specialRequirements: "Experiência com gémeos é uma mais-valia.",
+    status: "PROPOSED",
+  });
+  const isabelCandidate = await RequestCandidate.create({
+    requestId: req3._id,
+    nannyId: nannyUsers["isabel.costa@example.com"],
+    contactStatus: "INTERESTED",
+    availabilityConfirmed: true,
+    isRecommended: true,
+    recommendationNote: "A Isabel tem vasta experiência com bebés e foi muito bem avaliada na entrevista.",
+  });
+  const joanaCandidate = await RequestCandidate.create({
+    requestId: req3._id,
+    nannyId: nannyUsers["joana.pinto@example.com"],
+    contactStatus: "INTERESTED",
+    availabilityConfirmed: true,
+    isRecommended: true,
+    recommendationNote: "A Joana é atenciosa e tem disponibilidade total para o regime interno.",
+  });
+  await Interview.create([
+    {
+      candidateId: isabelCandidate._id,
+      scheduledAt: new Date("2026-10-20T10:00:00Z"),
+      mode: "VIDEO",
+      status: "DONE",
+      outcome: "Aprovada",
+      notes: "Entrevista muito positiva, boa experiência com bebés.",
+      score: 9,
+    },
+    {
+      candidateId: joanaCandidate._id,
+      scheduledAt: new Date("2026-10-21T14:00:00Z"),
+      mode: "IN_PERSON",
+      status: "DONE",
+      outcome: "Aprovada",
+      notes: "Muito atenciosa, boa comunicação.",
+      score: 8,
+    },
+  ]);
+
+  // Request 4 — CONTRACTED: a fully active placement with two signed
+  // contracts (no real PDFs — those are only generated by the running app
+  // via Send for signature / e-signature, not by this offline seed script).
+  const req4 = await NannyRequest.create({
+    familyId: fernandes,
+    targetNannyId: nannyUsers["graca.lima@example.com"],
+    childrenAges: [3],
+    needs: "Preciso de apoio a tempo inteiro para a minha filha",
+    liveIn: "LIVE_OUT",
+    startDate: new Date("2026-10-01"),
+    budgetMin: 45000,
+    budgetMax: 65000,
+    specialRequirements: "",
+    status: "CONTRACTED",
+  });
+  const placement4 = await Placement.create({
+    requestId: req4._id,
+    familyId: fernandes,
+    nannyId: nannyUsers["graca.lima@example.com"],
+    startDate: new Date("2026-10-01"),
+    status: "ACTIVE",
+  });
+  const contractTerms = {
+    startDate: "2026-10-01",
+    duties: "Cuidados gerais, preparação de refeições e apoio escolar",
+    scheduleText: "Segunda a sexta, 08:00–17:00",
+    noticePeriodDays: 30,
+    terminationTerms: "30 dias de aviso prévio por escrito",
+  };
+  const sharedContractFields = {
+    placementId: placement4._id,
+    version: 1,
+    terms: contractTerms,
+    nannySalary: 55000,
+    commissionType: "PERCENTAGE" as const,
+    commissionValue: 15,
+    commissionAmount: 8250,
+    familyTotal: 63250,
+    status: "ACTIVE" as const,
+  };
+  const familyContract4 = await Contract.create({ ...sharedContractFields, party: "FAMILY" });
+  const nannyContract4 = await Contract.create({ ...sharedContractFields, party: "NANNY" });
+  await Signature.create([
+    {
+      contractId: familyContract4._id,
+      userId: fernandes,
+      typedName: "Família Fernandes",
+      ip: "127.0.0.1",
+      userAgent: "seed-script",
+      signedAt: new Date("2026-09-28T09:00:00Z"),
+      method: "ONLINE",
+    },
+    {
+      contractId: nannyContract4._id,
+      userId: nannyUsers["graca.lima@example.com"],
+      typedName: "Graça Lima",
+      ip: "127.0.0.1",
+      userAgent: "seed-script",
+      signedAt: new Date("2026-09-28T15:00:00Z"),
+      method: "ONLINE",
+    },
+  ]);
+
+  // Request 5 — CLOSED, no candidates: a withdrawn/fulfilled-elsewhere request.
+  await NannyRequest.create({
+    familyId: rodrigues,
+    childrenAges: [10],
+    needs: "Pedido cancelado — já não é necessário",
+    liveIn: "LIVE_OUT",
+    startDate: new Date("2026-09-01"),
+    budgetMin: 30000,
+    budgetMax: 40000,
+    specialRequirements: "",
+    status: "CLOSED",
+  });
+
+  console.log("Requests: 5 created (NEW, MATCHING, PROPOSED, CONTRACTED, CLOSED)");
   console.log("Seed complete.");
   await mongoose.disconnect();
 }

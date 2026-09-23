@@ -2,6 +2,7 @@ import { connectToDatabase } from "@/lib/db";
 import { User } from "@/models/User";
 import { FamilyProfile } from "@/models/FamilyProfile";
 import { NannyRequest } from "@/models/NannyRequest";
+import type { AdminEditFamilyInput } from "./schemas";
 
 export async function listFamilies() {
   await connectToDatabase();
@@ -71,4 +72,38 @@ export async function reactivateFamilyAccount(familyId: string) {
   family.status = "ACTIVE";
   await family.save();
   return { before, after: family.toObject() };
+}
+
+export async function adminUpdateFamily(familyId: string, input: AdminEditFamilyInput) {
+  await connectToDatabase();
+
+  const user = await User.findOne({ _id: familyId, role: "FAMILY" });
+  if (!user) return { ok: false as const, error: "NOT_FOUND" as const };
+
+  if (input.email) {
+    const conflict = await User.exists({ email: input.email, _id: { $ne: familyId } });
+    if (conflict) return { ok: false as const, error: "EMAIL_TAKEN" as const };
+  }
+  if (input.phone) {
+    const conflict = await User.exists({ phone: input.phone, _id: { $ne: familyId } });
+    if (conflict) return { ok: false as const, error: "PHONE_TAKEN" as const };
+  }
+
+  const before = user.toObject();
+
+  user.fullName = input.fullName;
+  user.email = input.email || undefined;
+  user.phone = input.phone || undefined;
+  user.whatsapp = input.whatsapp || undefined;
+  user.province = input.province;
+  user.city = input.city;
+  await user.save();
+
+  await FamilyProfile.findOneAndUpdate(
+    { userId: familyId },
+    { needDescription: input.needDescription || "" },
+    { upsert: true },
+  );
+
+  return { ok: true as const, before, after: user.toObject() };
 }
