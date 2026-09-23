@@ -1,9 +1,12 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { getRequestDetail } from "@/features/matching/service";
+import { getPlacementIdByRequestId } from "@/features/contracts/service";
 import { RequestDetailPanel } from "@/features/matching/components/RequestDetailPanel";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminRequestDetailPage({
@@ -20,6 +23,10 @@ export default async function AdminRequestDetailPage({
 
   const t = await getTranslations("admin.requests");
   const tStatus = await getTranslations("familyDashboard.requestStatus");
+  const tContract = await getTranslations("contracts.detail");
+  const placementId = request.status === "APPROVED" || request.status === "CONTRACTED"
+    ? await getPlacementIdByRequestId(id)
+    : null;
 
   return (
     <div className="flex flex-col gap-6">
@@ -27,6 +34,14 @@ export default async function AdminRequestDetailPage({
         <h1 className="text-2xl font-semibold text-plat-ink">{t("detailTitle")}</h1>
         <Badge>{tStatus(request.status as never)}</Badge>
       </div>
+
+      {request.status === "APPROVED" && (
+        <Button asChild className="w-fit">
+          <Link href={placementId ? `/admin/contratos/${placementId}` : `/admin/contratos/novo?requestId=${id}`}>
+            {placementId ? tContract("viewContractCta") : tContract("createContractCta")}
+          </Link>
+        </Button>
+      )}
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card>

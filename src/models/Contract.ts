@@ -19,6 +19,7 @@ const contractSchema = new Schema(
     pdfKey: { type: String },
     signedPdfKey: { type: String },
     docHash: { type: String },
+    terminationReason: { type: String },
   },
   { timestamps: true },
 );

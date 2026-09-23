@@ -475,5 +475,90 @@
       "CONTRACTED": "Contracted",
       "CLOSED": "Closed"
     }
+  },
+  "contracts": {
+    "errors": {
+      "REQUEST_NOT_READY": "This request is not approved yet, or has no nanny assigned.",
+      "ALREADY_EXISTS": "A contract already exists for this request.",
+      "ALREADY_SIGNED": "A contract that has already been signed cannot be edited."
+    },
+    "builder": {
+      "title": "Create contract",
+      "editTitle": "Edit contract",
+      "startDate": "Start date",
+      "duties": "Duties",
+      "scheduleText": "Schedule (description)",
+      "noticePeriodDays": "Notice period (days)",
+      "terminationTerms": "Termination terms",
+      "nannySalary": "Nanny salary (AOA/month)",
+      "commissionType": "Commission type",
+      "commissionTypeOptions": {
+        "PERCENTAGE": "Percentage",
+        "FIXED": "Fixed amount"
+      },
+      "commissionValue": "Commission value",
+      "commissionAmount": "Calculated commission",
+      "familyTotal": "Family monthly total",
+      "submit": "Create contract",
+      "editSubmit": "Save changes",
+      "success": "Contract created successfully.",
+      "editSuccess": "Contract updated. It needs to be sent for signature again."
+    },
+    "detail": {
+      "title": "Contract",
+      "familyContract": "Family contract",
+      "nannyContract": "Nanny contract",
+      "status": {
+        "DRAFT": "Draft",
+        "SENT": "Sent",
+        "SIGNED": "Signed",
+        "ACTIVE": "Active",
+        "ENDED": "Ended",
+        "TERMINATED": "Terminated"
+      },
+      "send": "Send for signature",
+      "downloadPdf": "Download PDF",
+      "downloadSigned": "Download signed PDF",
+      "edit": "Edit contract",
+      "signInPerson": "In-person signature",
+      "uploadScan": "Upload scanned copy",
+      "uploadScanSubmit": "Upload and mark as signed",
+      "signedBy": "Signed by {name}",
+      "endContract": "End contract",
+      "terminateContract": "Terminate contract",
+      "reasonLabel": "Reason",
+      "confirmEnd": "Are you sure you want to end this contract?",
+      "confirmTerminate": "Are you sure you want to terminate this contract?",
+      "createContractCta": "Create contract for this request",
+      "viewContractCta": "View contract",
+      "placementStatus": "Placement status",
+      "actionSuccess": "Action completed."
+    },
+    "sign": {
+      "title": "Sign contract",
+      "readNotice": "Read the contract carefully before signing.",
+      "typedNameLabel": "Full name",
+      "signatureLabel": "Signature",
+      "clearSignature": "Clear",
+      "agreeLabel": "I have read and agree to the terms of this contract",
+      "submit": "Sign contract",
+      "alreadySigned": "This contract has already been signed.",
+      "notReady": "This contract is not ready for signature yet.",
+      "success": "Contract signed successfully."
+    },
+    "list": {
+      "title": "Contracts",
+      "filters": "Filters",
+      "statusLabel": "Status",
+      "familyColumn": "Family",
+      "nannyColumn": "Nanny",
+      "familyStatusColumn": "Status (family)",
+      "nannyStatusColumn": "Status (nanny)"
+    },
+    "myContracts": {
+      "title": "My contracts",
+      "empty": "You don't have any contracts yet.",
+      "view": "View contract"
+    }
   }
 }

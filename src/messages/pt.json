@@ -475,5 +475,90 @@
       "CONTRACTED": "Contratado",
       "CLOSED": "Encerrado"
     }
+  },
+  "contracts": {
+    "errors": {
+      "REQUEST_NOT_READY": "O pedido ainda não está aprovado ou não tem uma babá associada.",
+      "ALREADY_EXISTS": "Já existe um contrato para este pedido.",
+      "ALREADY_SIGNED": "Não é possível editar um contrato já assinado."
+    },
+    "builder": {
+      "title": "Criar contrato",
+      "editTitle": "Editar contrato",
+      "startDate": "Data de início",
+      "duties": "Funções",
+      "scheduleText": "Horário (descrição)",
+      "noticePeriodDays": "Período de aviso prévio (dias)",
+      "terminationTerms": "Condições de rescisão",
+      "nannySalary": "Salário da babá (AOA/mês)",
+      "commissionType": "Tipo de comissão",
+      "commissionTypeOptions": {
+        "PERCENTAGE": "Percentagem",
+        "FIXED": "Valor fixo"
+      },
+      "commissionValue": "Valor da comissão",
+      "commissionAmount": "Comissão calculada",
+      "familyTotal": "Total mensal da família",
+      "submit": "Criar contrato",
+      "editSubmit": "Guardar alterações",
+      "success": "Contrato criado com sucesso.",
+      "editSuccess": "Contrato atualizado. É necessário reenviar para assinatura."
+    },
+    "detail": {
+      "title": "Contrato",
+      "familyContract": "Contrato da família",
+      "nannyContract": "Contrato da babá",
+      "status": {
+        "DRAFT": "Rascunho",
+        "SENT": "Enviado",
+        "SIGNED": "Assinado",
+        "ACTIVE": "Ativo",
+        "ENDED": "Terminado",
+        "TERMINATED": "Rescindido"
+      },
+      "send": "Enviar para assinatura",
+      "downloadPdf": "Descarregar PDF",
+      "downloadSigned": "Descarregar PDF assinado",
+      "edit": "Editar contrato",
+      "signInPerson": "Assinatura em pessoa",
+      "uploadScan": "Carregar cópia digitalizada",
+      "uploadScanSubmit": "Carregar e marcar como assinado",
+      "signedBy": "Assinado por {name}",
+      "endContract": "Terminar contrato",
+      "terminateContract": "Rescindir contrato",
+      "reasonLabel": "Motivo",
+      "confirmEnd": "Tem a certeza que quer terminar este contrato?",
+      "confirmTerminate": "Tem a certeza que quer rescindir este contrato?",
+      "createContractCta": "Criar contrato para este pedido",
+      "viewContractCta": "Ver contrato",
+      "placementStatus": "Estado da colocação",
+      "actionSuccess": "Ação concluída."
+    },
+    "sign": {
+      "title": "Assinar contrato",
+      "readNotice": "Leia atentamente o contrato antes de assinar.",
+      "typedNameLabel": "Nome completo",
+      "signatureLabel": "Assinatura",
+      "clearSignature": "Limpar",
+      "agreeLabel": "Li e concordo com os termos deste contrato",
+      "submit": "Assinar contrato",
+      "alreadySigned": "Este contrato já foi assinado.",
+      "notReady": "Este contrato ainda não está pronto para assinatura.",
+      "success": "Contrato assinado com sucesso."
+    },
+    "list": {
+      "title": "Contratos",
+      "filters": "Filtros",
+      "statusLabel": "Estado",
+      "familyColumn": "Família",
+      "nannyColumn": "Babá",
+      "familyStatusColumn": "Estado (família)",
+      "nannyStatusColumn": "Estado (babá)"
+    },
+    "myContracts": {
+      "title": "Os meus contratos",
+      "empty": "Ainda não tem contratos.",
+      "view": "Ver contrato"
+    }
   }
 }
