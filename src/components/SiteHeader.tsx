@@ -37,6 +37,11 @@ export default function SiteHeader() {
           : "bg-cream/60 backdrop-blur-sm"
       }`}
     >
+      <div className="border-b border-ink/10">
+        <div className="mx-auto flex max-w-7xl justify-end px-5 py-2 sm:px-8">
+          <LocaleSwitcher />
+        </div>
+      </div>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         {/* Logo */}
         <a href="#top" className="group flex flex-col">
@@ -73,7 +78,6 @@ export default function SiteHeader() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
-          <LocaleSwitcher />
           <Link
             href="/login"
             className="font-body text-sm font-medium text-ink hover:text-rose"
@@ -96,7 +100,6 @@ export default function SiteHeader() {
 
         {/* Mobile toggle */}
         <div className="flex items-center gap-2 xl:hidden">
-          <LocaleSwitcher />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

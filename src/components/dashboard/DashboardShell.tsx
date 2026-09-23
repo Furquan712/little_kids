@@ -57,7 +57,12 @@ export function DashboardShell({
 
   return (
     <div className="min-h-screen bg-plat-bg-pink">
-      <div className="mx-auto flex min-h-screen max-w-7xl">
+      <div className="border-b border-plat-border bg-plat-bg">
+        <div className="mx-auto flex max-w-7xl justify-end px-5 py-2 sm:px-8">
+          <LocaleSwitcher />
+        </div>
+      </div>
+      <div className="mx-auto flex min-h-[calc(100vh-2.5rem)] max-w-7xl">
         <aside className="hidden w-64 shrink-0 flex-col gap-6 border-r border-plat-border bg-plat-bg p-5 md:flex">
           <div className="text-lg font-semibold text-plat-ink">Nanny Platform</div>
           {nav}
@@ -73,12 +78,9 @@ export function DashboardShell({
         <div className="flex flex-1 flex-col">
           <header className="flex items-center justify-between border-b border-plat-border bg-plat-bg px-5 py-4 md:hidden">
             <span className="text-lg font-semibold text-plat-ink">Nanny Platform</span>
-            <div className="flex items-center gap-3">
-              <LocaleSwitcher />
-              <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
-                {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
+            <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </header>
 
           {mobileOpen && (
@@ -94,8 +96,7 @@ export function DashboardShell({
             </div>
           )}
 
-          <header className="hidden items-center justify-end gap-4 border-b border-plat-border bg-plat-bg px-6 py-4 md:flex">
-            <LocaleSwitcher />
+          <header className="hidden items-center justify-end border-b border-plat-border bg-plat-bg px-6 py-4 md:flex">
             <span className="text-sm text-plat-ink-muted">{userName}</span>
           </header>
 

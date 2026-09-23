@@ -26,7 +26,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       role="group"
       aria-label={t("language")}
       className={cn(
-        "inline-flex items-center rounded-full border border-ink/15 bg-white/70 p-0.5 text-xs font-semibold",
+        "inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white p-1 text-sm font-semibold shadow-sm",
         className,
       )}
     >
@@ -36,7 +36,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         onClick={() => switchTo("pt-AO")}
         aria-pressed={locale === "pt-AO"}
         className={cn(
-          "rounded-full px-2.5 py-1 transition-colors",
+          "rounded-full px-3.5 py-1.5 transition-colors",
           locale === "pt-AO" ? "bg-rose text-white" : "text-ink hover:text-rose",
         )}
       >
@@ -48,7 +48,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         onClick={() => switchTo("en")}
         aria-pressed={locale === "en"}
         className={cn(
-          "rounded-full px-2.5 py-1 transition-colors",
+          "rounded-full px-3.5 py-1.5 transition-colors",
           locale === "en" ? "bg-rose text-white" : "text-ink hover:text-rose",
         )}
       >
