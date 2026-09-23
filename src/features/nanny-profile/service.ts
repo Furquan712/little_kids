@@ -99,7 +99,7 @@ export async function addNannyDocument(
   return NannyDocument.create({
     nannyUserId: userId,
     type,
-    s3Key: key,
+    fileKey: key,
     originalName: file.originalName,
     mimeType: file.mimeType,
     size: file.size,
@@ -111,7 +111,7 @@ export async function removeNannyDocument(userId: string, documentId: string) {
   await connectToDatabase();
   const doc = await NannyDocument.findOne({ _id: documentId, nannyUserId: userId });
   if (!doc) return false;
-  await getStorageService().delete(doc.s3Key);
+  await getStorageService().delete(doc.fileKey);
   await doc.deleteOne();
   return true;
 }

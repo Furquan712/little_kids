@@ -1,4 +1,4 @@
-import { S3StorageService } from "./s3";
+import { CloudinaryStorageService } from "./cloudinary";
 
 export interface UploadInput {
   key: string;
@@ -16,7 +16,7 @@ let cached: StorageService | undefined;
 
 export function getStorageService(): StorageService {
   if (!cached) {
-    cached = new S3StorageService();
+    cached = new CloudinaryStorageService();
   }
   return cached;
 }

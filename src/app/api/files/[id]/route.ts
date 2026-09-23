@@ -32,6 +32,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({ error: "FORBIDDEN" }, { status: 403 });
   }
 
-  const url = await getStorageService().getSignedDownloadUrl(doc.s3Key, 60);
+  const url = await getStorageService().getSignedDownloadUrl(doc.fileKey, 60);
   return NextResponse.redirect(url);
 }

@@ -8,7 +8,7 @@ const nannyDocumentSchema = new Schema(
       enum: ["PHOTO", "ID", "REFERENCE", "CERTIFICATE", "MEDICAL"],
       required: true,
     },
-    s3Key: { type: String, required: true },
+    fileKey: { type: String, required: true },
     originalName: { type: String, required: true },
     mimeType: { type: String, required: true },
     size: { type: Number, required: true },
