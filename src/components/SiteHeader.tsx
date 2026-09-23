@@ -37,9 +37,12 @@ export default function SiteHeader() {
           : "bg-cream/60 backdrop-blur-sm"
       }`}
     >
-      <div className="border-b border-ink/10">
-        <div className="mx-auto flex max-w-7xl justify-end px-5 py-2 sm:px-8">
-          <LocaleSwitcher />
+      <div className="bg-ink">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-1.5 sm:px-8">
+          <span className="hidden font-body text-xs tracking-wide text-cream/70 sm:inline">
+            {t("home.hero.eyebrow")}
+          </span>
+          <LocaleSwitcher variant="dark" className="ml-auto" />
         </div>
       </div>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">

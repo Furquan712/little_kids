@@ -5,7 +5,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="flex min-h-screen flex-col bg-plat-bg-pink">
       <div className="w-full border-b border-plat-border bg-plat-bg">
-        <div className="mx-auto flex max-w-7xl justify-end px-5 py-2 sm:px-8">
+        <div className="mx-auto flex max-w-7xl justify-end px-5 py-1.5 sm:px-8">
           <LocaleSwitcher />
         </div>
       </div>

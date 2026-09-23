@@ -7,7 +7,13 @@ import { setLocaleAction } from "@/i18n/actions";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/i18n/config";
 
-export function LocaleSwitcher({ className }: { className?: string }) {
+export function LocaleSwitcher({
+  className,
+  variant = "light",
+}: {
+  className?: string;
+  variant?: "light" | "dark";
+}) {
   const locale = useLocale();
   const t = useTranslations("nav");
   const router = useRouter();
@@ -26,7 +32,8 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       role="group"
       aria-label={t("language")}
       className={cn(
-        "inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white p-1 text-sm font-semibold shadow-sm",
+        "inline-flex shrink-0 items-center rounded-full p-0.5 text-xs font-semibold",
+        variant === "dark" ? "border border-white/20 bg-white/10" : "border border-ink/15 bg-white shadow-sm",
         className,
       )}
     >
@@ -36,8 +43,12 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         onClick={() => switchTo("pt-AO")}
         aria-pressed={locale === "pt-AO"}
         className={cn(
-          "rounded-full px-3.5 py-1.5 transition-colors",
-          locale === "pt-AO" ? "bg-rose text-white" : "text-ink hover:text-rose",
+          "rounded-full px-2.5 py-1 transition-colors",
+          locale === "pt-AO"
+            ? "bg-rose text-white"
+            : variant === "dark"
+              ? "text-cream/70 hover:text-white"
+              : "text-ink hover:text-rose",
         )}
       >
         PT
@@ -48,8 +59,12 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         onClick={() => switchTo("en")}
         aria-pressed={locale === "en"}
         className={cn(
-          "rounded-full px-3.5 py-1.5 transition-colors",
-          locale === "en" ? "bg-rose text-white" : "text-ink hover:text-rose",
+          "rounded-full px-2.5 py-1 transition-colors",
+          locale === "en"
+            ? "bg-rose text-white"
+            : variant === "dark"
+              ? "text-cream/70 hover:text-white"
+              : "text-ink hover:text-rose",
         )}
       >
         EN
