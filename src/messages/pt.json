@@ -19,7 +19,9 @@
     "showPassword": "Mostrar palavra-passe",
     "hidePassword": "Ocultar palavra-passe",
     "collapseSidebar": "Recolher menu",
-    "expandSidebar": "Expandir menu"
+    "expandSidebar": "Expandir menu",
+    "noResults": "Nenhum resultado encontrado.",
+    "resultsCount": "{count} resultados"
   },
   "nav": {
     "souBaba": "Sou Babá",

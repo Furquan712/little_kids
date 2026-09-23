@@ -90,11 +90,16 @@ export function DashboardShell({
     router.refresh();
   }
 
+  const activeHref = navItems
+    .map((item) => item.href)
+    .filter((href) => pathname === href || pathname.startsWith(`${href}/`))
+    .sort((a, b) => b.length - a.length)[0];
+
   function renderNav(showLabels: boolean) {
     return (
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => {
-          const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const active = item.href === activeHref;
           return (
             <Link
               key={item.href}
@@ -119,24 +124,33 @@ export function DashboardShell({
   }
 
   return (
-    <div className="min-h-screen bg-plat-bg-pink">
-      <div className="border-b border-plat-border bg-plat-bg">
-        <div className="mx-auto flex max-w-7xl justify-end px-5 py-1.5 sm:px-8">
-          <LocaleSwitcher />
-        </div>
+    <div className="flex h-screen flex-col overflow-hidden bg-plat-bg-pink">
+      <div className="flex shrink-0 justify-end border-b border-plat-border bg-plat-bg px-5 py-1.5 sm:px-8">
+        <LocaleSwitcher />
       </div>
-      <div className="mx-auto flex min-h-[calc(100vh-2.5rem)] max-w-7xl">
+
+      <div className="flex flex-1 overflow-hidden">
         <aside
           className={cn(
-            "hidden shrink-0 flex-col border-r border-plat-border bg-plat-bg py-5 shadow-[2px_0_12px_-6px_rgba(63,49,45,0.12)] transition-[width] duration-300 md:flex",
+            "hidden h-full shrink-0 flex-col overflow-y-auto border-r border-plat-border bg-plat-bg py-5 shadow-[2px_0_12px_-6px_rgba(63,49,45,0.12)] transition-[width] duration-300 md:flex",
             collapsed ? "w-20 px-3" : "w-64 px-5",
           )}
         >
-          <div className={cn("mb-6 flex items-center gap-2.5", collapsed && "justify-center")}>
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-plat-primary text-plat-ink shadow-sm">
-              <Heart className="h-4 w-4" fill="currentColor" strokeWidth={0} />
-            </span>
-            {!collapsed && <span className="truncate text-base font-semibold text-plat-ink">Nanny Platform</span>}
+          <div className={cn("mb-6 flex items-center gap-2", collapsed ? "flex-col" : "justify-between")}>
+            <div className={cn("flex items-center gap-2.5", collapsed && "flex-col")}>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-plat-primary text-plat-ink shadow-sm">
+                <Heart className="h-4 w-4" fill="currentColor" strokeWidth={0} />
+              </span>
+              {!collapsed && <span className="truncate text-base font-semibold text-plat-ink">Nanny Platform</span>}
+            </div>
+            <button
+              onClick={toggleCollapsed}
+              aria-label={collapsed ? t("expandSidebar") : t("collapseSidebar")}
+              title={collapsed ? t("expandSidebar") : t("collapseSidebar")}
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-plat-ink-muted transition-colors hover:bg-plat-bg-pink hover:text-plat-ink"
+            >
+              {collapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
+            </button>
           </div>
 
           {renderNav(!collapsed)}
@@ -149,7 +163,7 @@ export function DashboardShell({
 
             <button
               onClick={handleLogout}
-              title={collapsed ? logoutLabel : undefined}
+              title={logoutLabel}
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-plat-ink-muted transition-colors hover:bg-plat-bg-pink",
                 collapsed && "justify-center",
@@ -158,29 +172,11 @@ export function DashboardShell({
               <LogOut className="h-4 w-4 shrink-0" />
               {!collapsed && logoutLabel}
             </button>
-
-            <button
-              onClick={toggleCollapsed}
-              aria-label={collapsed ? t("expandSidebar") : t("collapseSidebar")}
-              className={cn(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-plat-ink-muted transition-colors hover:bg-plat-bg-pink",
-                collapsed && "justify-center",
-              )}
-            >
-              {collapsed ? (
-                <PanelLeftOpen className="h-4 w-4 shrink-0" />
-              ) : (
-                <>
-                  <PanelLeftClose className="h-4 w-4 shrink-0" />
-                  {t("collapseSidebar")}
-                </>
-              )}
-            </button>
           </div>
         </aside>
 
-        <div className="flex flex-1 flex-col">
-          <header className="flex items-center justify-between border-b border-plat-border bg-plat-bg px-5 py-4 md:hidden">
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <header className="flex shrink-0 items-center justify-between border-b border-plat-border bg-plat-bg px-5 py-4 md:hidden">
             <div className="flex items-center gap-2.5">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-plat-primary text-plat-ink">
                 <Heart className="h-4 w-4" fill="currentColor" strokeWidth={0} />
@@ -193,7 +189,7 @@ export function DashboardShell({
           </header>
 
           {mobileOpen && (
-            <div className="flex flex-col gap-4 border-b border-plat-border bg-plat-bg p-5 md:hidden">
+            <div className="flex shrink-0 flex-col gap-4 overflow-y-auto border-b border-plat-border bg-plat-bg p-5 md:hidden">
               {renderNav(true)}
               <button
                 onClick={handleLogout}
@@ -205,12 +201,14 @@ export function DashboardShell({
             </div>
           )}
 
-          <header className="hidden items-center justify-end gap-3 border-b border-plat-border bg-plat-bg px-6 py-3 md:flex">
+          <header className="hidden shrink-0 items-center justify-end gap-3 border-b border-plat-border bg-plat-bg px-6 py-3 md:flex">
             <span className="text-sm text-plat-ink-muted">{userName}</span>
             <Avatar name={userName} className="h-8 w-8 text-xs" />
           </header>
 
-          <main className="flex-1 p-5 md:p-8">{children}</main>
+          <main className="flex-1 overflow-y-auto">
+            <div className="mx-auto w-full max-w-[1600px] p-5 md:p-8">{children}</div>
+          </main>
         </div>
       </div>
     </div>
