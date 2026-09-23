@@ -33,6 +33,7 @@ export function ContractBuilderForm({
       startDate: "",
       duties: "",
       scheduleText: "",
+      paymentSchedule: "",
       noticePeriodDays: 30,
       terminationTerms: "",
       nannySalary: 0,
@@ -82,6 +83,11 @@ export function ContractBuilderForm({
       <div className="flex flex-col gap-1.5">
         <Label>{t("scheduleText")}</Label>
         <Textarea rows={2} {...register("scheduleText")} />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <Label>{t("paymentSchedule")}</Label>
+        <Textarea rows={2} {...register("paymentSchedule")} placeholder="Ex.: Pago mensalmente até ao dia 5" />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

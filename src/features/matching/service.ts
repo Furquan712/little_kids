@@ -105,15 +105,34 @@ export async function getRequestDetail(requestId: string): Promise<RequestDetail
   };
 }
 
+/**
+ * Buckets the request's children's ages into the same age-group taxonomy
+ * used on nanny profiles, so the matching search can pre-filter for
+ * nannies with relevant experience.
+ */
+function deriveAgeGroups(childrenAges: number[]): Array<"INFANT" | "TODDLER" | "SCHOOL_AGE"> {
+  const groups = new Set<"INFANT" | "TODDLER" | "SCHOOL_AGE">();
+  for (const age of childrenAges) {
+    if (age <= 2) groups.add("INFANT");
+    else if (age <= 5) groups.add("TODDLER");
+    else groups.add("SCHOOL_AGE");
+  }
+  return Array.from(groups);
+}
+
 export async function searchCandidatesForRequest(requestId: string): Promise<CandidateSearchResult[]> {
   await connectToDatabase();
 
   const request = await NannyRequest.findById(requestId);
   if (!request) return [];
 
+  const family = await User.findById(request.familyId);
+
   const existingCandidateNannyIds = (await RequestCandidate.find({ requestId })).map((c) =>
     c.nannyId.toString(),
   );
+
+  const ageGroups = deriveAgeGroups(request.childrenAges ?? []);
 
   const query: Record<string, unknown> = {
     status: "APPROVED",
@@ -126,13 +145,15 @@ export async function searchCandidatesForRequest(requestId: string): Promise<Can
   if (request.budgetMin !== undefined && request.budgetMin !== null) {
     query.salaryMax = { $gte: request.budgetMin };
   }
+  if (ageGroups.length > 0) {
+    query.ageGroups = { $in: ageGroups };
+  }
 
   const profiles = await NannyProfile.find(query)
-    .sort({ yearsExperience: -1 })
-    .limit(20)
+    .limit(50)
     .populate<{ userId: { fullName: string; _id: { toString(): string } } }>("userId", "fullName");
 
-  return profiles.map((profile) => {
+  const results = profiles.map((profile) => {
     const user = profile.userId as unknown as { fullName: string; _id: { toString(): string } };
     return {
       userId: user._id.toString(),
@@ -146,6 +167,18 @@ export async function searchCandidatesForRequest(requestId: string): Promise<Can
       salaryMax: profile.salaryMax ?? null,
     };
   });
+
+  // Same-province nannies as the family first (a soft preference, not a
+  // hard filter — out-of-province candidates can still be worth showing),
+  // then by experience.
+  results.sort((a, b) => {
+    const aSameProvince = family?.province === a.province ? 0 : 1;
+    const bSameProvince = family?.province === b.province ? 0 : 1;
+    if (aSameProvince !== bSameProvince) return aSameProvince - bSameProvince;
+    return b.yearsExperience - a.yearsExperience;
+  });
+
+  return results.slice(0, 20);
 }
 
 export async function addCandidate(requestId: string, nannyUserId: string) {

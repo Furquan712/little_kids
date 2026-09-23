@@ -1,4 +1,4 @@
-import { Document, Page, View, Text, StyleSheet, Image, renderToBuffer } from "@react-pdf/renderer";
+import { Document, Page, View, Text, StyleSheet, Image, Svg, Path, renderToBuffer } from "@react-pdf/renderer";
 
 const COLORS = {
   primary: "#E58F89",
@@ -12,13 +12,14 @@ const styles = StyleSheet.create({
   page: { padding: 40, fontSize: 10, color: COLORS.ink, backgroundColor: "#FFFFFF" },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+    justifyContent: "space-between",
     borderBottomWidth: 2,
     borderBottomColor: COLORS.primary,
     paddingBottom: 10,
     marginBottom: 16,
   },
+  brandRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   brand: { fontSize: 16, fontWeight: 700, color: COLORS.ink },
   brandSub: { fontSize: 8, color: COLORS.inkMuted, marginTop: 2 },
   title: { fontSize: 13, fontWeight: 700, marginBottom: 4 },
@@ -46,6 +47,17 @@ const styles = StyleSheet.create({
   footer: { position: "absolute", bottom: 24, left: 40, right: 40, fontSize: 7, color: COLORS.inkMuted },
 });
 
+function LogoMark() {
+  return (
+    <Svg width={22} height={22} viewBox="0 0 24 24">
+      <Path
+        d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 4.3 2.4C10.4 4.7 12.3 3.7 14.3 4c3.5.5 5.3 4.1 3.7 7.7C15.5 16.4 12 21 12 21Z"
+        fill={COLORS.primary}
+      />
+    </Svg>
+  );
+}
+
 export type ContractPdfData = {
   party: "FAMILY" | "NANNY";
   version: number;
@@ -57,6 +69,7 @@ export type ContractPdfData = {
   startDate: string;
   duties: string;
   scheduleText: string;
+  paymentSchedule: string;
   noticePeriodDays: number;
   terminationTerms: string;
   nannySalary: number;
@@ -76,6 +89,27 @@ function money(value: number) {
   return `${value.toLocaleString("pt-AO")} AOA`;
 }
 
+function Header({ version }: { version: number }) {
+  return (
+    <View style={styles.header}>
+      <View style={styles.brandRow}>
+        <LogoMark />
+        <View>
+          <Text style={styles.brand}>Nanny Platform</Text>
+          <Text style={styles.brandSub}>Plataforma de babás de confiança — Angola</Text>
+        </View>
+      </View>
+      <Text style={styles.brandSub}>v{version}</Text>
+    </View>
+  );
+}
+
+function Footer() {
+  return (
+    <Text style={styles.footer}>Documento gerado pela Nanny Platform · Este contrato é regido pela lei angolana.</Text>
+  );
+}
+
 export function ContractDocument({ data }: { data: ContractPdfData }) {
   const isFamily = data.party === "FAMILY";
   const title = isFamily ? "Contrato de Serviço com a Família" : "Contrato de Trabalho da Babá";
@@ -83,13 +117,7 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.brand}>Nanny Platform</Text>
-            <Text style={styles.brandSub}>Plataforma de babás de confiança — Angola</Text>
-          </View>
-          <Text style={styles.brandSub}>v{data.version}</Text>
-        </View>
+        <Header version={data.version} />
 
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.meta}>Emitido em {data.createdAt}</Text>
@@ -132,6 +160,10 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
             <Text style={styles.value}>{data.scheduleText || "—"}</Text>
           </View>
           <View style={styles.row}>
+            <Text style={styles.label}>Calendário de pagamento</Text>
+            <Text style={styles.value}>{data.paymentSchedule || "—"}</Text>
+          </View>
+          <View style={styles.row}>
             <Text style={styles.label}>Período de aviso prévio</Text>
             <Text style={styles.value}>{data.noticePeriodDays} dias</Text>
           </View>
@@ -169,7 +201,15 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
           )}
         </View>
 
-        {data.signature && (
+        {!data.signature && <Footer />}
+      </Page>
+
+      {data.signature && (
+        <Page size="A4" style={styles.page}>
+          <Header version={data.version} />
+          <Text style={styles.title}>Página de assinatura</Text>
+          <Text style={styles.meta}>{title}</Text>
+
           <View style={styles.signatureBox}>
             <Text style={styles.sectionTitle}>Assinatura</Text>
             <Text style={styles.paragraph}>
@@ -182,12 +222,10 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
               <Image src={data.signature.imageDataUrl} style={styles.signatureImage} />
             )}
           </View>
-        )}
 
-        <Text style={styles.footer}>
-          Documento gerado pela Nanny Platform · Este contrato é regido pela lei angolana.
-        </Text>
-      </Page>
+          <Footer />
+        </Page>
+      )}
     </Document>
   );
 }

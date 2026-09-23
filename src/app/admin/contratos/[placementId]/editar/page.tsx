@@ -19,6 +19,7 @@ export default async function EditContractPage({
     startDate: contracts.family_contract.terms.startDate,
     duties: contracts.family_contract.terms.duties,
     scheduleText: contracts.family_contract.terms.scheduleText,
+    paymentSchedule: contracts.family_contract.terms.paymentSchedule,
     noticePeriodDays: contracts.family_contract.terms.noticePeriodDays,
     terminationTerms: contracts.family_contract.terms.terminationTerms,
     nannySalary: contracts.family_contract.nannySalary,

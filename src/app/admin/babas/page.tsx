@@ -5,7 +5,9 @@ import { nannyListFiltersSchema } from "@/features/admin-nannies/schemas";
 import { listNannies } from "@/features/admin-nannies/service";
 import { NannyFilters } from "@/features/admin-nannies/components/NannyFilters";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { statusBadgeVariant } from "@/lib/badge-status";
 
 export default async function AdminNanniesPage({
   searchParams,
@@ -24,42 +26,53 @@ export default async function AdminNanniesPage({
 
   const nannies = await listNannies(filters);
   const t = await getTranslations("admin.nannies");
+  const tCommon = await getTranslations("common");
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold text-plat-ink">{t("title")}</h1>
-      <NannyFilters initial={raw} />
+      <div>
+        <h1 className="text-2xl font-semibold text-plat-ink">{t("title")}</h1>
+        <p className="text-sm text-plat-ink-muted">{tCommon("resultsCount", { count: nannies.length })}</p>
+      </div>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Nome</TableHead>
-            <TableHead>{t("provinceLabel")}</TableHead>
-            <TableHead>{t("statusLabel")}</TableHead>
-            <TableHead>{t("verifiedLabel")}</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {nannies.map((nanny) => (
-            <TableRow key={nanny.userId}>
-              <TableCell>
-                <Link href={`/admin/babas/${nanny.userId}`} className="text-plat-primary-strong underline">
-                  {nanny.fullName}
-                </Link>
-              </TableCell>
-              <TableCell>
-                {nanny.city}, {nanny.province}
-              </TableCell>
-              <TableCell>
-                <Badge>{nanny.status}</Badge>
-              </TableCell>
-              <TableCell>{nanny.verified ? "✓" : "—"}</TableCell>
+      <Card className="overflow-hidden p-5">
+        <NannyFilters initial={raw} />
+      </Card>
+
+      <Card className="overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Nome</TableHead>
+              <TableHead>{t("provinceLabel")}</TableHead>
+              <TableHead>{t("statusLabel")}</TableHead>
+              <TableHead>{t("verifiedLabel")}</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {nannies.map((nanny) => (
+              <TableRow key={nanny.userId}>
+                <TableCell>
+                  <Link href={`/admin/babas/${nanny.userId}`} className="font-medium text-plat-primary-strong hover:underline">
+                    {nanny.fullName}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  {nanny.city}, {nanny.province}
+                </TableCell>
+                <TableCell>
+                  <Badge variant={statusBadgeVariant(nanny.status)}>{nanny.status}</Badge>
+                </TableCell>
+                <TableCell>{nanny.verified ? "✓" : "—"}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
 
-      {nannies.length === 0 && <p className="text-plat-ink-muted">—</p>}
+        {nannies.length === 0 && (
+          <p className="p-8 text-center text-sm text-plat-ink-muted">{tCommon("noResults")}</p>
+        )}
+      </Card>
     </div>
   );
 }

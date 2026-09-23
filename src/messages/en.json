@@ -19,7 +19,9 @@
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "collapseSidebar": "Collapse menu",
-    "expandSidebar": "Expand menu"
+    "expandSidebar": "Expand menu",
+    "noResults": "No results found.",
+    "resultsCount": "{count} results"
   },
   "nav": {
     "souBaba": "I'm a Nanny",
@@ -515,6 +517,7 @@
       "startDate": "Start date",
       "duties": "Duties",
       "scheduleText": "Schedule (description)",
+      "paymentSchedule": "Payment schedule",
       "noticePeriodDays": "Notice period (days)",
       "terminationTerms": "Termination terms",
       "nannySalary": "Nanny salary (AOA/month)",

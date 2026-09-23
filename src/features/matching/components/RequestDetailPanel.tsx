@@ -250,6 +250,16 @@ function CandidateRow({
         </Button>
       </div>
 
+      {candidate.interview?.status === "DONE" && (
+        <div className="rounded-md bg-plat-bg-pink/40 p-3 text-sm text-plat-ink">
+          <p>
+            <strong>{t("outcomeLabel")}:</strong> {candidate.interview.outcome || "—"}
+            {candidate.interview.score != null && ` · ${t("scoreLabel")}: ${candidate.interview.score}/10`}
+          </p>
+          {candidate.interview.notes && <p className="mt-1 text-plat-ink-muted">{candidate.interview.notes}</p>}
+        </div>
+      )}
+
       {checked && (
         <Textarea
           placeholder={t("recommendNoteLabel")}
