@@ -1,3 +1,7 @@
+"use client";
+
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Heart, ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import { InstagramIcon, WhatsAppIcon, TikTokIcon, Rainbow } from "./icons";
@@ -9,6 +13,8 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const t = useTranslations("home.footer");
+
   return (
     <footer className="relative overflow-hidden bg-blush pt-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -24,27 +30,27 @@ export default function Footer() {
                 <span className="text-rose">Moments</span>
               </span>
               <span className="mt-1 pl-6 text-[10px] font-semibold tracking-[0.18em] text-body sm:text-[11px]">
-                BABYSITTING &amp; NANNY SERVICES
+                {t("tagline")}
               </span>
             </div>
 
             {/* Tagline */}
             <div className="flex flex-col items-center gap-1">
               <span className="inline-flex items-center gap-2 font-hand text-2xl text-ink sm:text-3xl">
-                More than babysitting…
+                {t("quoteLine1")}
               </span>
               <span className="inline-flex items-center gap-2 font-hand text-2xl text-ink sm:text-3xl">
-                A trusted person in your child&apos;s world.
+                {t("quoteLine2")}
                 <Heart className="h-5 w-5 text-rose" strokeWidth={2} />
               </span>
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              href="/registrar/familia"
               className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-6 py-3 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg"
             >
-              Book a Babysitter <ArrowUpRight className="h-4 w-4" />
-            </a>
+              {t("cta")} <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </Reveal>
 
@@ -83,7 +89,7 @@ export default function Footer() {
 
       <div className="mt-8 border-t border-ink/10 py-6">
         <p className="text-center font-body text-xs text-body">
-          © {new Date().getFullYear()} Little Moments. All rights reserved.
+          © {new Date().getFullYear()} Little Moments. {t("rights")}
         </p>
       </div>
     </footer>

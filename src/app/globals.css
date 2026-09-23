@@ -13,6 +13,23 @@
   --lavender: #c9b6d8;
   --ink: #3c2e29;
   --body: #7a655e;
+
+  /* Platform palette (auth/dashboard/admin screens) — namespaced "plat-*"
+     so it never collides with the marketing site's tokens above. */
+  --plat-bg: #fdf6ef;
+  --plat-bg-pink: #f9e1dd;
+  --plat-bg-image: #f1f5f5;
+  --plat-primary: #e58f89;
+  --plat-primary-hover: #d98a83;
+  --plat-primary-strong: #a94e48;
+  --plat-ink: #3f312d;
+  --plat-ink-muted: #826758;
+  --plat-gold: #e9a72f;
+  --plat-border: #eadbd0;
+  --plat-success: #5e8c61;
+  --plat-warning: #c98a1b;
+  --plat-danger: #b5473f;
+  --plat-info: #5b7c8d;
 }
 
 @theme inline {
@@ -31,6 +48,21 @@
   --font-heading: var(--font-fredoka);
   --font-hand: var(--font-caveat);
   --font-body: var(--font-lora);
+
+  --color-plat-bg: var(--plat-bg);
+  --color-plat-bg-pink: var(--plat-bg-pink);
+  --color-plat-bg-image: var(--plat-bg-image);
+  --color-plat-primary: var(--plat-primary);
+  --color-plat-primary-hover: var(--plat-primary-hover);
+  --color-plat-primary-strong: var(--plat-primary-strong);
+  --color-plat-ink: var(--plat-ink);
+  --color-plat-ink-muted: var(--plat-ink-muted);
+  --color-plat-gold: var(--plat-gold);
+  --color-plat-border: var(--plat-border);
+  --color-plat-success: var(--plat-success);
+  --color-plat-warning: var(--plat-warning);
+  --color-plat-danger: var(--plat-danger);
+  --color-plat-info: var(--plat-info);
 }
 
 html {

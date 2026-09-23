@@ -4,7 +4,7 @@ import Services from "@/components/Services";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
-import BookingForm from "@/components/BookingForm";
+import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         <WhyChooseUs />
         <HowItWorks />
         <Testimonials />
-        <BookingForm />
+        <CtaSection />
       </main>
       <Footer />
     </div>

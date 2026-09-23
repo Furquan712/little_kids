@@ -1,0 +1,564 @@
+{
+  "common": {
+    "appName": "Nanny Platform",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "next": "Seguinte",
+    "back": "Voltar",
+    "submit": "Enviar",
+    "loading": "A carregar...",
+    "requiredField": "Este campo é obrigatório",
+    "optional": "opcional",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "yes": "Sim",
+    "no": "Não",
+    "close": "Fechar",
+    "genericError": "Ocorreu um erro. Tente novamente."
+  },
+  "nav": {
+    "souBaba": "Sou Babá",
+    "souFamilia": "Sou Família",
+    "login": "Entrar",
+    "logout": "Sair",
+    "dashboard": "Painel",
+    "home": "Início",
+    "services": "Como ajudamos",
+    "whyUs": "Porquê nós",
+    "howItWorks": "Como funciona",
+    "testimonials": "Depoimentos",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "meta": {
+    "title": "Nanny Platform Angola | Babás verificadas para a sua família",
+    "description": "Ligamos famílias em Angola a babás verificadas. A plataforma trata da entrevista, do contrato e do pagamento — para que a sua família tenha tranquilidade."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Angola · Babás verificadas",
+      "headline": "Ligamos famílias a babás de confiança e tratamos de tudo por si",
+      "subheadline": "Verificamos, entrevistamos e contratamos cada babá. A plataforma trata da correspondência, do contrato e do pagamento — a sua família nunca trata disto sozinha.",
+      "ctaBaba": "Sou Babá",
+      "ctaFamilia": "Sou Família",
+      "trust": {
+        "verifiedLine1": "Verificada",
+        "verifiedLine2": "e com antecedentes",
+        "interviewedLine1": "Entrevistada",
+        "interviewedLine2": "pela nossa equipa",
+        "contractedLine1": "Contratada",
+        "contractedLine2": "e protegida"
+      }
+    },
+    "services": {
+      "title": "Como ajudamos",
+      "subtitle": "Tudo o que precisa para contratar com confiança, tratado pela plataforma.",
+      "items": {
+        "verification": { "title": "Verificação de identidade", "desc": "Confirmamos documentos e antecedentes antes de qualquer entrevista." },
+        "interviews": { "title": "Entrevistas conduzidas por nós", "desc": "A nossa equipa entrevista e avalia cada candidata." },
+        "contracts": { "title": "Contratos geridos pela plataforma", "desc": "Contrato de família e contrato de trabalho, gerados e assinados online." },
+        "payments": { "title": "Pagamentos centralizados", "desc": "Pagamentos e comissões processados pela plataforma, sem acordos informais." },
+        "privacy": { "title": "Privacidade garantida", "desc": "O contacto da babá nunca é partilhado diretamente com a família." },
+        "support": { "title": "Suporte contínuo", "desc": "Acompanhamos a colocação e resolvemos qualquer problema." }
+      }
+    },
+    "whyUs": {
+      "title": "Porquê usar a plataforma?",
+      "caption1": "porque a sua família",
+      "caption2": "merece o melhor",
+      "reasons": {
+        "verified": "Babás verificadas e com antecedentes confirmados",
+        "interviewed": "Entrevistadas pela nossa equipa antes de qualquer contacto",
+        "firstAid": "Certificação em primeiros socorros sempre que aplicável",
+        "matching": "Correspondência personalizada com as necessidades da sua família",
+        "contracts": "Contratos e pagamentos geridos pela plataforma, do início ao fim",
+        "support": "Suporte dedicado durante toda a colocação"
+      }
+    },
+    "howItWorks": {
+      "title": "Como funciona",
+      "subtitle": "Quatro passos, do registo à tranquilidade.",
+      "captionLine1": "É",
+      "captionLine2": "simples",
+      "captionLine3": "assim",
+      "steps": {
+        "register": { "title": "Registe-se e diga-nos o que precisa", "desc": "Crie a sua conta e descreva as suas necessidades ou o seu perfil." },
+        "match": { "title": "Nós encontramos e entrevistamos", "desc": "A nossa equipa procura, entrevista e verifica as candidatas certas." },
+        "sign": { "title": "Aprove e assine o contrato", "desc": "Reveja a recomendação e assine o contrato diretamente na plataforma." },
+        "relax": { "title": "Aproveite a tranquilidade", "desc": "Tratamos dos pagamentos, do suporte e de qualquer imprevisto." }
+      }
+    },
+    "testimonials": {
+      "title": "O que dizem as famílias e as babás",
+      "items": {
+        "sofia": { "quote": "A plataforma encontrou a babá perfeita para a minha filha e tratou de todo o contrato. Sinto-me muito mais segura.", "name": "Sofia M.", "role": "Família em Luanda" },
+        "beatriz": { "quote": "Fui entrevistada e verificada antes de conhecer qualquer família. Sinto-me protegida e bem representada pela plataforma.", "name": "Beatriz C.", "role": "Babá verificada" },
+        "ana": { "quote": "O pagamento e o contrato são geridos pela plataforma — nunca tive de negociar nada sozinha.", "name": "Ana P.", "role": "Família em Benguela" }
+      }
+    },
+    "cta": {
+      "title": "Pronta para começar?",
+      "subtitle": "Registe-se em poucos minutos. A nossa equipa trata do resto.",
+      "ctaBaba": "Sou Babá — Registar",
+      "ctaFamilia": "Sou Família — Registar"
+    },
+    "footer": {
+      "tagline": "PLATAFORMA DE BABÁS DE CONFIANÇA",
+      "quoteLine1": "Mais do que uma babá…",
+      "quoteLine2": "uma parceria de confiança para a sua família.",
+      "cta": "Começar agora",
+      "rights": "Todos os direitos reservados."
+    }
+  },
+  "auth": {
+    "register": {
+      "babaTitle": "Sou Babá — Registar",
+      "familiaTitle": "Sou Família — Registar",
+      "fullName": "Nome completo",
+      "email": "Email",
+      "phone": "Telefone",
+      "whatsapp": "WhatsApp",
+      "password": "Palavra-passe",
+      "confirmPassword": "Confirmar palavra-passe",
+      "province": "Província",
+      "city": "Cidade",
+      "consent": "Li e aceito os termos e a política de privacidade, e autorizo o tratamento dos meus dados pessoais",
+      "needDescription": "Descreva a sua necessidade (idade das crianças, requisitos especiais)",
+      "submit": "Registar",
+      "alreadyHaveAccount": "Já tem conta?",
+      "loginLink": "Entrar",
+      "selectProvince": "Selecione a província",
+      "selectCity": "Selecione a cidade",
+      "success": "Registo efetuado. Verifique o seu email para confirmar a conta."
+    },
+    "login": {
+      "title": "Entrar",
+      "identifier": "Email ou telefone",
+      "password": "Palavra-passe",
+      "submit": "Entrar",
+      "forgotPassword": "Esqueceu a palavra-passe?",
+      "noAccount": "Ainda não tem conta?",
+      "registerBabaLink": "Registar como Babá",
+      "registerFamiliaLink": "Registar como Família"
+    },
+    "forgotPassword": {
+      "title": "Recuperar palavra-passe",
+      "identifier": "Email",
+      "submit": "Enviar link de recuperação",
+      "backToLogin": "Voltar a entrar",
+      "checkEmail": "Se existir uma conta com este email, enviámos um link de recuperação."
+    },
+    "resetPassword": {
+      "title": "Nova palavra-passe",
+      "newPassword": "Nova palavra-passe",
+      "confirmPassword": "Confirmar nova palavra-passe",
+      "submit": "Redefinir palavra-passe",
+      "success": "Palavra-passe redefinida. Já pode entrar.",
+      "invalidToken": "Este link é inválido ou expirou."
+    },
+    "verifyEmail": {
+      "title": "Verificação de email",
+      "success": "Email verificado com sucesso.",
+      "invalidToken": "Este link é inválido.",
+      "expired": "Este link expirou. Solicite um novo."
+    },
+    "errors": {
+      "invalidCredentials": "Email/telefone ou palavra-passe incorretos.",
+      "accountSuspended": "Esta conta está suspensa. Contacte o suporte.",
+      "emailAlreadyUsed": "Este email já está registado.",
+      "phoneAlreadyUsed": "Este telefone já está registado.",
+      "passwordTooShort": "A palavra-passe deve ter pelo menos 8 caracteres.",
+      "passwordMismatch": "As palavras-passe não coincidem.",
+      "consentRequired": "É necessário aceitar os termos para continuar.",
+      "invalidEmail": "Email inválido.",
+      "invalidPhone": "Telefone inválido.",
+      "required": "Este campo é obrigatório.",
+      "rateLimited": "Demasiadas tentativas. Tente novamente mais tarde.",
+      "tokenInvalid": "Link inválido.",
+      "tokenExpired": "Link expirado.",
+      "contactRequired": "Indique pelo menos um email ou telefone.",
+      "unknown": "Ocorreu um erro inesperado."
+    }
+  },
+  "dashboard": {
+    "welcome": "Olá, {name}",
+    "nannyNextStep": "Complete o seu perfil",
+    "familyNextStep": "Descreva a família e comece a procurar babás",
+    "settingsLink": "Definições da conta",
+    "profileStatus": "Estado do perfil",
+    "profileCompletion": "Perfil {percent}% completo"
+  },
+  "settings": {
+    "title": "Definições da conta",
+    "fullName": "Nome completo",
+    "email": "Email",
+    "phone": "Telefone",
+    "whatsapp": "WhatsApp",
+    "province": "Província",
+    "city": "Cidade",
+    "save": "Guardar alterações",
+    "saved": "Alterações guardadas.",
+    "changePassword": "Alterar palavra-passe",
+    "currentPassword": "Palavra-passe atual",
+    "newPassword": "Nova palavra-passe",
+    "confirmPassword": "Confirmar nova palavra-passe",
+    "passwordChanged": "Palavra-passe alterada."
+  },
+  "nannyProfile": {
+    "steps": {
+      "personal": "Dados pessoais",
+      "experience": "Experiência",
+      "availability": "Disponibilidade",
+      "documents": "Documentos",
+      "review": "Revisão"
+    },
+    "personal": {
+      "birthDate": "Data de nascimento",
+      "age": "{age} anos",
+      "languages": "Idiomas falados",
+      "addLanguage": "Adicionar idioma"
+    },
+    "experience": {
+      "yearsExperience": "Anos de experiência",
+      "ageGroupsLabel": "Faixas etárias com que já trabalhou",
+      "ageGroups": {
+        "INFANT": "Bebés",
+        "TODDLER": "Crianças pequenas",
+        "SCHOOL_AGE": "Idade escolar"
+      },
+      "skillsLabel": "Competências",
+      "skills": {
+        "FIRST_AID": "Primeiros socorros",
+        "COOKING": "Cozinhar",
+        "HOMEWORK_HELP": "Apoio aos trabalhos de casa",
+        "SPECIAL_NEEDS": "Necessidades especiais",
+        "OTHER": "Outra"
+      },
+      "otherSkillsPlaceholder": "Descreva outras competências"
+    },
+    "availability": {
+      "employmentTypeLabel": "Tipo de emprego",
+      "employmentType": {
+        "FULL_TIME": "Tempo inteiro",
+        "PART_TIME": "Meio período"
+      },
+      "liveInLabel": "Regime",
+      "liveIn": {
+        "LIVE_IN": "Interna",
+        "LIVE_OUT": "Externa"
+      },
+      "weeklyGridLabel": "Disponibilidade semanal",
+      "days": {
+        "MON": "Segunda",
+        "TUE": "Terça",
+        "WED": "Quarta",
+        "THU": "Quinta",
+        "FRI": "Sexta",
+        "SAT": "Sábado",
+        "SUN": "Domingo"
+      },
+      "from": "Das",
+      "to": "Às",
+      "salaryMin": "Salário mínimo (AOA)",
+      "salaryMax": "Salário máximo (AOA)",
+      "salaryUnitLabel": "Unidade salarial",
+      "salaryUnit": {
+        "MONTHLY": "Mensal",
+        "HOURLY": "Por hora"
+      },
+      "bio": "Apresentação (bio)"
+    },
+    "documents": {
+      "photoLabel": "Fotografia de perfil",
+      "idLabel": "Documento de identificação",
+      "referenceLabel": "Referências (opcional)",
+      "certificateLabel": "Certificados (opcional)",
+      "medicalLabel": "Registos médicos",
+      "upload": "Carregar ficheiro",
+      "remove": "Remover",
+      "sizeLimitError": "O ficheiro excede o tamanho máximo permitido (5 MB).",
+      "typeNotAllowedError": "Tipo de ficheiro não permitido."
+    },
+    "review": {
+      "summaryTitle": "Reveja o seu perfil",
+      "submitForReview": "Submeter para revisão",
+      "submitted": "Perfil submetido para revisão.",
+      "lockedNotice": "O perfil está em revisão; os campos principais estão bloqueados."
+    },
+    "status": {
+      "DRAFT": "Rascunho",
+      "PENDING_REVIEW": "Em revisão",
+      "APPROVED": "Aprovado",
+      "NEEDS_CORRECTION": "Correção necessária",
+      "NOT_AVAILABLE": "Indisponível",
+      "IN_NEGOTIATION": "Em negociação",
+      "PLACED": "Colocada"
+    },
+    "correctionNotes": {
+      "title": "Notas de correção do administrador"
+    }
+  },
+  "admin": {
+    "nannies": {
+      "title": "Babás",
+      "filters": "Filtros",
+      "statusLabel": "Estado",
+      "provinceLabel": "Província",
+      "verifiedLabel": "Verificada",
+      "detailTitle": "Detalhe da babá",
+      "approve": "Aprovar",
+      "requestCorrection": "Pedir correção",
+      "markVerified": "Marcar como verificada",
+      "suspend": "Suspender",
+      "setNotAvailable": "Marcar indisponível",
+      "setInNegotiation": "Marcar em negociação",
+      "setPlaced": "Marcar colocada",
+      "correctionFieldLabel": "Campo ou documento",
+      "correctionNoteLabel": "Nota de correção",
+      "confirmSuspend": "Tem a certeza que quer suspender esta conta?",
+      "actionSuccess": "Ação concluída.",
+      "applyStatus": "Aplicar"
+    },
+    "families": {
+      "title": "Famílias",
+      "requestsCount": "{count} pedidos",
+      "detailTitle": "Detalhe da família",
+      "needDescription": "Necessidade descrita",
+      "suspend": "Suspender",
+      "reactivate": "Reativar",
+      "confirmSuspend": "Tem a certeza que quer suspender esta conta?",
+      "requestsTitle": "Pedidos",
+      "actionSuccess": "Ação concluída.",
+      "statusLabel": "Estado",
+      "provinceLabel": "Província"
+    },
+    "requests": {
+      "title": "Pedidos",
+      "filters": "Filtros",
+      "statusLabel": "Estado",
+      "familyColumn": "Família",
+      "needsColumn": "Necessidade",
+      "detailTitle": "Detalhe do pedido",
+      "familyInfoTitle": "Família",
+      "requirementsTitle": "Requisitos",
+      "childrenAges": "Idades das crianças",
+      "needs": "Necessidades",
+      "liveIn": "Regime",
+      "startDate": "Data de início",
+      "budget": "Orçamento",
+      "specialRequirements": "Requisitos especiais",
+      "matchingPanelTitle": "Painel de correspondência",
+      "searchCandidates": "Procurar candidatas",
+      "addAsCandidate": "Adicionar como candidata",
+      "candidatesTitle": "Candidatas",
+      "removeCandidate": "Remover",
+      "noCandidatesYet": "Ainda sem candidatas.",
+      "noResults": "Nenhuma babá disponível encontrada.",
+      "contactStatus": {
+        "CONTACTED": "Contactada",
+        "INTERESTED": "Interessada",
+        "NOT_INTERESTED": "Não interessada"
+      },
+      "availabilityConfirmed": "Disponibilidade confirmada",
+      "scheduleInterview": "Agendar entrevista",
+      "rescheduleInterview": "Reagendar",
+      "scheduledAtLabel": "Data e hora",
+      "modeLabel": "Modo",
+      "interviewMode": {
+        "IN_PERSON": "Presencial",
+        "PHONE": "Telefone",
+        "VIDEO": "Vídeo"
+      },
+      "interviewStatus": {
+        "SCHEDULED": "Agendada",
+        "DONE": "Concluída",
+        "NO_SHOW": "Faltou",
+        "CANCELLED": "Cancelada"
+      },
+      "recordOutcome": "Registar resultado",
+      "outcomeLabel": "Resultado",
+      "notesLabel": "Notas",
+      "scoreLabel": "Pontuação (0-10)",
+      "recommendTitle": "Recomendar à família",
+      "recommendNoteLabel": "Texto da recomendação",
+      "recommendSubmit": "Enviar recomendação",
+      "selectUpToThree": "Selecione até 3 candidatas",
+      "actionSuccess": "Ação concluída."
+    }
+  },
+  "nannyInvitations": {
+    "title": "Convites para entrevista",
+    "childrenAges": "Idades das crianças",
+    "needs": "Necessidades",
+    "liveIn": "Regime",
+    "startDate": "Data de início",
+    "budget": "Orçamento",
+    "specialRequirements": "Requisitos especiais",
+    "accept": "Aceitar",
+    "decline": "Recusar",
+    "status": {
+      "CONTACTED": "Aguarda a sua resposta",
+      "INTERESTED": "Aceite por si",
+      "NOT_INTERESTED": "Recusado por si"
+    },
+    "empty": "Sem convites de momento."
+  },
+  "familyRequestDetail": {
+    "title": "Detalhe do pedido",
+    "recommendationsTitle": "Babás recomendadas",
+    "approve": "Aprovar esta babá",
+    "askOtherOptions": "Pedir outras opções",
+    "noRecommendationsYet": "Ainda sem recomendações. A nossa equipa está a tratar do seu pedido.",
+    "approvedNotice": "Pedido aprovado. A nossa equipa irá preparar o contrato.",
+    "closedNotice": "Este pedido foi encerrado."
+  },
+  "familySearch": {
+    "title": "Procurar babás",
+    "filters": {
+      "title": "Filtros",
+      "province": "Província",
+      "city": "Cidade",
+      "experience": "Experiência mínima (anos)",
+      "employmentType": "Tipo de emprego",
+      "liveIn": "Regime",
+      "ageGroups": "Faixas etárias",
+      "languages": "Idiomas",
+      "salaryRange": "Faixa salarial (AOA)",
+      "apply": "Aplicar filtros"
+    },
+    "resultCard": {
+      "verifiedBadge": "Verificada",
+      "yearsExperience": "{years} anos de experiência",
+      "viewProfile": "Ver perfil"
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "newest": "Mais recentes",
+      "experience": "Experiência",
+      "salary": "Salário"
+    },
+    "publicProfile": {
+      "summaryTitle": "Resumo",
+      "experienceTitle": "Experiência",
+      "skillsTitle": "Competências",
+      "availabilityTitle": "Disponibilidade",
+      "badgesTitle": "Certificações"
+    },
+    "favorite": {
+      "add": "Adicionar aos favoritos",
+      "remove": "Remover dos favoritos",
+      "shortlistedTitle": "Babás favoritas"
+    },
+    "request": {
+      "requestThisNanny": "Pedir esta babá",
+      "generalTitle": "Pedir uma babá",
+      "childrenAges": "Idades das crianças",
+      "needs": "Necessidades",
+      "liveIn": "Regime",
+      "startDate": "Data de início",
+      "budgetMin": "Orçamento mínimo (AOA)",
+      "budgetMax": "Orçamento máximo (AOA)",
+      "specialRequirements": "Requisitos especiais",
+      "submit": "Enviar pedido",
+      "success": "Pedido enviado com sucesso."
+    }
+  },
+  "familyDashboard": {
+    "activeRequestsTitle": "Pedidos ativos",
+    "requestStatus": {
+      "NEW": "Novo",
+      "MATCHING": "Em correspondência",
+      "INTERVIEWING": "Em entrevistas",
+      "PROPOSED": "Proposto",
+      "APPROVED": "Aprovado",
+      "CONTRACTED": "Contratado",
+      "CLOSED": "Encerrado"
+    }
+  },
+  "contracts": {
+    "errors": {
+      "REQUEST_NOT_READY": "O pedido ainda não está aprovado ou não tem uma babá associada.",
+      "ALREADY_EXISTS": "Já existe um contrato para este pedido.",
+      "ALREADY_SIGNED": "Não é possível editar um contrato já assinado."
+    },
+    "builder": {
+      "title": "Criar contrato",
+      "editTitle": "Editar contrato",
+      "startDate": "Data de início",
+      "duties": "Funções",
+      "scheduleText": "Horário (descrição)",
+      "noticePeriodDays": "Período de aviso prévio (dias)",
+      "terminationTerms": "Condições de rescisão",
+      "nannySalary": "Salário da babá (AOA/mês)",
+      "commissionType": "Tipo de comissão",
+      "commissionTypeOptions": {
+        "PERCENTAGE": "Percentagem",
+        "FIXED": "Valor fixo"
+      },
+      "commissionValue": "Valor da comissão",
+      "commissionAmount": "Comissão calculada",
+      "familyTotal": "Total mensal da família",
+      "submit": "Criar contrato",
+      "editSubmit": "Guardar alterações",
+      "success": "Contrato criado com sucesso.",
+      "editSuccess": "Contrato atualizado. É necessário reenviar para assinatura."
+    },
+    "detail": {
+      "title": "Contrato",
+      "familyContract": "Contrato da família",
+      "nannyContract": "Contrato da babá",
+      "status": {
+        "DRAFT": "Rascunho",
+        "SENT": "Enviado",
+        "SIGNED": "Assinado",
+        "ACTIVE": "Ativo",
+        "ENDED": "Terminado",
+        "TERMINATED": "Rescindido"
+      },
+      "send": "Enviar para assinatura",
+      "downloadPdf": "Descarregar PDF",
+      "downloadSigned": "Descarregar PDF assinado",
+      "edit": "Editar contrato",
+      "signInPerson": "Assinatura em pessoa",
+      "uploadScan": "Carregar cópia digitalizada",
+      "uploadScanSubmit": "Carregar e marcar como assinado",
+      "signedBy": "Assinado por {name}",
+      "endContract": "Terminar contrato",
+      "terminateContract": "Rescindir contrato",
+      "reasonLabel": "Motivo",
+      "confirmEnd": "Tem a certeza que quer terminar este contrato?",
+      "confirmTerminate": "Tem a certeza que quer rescindir este contrato?",
+      "createContractCta": "Criar contrato para este pedido",
+      "viewContractCta": "Ver contrato",
+      "placementStatus": "Estado da colocação",
+      "actionSuccess": "Ação concluída."
+    },
+    "sign": {
+      "title": "Assinar contrato",
+      "readNotice": "Leia atentamente o contrato antes de assinar.",
+      "typedNameLabel": "Nome completo",
+      "signatureLabel": "Assinatura",
+      "clearSignature": "Limpar",
+      "agreeLabel": "Li e concordo com os termos deste contrato",
+      "submit": "Assinar contrato",
+      "alreadySigned": "Este contrato já foi assinado.",
+      "notReady": "Este contrato ainda não está pronto para assinatura.",
+      "success": "Contrato assinado com sucesso."
+    },
+    "list": {
+      "title": "Contratos",
+      "filters": "Filtros",
+      "statusLabel": "Estado",
+      "familyColumn": "Família",
+      "nannyColumn": "Babá",
+      "familyStatusColumn": "Estado (família)",
+      "nannyStatusColumn": "Estado (babá)"
+    },
+    "myContracts": {
+      "title": "Os meus contratos",
+      "empty": "Ainda não tem contratos.",
+      "view": "Ver contrato"
+    }
+  }
+}

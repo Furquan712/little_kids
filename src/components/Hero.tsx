@@ -1,16 +1,22 @@
+"use client";
+
 import Image from "next/image";
-import { ShieldCheck, Heart, Star, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { ShieldCheck, Users, FileCheck2, Heart, ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 import Parallax from "./Parallax";
 import { StarSpark } from "./icons";
 
-const TRUST_ITEMS = [
-  { icon: ShieldCheck, label: ["Background", "checked"] },
-  { icon: Heart, label: ["Experienced", "& caring"] },
-  { icon: Star, label: ["Flexible", "& reliable"] },
-];
-
 export default function Hero() {
+  const t = useTranslations("home.hero");
+
+  const TRUST_ITEMS = [
+    { icon: ShieldCheck, line1: t("trust.verifiedLine1"), line2: t("trust.verifiedLine2") },
+    { icon: Users, line1: t("trust.interviewedLine1"), line2: t("trust.interviewedLine2") },
+    { icon: FileCheck2, line1: t("trust.contractedLine1"), line2: t("trust.contractedLine2") },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-cream pb-28 pt-14 sm:pt-20">
       {/* faint background hearts */}
@@ -23,35 +29,39 @@ export default function Hero() {
         {/* Text column */}
         <Reveal from="left">
           <div className="relative max-w-xl">
-            <Heart
-              className="absolute -top-6 right-6 h-7 w-7 -rotate-6 text-ink/70 sm:right-16"
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-            <h1 className="font-heading text-5xl font-semibold leading-[1.05] text-ink sm:text-6xl lg:text-[3.8rem]">
-              Happy kids.
-              <br />
-              Peace of mind.
+            <span className="mb-4 inline-block rounded-full bg-blush-soft px-4 py-1.5 font-body text-xs font-semibold uppercase tracking-wide text-rose-dark">
+              {t("eyebrow")}
+            </span>
+            <h1 className="font-heading text-4xl font-semibold leading-[1.1] text-ink sm:text-5xl lg:text-[3.2rem]">
+              {t("headline")}
             </h1>
             <p className="mt-6 max-w-md font-body text-lg leading-relaxed text-body">
-              Trusted babysitters, loving care and unforgettable moments.
+              {t("subheadline")}
             </p>
 
-            <a
-              href="#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-rose px-7 py-3.5 font-body text-base font-semibold text-white shadow-lg shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-xl hover:shadow-rose/40"
-            >
-              Find Your Babysitter <ArrowRight className="h-4 w-4" />
-            </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/registrar/familia"
+                className="inline-flex items-center gap-2 rounded-full bg-rose px-7 py-3.5 font-body text-base font-semibold text-white shadow-lg shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-xl hover:shadow-rose/40"
+              >
+                {t("ctaFamilia")} <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/registrar/baba"
+                className="inline-flex items-center gap-2 rounded-full border border-rose px-7 py-3.5 font-body text-base font-semibold text-rose transition-all hover:-translate-y-0.5 hover:bg-rose hover:text-white"
+              >
+                {t("ctaBaba")}
+              </Link>
+            </div>
 
             <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
-              {TRUST_ITEMS.map(({ icon: Icon, label }) => (
-                <div key={label.join(" ")} className="flex items-center gap-2.5">
+              {TRUST_ITEMS.map(({ icon: Icon, line1, line2 }) => (
+                <div key={line1} className="flex items-center gap-2.5">
                   <Icon className="h-5 w-5 shrink-0 text-rose" strokeWidth={1.75} />
                   <span className="font-body text-sm leading-tight text-ink">
-                    {label[0]}
+                    {line1}
                     <br />
-                    {label[1]}
+                    {line2}
                   </span>
                 </div>
               ))}
@@ -76,11 +86,6 @@ export default function Hero() {
               </div>
             </Parallax>
 
-            <span className="animate-float-slow absolute -top-5 right-2 rotate-3 font-hand text-2xl leading-tight text-ink sm:right-6 sm:text-3xl">
-              small people
-              <br />
-              big dreams
-            </span>
             <StarSpark className="animate-float-slower absolute -top-4 right-0 h-8 w-8 text-white drop-shadow sm:h-10 sm:w-10" />
             <Heart
               className="absolute -left-3 bottom-10 h-8 w-8 -rotate-12 text-rose/70 sm:-left-6"
