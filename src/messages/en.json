@@ -336,7 +336,12 @@
       "correctionNoteLabel": "Correction note",
       "confirmSuspend": "Are you sure you want to suspend this account?",
       "actionSuccess": "Action completed.",
-      "applyStatus": "Apply"
+      "applyStatus": "Apply",
+      "editProfile": "Edit profile",
+      "editTitle": "Edit nanny",
+      "accountSectionTitle": "Account",
+      "saveChanges": "Save changes",
+      "changesSaved": "Changes saved."
     },
     "families": {
       "title": "Families",
@@ -349,7 +354,11 @@
       "requestsTitle": "Requests",
       "actionSuccess": "Action completed.",
       "statusLabel": "Status",
-      "provinceLabel": "Province"
+      "provinceLabel": "Province",
+      "editProfile": "Edit profile",
+      "editTitle": "Edit family",
+      "saveChanges": "Save changes",
+      "changesSaved": "Changes saved."
     },
     "requests": {
       "title": "Requests",

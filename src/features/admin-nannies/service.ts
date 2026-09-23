@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/db";
 import { NannyProfile } from "@/models/NannyProfile";
 import { NannyDocument } from "@/models/NannyDocument";
 import { User } from "@/models/User";
-import type { NannyListFilters } from "./schemas";
+import type { NannyListFilters, AdminEditNannyInput } from "./schemas";
 
 export async function listNannies(filters: NannyListFilters) {
   await connectToDatabase();
@@ -149,4 +149,55 @@ export async function setManualStatus(nannyUserId: string, status: string) {
   profile.status = status as typeof profile.status;
   await profile.save();
   return { before, after: profile.toObject() };
+}
+
+export async function adminUpdateNanny(nannyUserId: string, input: AdminEditNannyInput) {
+  await connectToDatabase();
+
+  const user = await User.findById(nannyUserId);
+  const profile = await NannyProfile.findOne({ userId: nannyUserId });
+  if (!user || !profile) return { ok: false as const, error: "NOT_FOUND" as const };
+
+  if (input.email) {
+    const conflict = await User.exists({ email: input.email, _id: { $ne: nannyUserId } });
+    if (conflict) return { ok: false as const, error: "EMAIL_TAKEN" as const };
+  }
+  if (input.phone) {
+    const conflict = await User.exists({ phone: input.phone, _id: { $ne: nannyUserId } });
+    if (conflict) return { ok: false as const, error: "PHONE_TAKEN" as const };
+  }
+
+  const beforeUser = user.toObject();
+  const beforeProfile = profile.toObject();
+
+  user.fullName = input.fullName;
+  user.email = input.email || undefined;
+  user.phone = input.phone || undefined;
+  user.whatsapp = input.whatsapp || undefined;
+  user.province = input.province;
+  user.city = input.city;
+  await user.save();
+
+  profile.birthDate = new Date(input.birthDate);
+  profile.languages = input.languages;
+  profile.yearsExperience = input.yearsExperience;
+  profile.ageGroups = input.ageGroups;
+  profile.skills = input.skills;
+  profile.otherSkills = input.otherSkills || "";
+  profile.employmentType = input.employmentType;
+  profile.liveIn = input.liveIn;
+  profile.availability = input.availability;
+  profile.salaryMin = input.salaryMin;
+  profile.salaryMax = input.salaryMax;
+  profile.salaryUnit = input.salaryUnit;
+  profile.bio = input.bio || "";
+  profile.province = input.province;
+  profile.city = input.city;
+  await profile.save();
+
+  return {
+    ok: true as const,
+    before: { user: beforeUser, profile: beforeProfile },
+    after: { user: user.toObject(), profile: profile.toObject() },
+  };
 }

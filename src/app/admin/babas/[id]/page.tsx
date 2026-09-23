@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { getNannyDetail } from "@/features/admin-nannies/service";
 import { NannyDetailActions } from "@/features/admin-nannies/components/NannyDetailActions";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminNannyDetailPage({
@@ -24,7 +26,12 @@ export default async function AdminNannyDetailPage({
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-plat-ink">{detail.user.fullName}</h1>
-        <Badge>{detail.profile.status}</Badge>
+        <div className="flex items-center gap-2">
+          <Badge>{detail.profile.status}</Badge>
+          <Button asChild variant="outline" size="sm">
+            <Link href={`/admin/babas/${detail.user.id}/editar`}>{t("editProfile")}</Link>
+          </Button>
+        </div>
       </div>
 
       <NannyDetailActions nannyUserId={detail.user.id} />

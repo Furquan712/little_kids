@@ -5,6 +5,7 @@ import { requireRole } from "@/lib/rbac";
 import { getFamilyDetail } from "@/features/admin-families/service";
 import { FamilyDetailActions } from "@/features/admin-families/components/FamilyDetailActions";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminFamilyDetailPage({
@@ -26,7 +27,12 @@ export default async function AdminFamilyDetailPage({
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-plat-ink">{detail.user.fullName}</h1>
-        <FamilyDetailActions familyId={detail.user.id} status={detail.user.status} />
+        <div className="flex items-center gap-2">
+          <Button asChild variant="outline" size="sm">
+            <Link href={`/admin/familias/${detail.user.id}/editar`}>{t("editProfile")}</Link>
+          </Button>
+          <FamilyDetailActions familyId={detail.user.id} status={detail.user.status} />
+        </div>
       </div>
 
       <Card>

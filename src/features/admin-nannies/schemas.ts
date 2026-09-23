@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { PROVINCE_NAMES } from "@/lib/angola-locations";
+import { accountSettingsSchema } from "@/features/auth/schemas";
+import { personalStepSchema, experienceStepSchema, availabilityStepSchema } from "@/features/nanny-profile/schemas";
 
 export const nannyListFiltersSchema = z.object({
   status: z
@@ -30,3 +32,11 @@ export const manualStatusSchema = z.object({
   status: z.enum(["NOT_AVAILABLE", "IN_NEGOTIATION", "PLACED", "APPROVED"]),
 });
 export type ManualStatusInput = z.infer<typeof manualStatusSchema>;
+
+export const adminEditNannySchema = z.object({
+  ...accountSettingsSchema.shape,
+  ...personalStepSchema.shape,
+  ...experienceStepSchema.shape,
+  ...availabilityStepSchema.shape,
+});
+export type AdminEditNannyInput = z.infer<typeof adminEditNannySchema>;
