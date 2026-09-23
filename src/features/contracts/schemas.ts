@@ -4,6 +4,7 @@ export const createContractSchema = z.object({
   startDate: z.string().min(1, "REQUIRED"),
   duties: z.string().trim().min(1, "REQUIRED"),
   scheduleText: z.string().trim().min(1, "REQUIRED"),
+  paymentSchedule: z.string().trim().min(1, "REQUIRED"),
   noticePeriodDays: z.number().int().min(0),
   terminationTerms: z.string().trim().min(1, "REQUIRED"),
   nannySalary: z.number().int().min(0),

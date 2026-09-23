@@ -515,6 +515,7 @@
       "startDate": "Data de início",
       "duties": "Funções",
       "scheduleText": "Horário (descrição)",
+      "paymentSchedule": "Calendário de pagamento",
       "noticePeriodDays": "Período de aviso prévio (dias)",
       "terminationTerms": "Condições de rescisão",
       "nannySalary": "Salário da babá (AOA/mês)",

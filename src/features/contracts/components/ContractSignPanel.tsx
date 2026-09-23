@@ -66,6 +66,9 @@ export function ContractSignPanel({ contract }: { contract: ContractSummary }) {
           <p className="sm:col-span-2">
             {t("builder.scheduleText")}: {contract.terms.scheduleText || "—"}
           </p>
+          <p className="sm:col-span-2">
+            {t("builder.paymentSchedule")}: {contract.terms.paymentSchedule || "—"}
+          </p>
           {contract.party === "FAMILY" && (
             <p className="sm:col-span-2">
               {t("builder.familyTotal")}: <strong>{contract.familyTotal.toLocaleString("pt-AO")} AOA</strong>

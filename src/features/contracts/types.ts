@@ -2,6 +2,7 @@ export type ContractTerms = {
   startDate: string;
   duties: string;
   scheduleText: string;
+  paymentSchedule: string;
   noticePeriodDays: number;
   terminationTerms: string;
 };

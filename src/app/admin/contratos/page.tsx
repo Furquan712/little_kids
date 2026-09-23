@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { listContractsForAdmin } from "@/features/contracts/service";
 import { contractListFiltersSchema } from "@/features/contracts/schemas";
+import { ContractFilters } from "@/features/contracts/components/ContractFilters";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 
@@ -23,6 +24,7 @@ export default async function AdminContractsPage({
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-2xl font-semibold text-plat-ink">{t("title")}</h1>
+      <ContractFilters initialStatus={raw.status} />
 
       <Table>
         <TableHeader>
