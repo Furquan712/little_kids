@@ -2,21 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, ArrowUpRight, Sun } from "lucide-react";
-
-const NAV_LINKS = [
-  { label: "Home", href: "#top" },
-  { label: "About Us", href: "#why-choose-us" },
-  { label: "Services", href: "#services" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact", href: "#contact" },
-];
+import { useTranslations } from "next-intl";
+import { Menu, X, Sun } from "lucide-react";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 
 export default function SiteHeader() {
+  const t = useTranslations();
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("Home");
+  const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
+
+  const NAV_LINKS = [
+    { key: "home", href: "#top" },
+    { key: "services", href: "#services" },
+    { key: "whyUs", href: "#why-us" },
+    { key: "howItWorks", href: "#how-it-works" },
+    { key: "testimonials", href: "#testimonials" },
+    { key: "contact", href: "#contact" },
+  ] as const;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -46,23 +49,23 @@ export default function SiteHeader() {
             <Sun className="absolute -right-5 -top-2 h-4 w-4 text-gold sm:-right-6 sm:h-5 sm:w-5" strokeWidth={2.5} />
           </span>
           <span className="mt-0.5 pl-6 text-[10px] font-semibold tracking-[0.18em] text-body sm:text-[11px]">
-            BABYSITTING &amp; NANNY SERVICES
+            {t("home.footer.tagline")}
           </span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 font-body text-[15px] text-ink xl:flex">
+        <nav className="hidden items-center gap-7 font-body text-[15px] text-ink xl:flex">
           {NAV_LINKS.map((link) => (
             <a
-              key={link.label}
+              key={link.key}
               href={link.href}
-              onClick={() => setActive(link.label)}
+              onClick={() => setActive(link.key)}
               className={`relative pb-1 transition-colors hover:text-rose ${
-                active === link.label ? "text-rose" : ""
+                active === link.key ? "text-rose" : ""
               }`}
             >
-              {link.label}
-              {active === link.label && (
+              {t(`nav.${link.key}`)}
+              {active === link.key && (
                 <span className="absolute -bottom-0.5 left-0 h-[3px] w-full rounded-full bg-rose" />
               )}
             </a>
@@ -70,89 +73,86 @@ export default function SiteHeader() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
-          <Link href="/registrar/baba" className="font-body text-sm font-medium text-ink hover:text-rose">
-            Sou Babá
-          </Link>
-          <Link href="/registrar/familia" className="font-body text-sm font-medium text-ink hover:text-rose">
-            Sou Família
-          </Link>
+          <LocaleSwitcher />
           <Link
             href="/login"
             className="font-body text-sm font-medium text-ink hover:text-rose"
           >
-            Entrar
+            {t("nav.login")}
           </Link>
-          <a
-            href="#contact"
-            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-5 py-2.5 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg hover:shadow-rose/40"
+          <Link
+            href="/registrar/baba"
+            className="inline-flex shrink-0 items-center rounded-full border border-rose px-4 py-2 font-body text-sm font-semibold text-rose transition-all hover:bg-rose hover:text-white"
           >
-            Book a Babysitter <ArrowUpRight className="h-4 w-4" />
-          </a>
+            {t("nav.souBaba")}
+          </Link>
+          <Link
+            href="/registrar/familia"
+            className="inline-flex shrink-0 items-center rounded-full bg-rose px-4 py-2 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg hover:shadow-rose/40"
+          >
+            {t("nav.souFamilia")}
+          </Link>
         </div>
 
         {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink xl:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-2 xl:hidden">
+          <LocaleSwitcher />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav */}
       <div
         className={`overflow-hidden transition-all duration-300 xl:hidden ${
-          open ? "max-h-96" : "max-h-0"
+          open ? "max-h-[32rem]" : "max-h-0"
         }`}
       >
         <nav className="flex flex-col gap-1 px-5 pb-5 font-body text-ink">
           {NAV_LINKS.map((link) => (
             <a
-              key={link.label}
+              key={link.key}
               href={link.href}
               onClick={() => {
-                setActive(link.label);
+                setActive(link.key);
                 setOpen(false);
               }}
               className={`rounded-xl px-3 py-2.5 transition-colors ${
-                active === link.label ? "bg-blush-soft text-rose" : "hover:bg-blush-soft"
+                active === link.key ? "bg-blush-soft text-rose" : "hover:bg-blush-soft"
               }`}
             >
-              {link.label}
+              {t(`nav.${link.key}`)}
             </a>
           ))}
           <div className="mt-2 flex flex-col gap-1 border-t border-blush pt-3">
-            <Link
-              href="/registrar/baba"
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
-            >
-              Sou Babá
-            </Link>
-            <Link
-              href="/registrar/familia"
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
-            >
-              Sou Família
-            </Link>
             <Link
               href="/login"
               onClick={() => setOpen(false)}
               className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
             >
-              Entrar
+              {t("nav.login")}
+            </Link>
+            <Link
+              href="/registrar/baba"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-full border border-rose px-3 py-2.5 text-center font-semibold text-rose transition-colors hover:bg-rose hover:text-white"
+            >
+              {t("nav.souBaba")}
+            </Link>
+            <Link
+              href="/registrar/familia"
+              onClick={() => setOpen(false)}
+              className="rounded-full bg-rose px-3 py-2.5 text-center font-semibold text-white transition-colors hover:bg-rose-dark"
+            >
+              {t("nav.souFamilia")}
             </Link>
           </div>
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-rose px-5 py-2.5 text-sm font-semibold text-white"
-          >
-            Book a Babysitter <ArrowUpRight className="h-4 w-4" />
-          </a>
         </nav>
       </div>
     </header>

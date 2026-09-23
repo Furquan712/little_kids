@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Caveat, Lora } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations, getLocale } from "next-intl/server";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -22,18 +22,20 @@ const lora = Lora({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Little Moments | Babysitting & Nanny Services",
-  description:
-    "Trusted babysitters, loving care and unforgettable moments. Background-checked, experienced and flexible childcare for your family.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("meta");
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const messages = await getMessages();
+  const [messages, locale] = await Promise.all([getMessages(), getLocale()]);
 
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${fredoka.variable} ${caveat.variable} ${lora.variable} scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink antialiased overflow-x-hidden">

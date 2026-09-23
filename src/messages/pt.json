@@ -22,7 +22,94 @@
     "souFamilia": "Sou Família",
     "login": "Entrar",
     "logout": "Sair",
-    "dashboard": "Painel"
+    "dashboard": "Painel",
+    "home": "Início",
+    "services": "Como ajudamos",
+    "whyUs": "Porquê nós",
+    "howItWorks": "Como funciona",
+    "testimonials": "Depoimentos",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "meta": {
+    "title": "Nanny Platform Angola | Babás verificadas para a sua família",
+    "description": "Ligamos famílias em Angola a babás verificadas. A plataforma trata da entrevista, do contrato e do pagamento — para que a sua família tenha tranquilidade."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Angola · Babás verificadas",
+      "headline": "Ligamos famílias a babás de confiança e tratamos de tudo por si",
+      "subheadline": "Verificamos, entrevistamos e contratamos cada babá. A plataforma trata da correspondência, do contrato e do pagamento — a sua família nunca trata disto sozinha.",
+      "ctaBaba": "Sou Babá",
+      "ctaFamilia": "Sou Família",
+      "trust": {
+        "verifiedLine1": "Verificada",
+        "verifiedLine2": "e com antecedentes",
+        "interviewedLine1": "Entrevistada",
+        "interviewedLine2": "pela nossa equipa",
+        "contractedLine1": "Contratada",
+        "contractedLine2": "e protegida"
+      }
+    },
+    "services": {
+      "title": "Como ajudamos",
+      "subtitle": "Tudo o que precisa para contratar com confiança, tratado pela plataforma.",
+      "items": {
+        "verification": { "title": "Verificação de identidade", "desc": "Confirmamos documentos e antecedentes antes de qualquer entrevista." },
+        "interviews": { "title": "Entrevistas conduzidas por nós", "desc": "A nossa equipa entrevista e avalia cada candidata." },
+        "contracts": { "title": "Contratos geridos pela plataforma", "desc": "Contrato de família e contrato de trabalho, gerados e assinados online." },
+        "payments": { "title": "Pagamentos centralizados", "desc": "Pagamentos e comissões processados pela plataforma, sem acordos informais." },
+        "privacy": { "title": "Privacidade garantida", "desc": "O contacto da babá nunca é partilhado diretamente com a família." },
+        "support": { "title": "Suporte contínuo", "desc": "Acompanhamos a colocação e resolvemos qualquer problema." }
+      }
+    },
+    "whyUs": {
+      "title": "Porquê usar a plataforma?",
+      "caption1": "porque a sua família",
+      "caption2": "merece o melhor",
+      "reasons": {
+        "verified": "Babás verificadas e com antecedentes confirmados",
+        "interviewed": "Entrevistadas pela nossa equipa antes de qualquer contacto",
+        "firstAid": "Certificação em primeiros socorros sempre que aplicável",
+        "matching": "Correspondência personalizada com as necessidades da sua família",
+        "contracts": "Contratos e pagamentos geridos pela plataforma, do início ao fim",
+        "support": "Suporte dedicado durante toda a colocação"
+      }
+    },
+    "howItWorks": {
+      "title": "Como funciona",
+      "subtitle": "Quatro passos, do registo à tranquilidade.",
+      "captionLine1": "É",
+      "captionLine2": "simples",
+      "captionLine3": "assim",
+      "steps": {
+        "register": { "title": "Registe-se e diga-nos o que precisa", "desc": "Crie a sua conta e descreva as suas necessidades ou o seu perfil." },
+        "match": { "title": "Nós encontramos e entrevistamos", "desc": "A nossa equipa procura, entrevista e verifica as candidatas certas." },
+        "sign": { "title": "Aprove e assine o contrato", "desc": "Reveja a recomendação e assine o contrato diretamente na plataforma." },
+        "relax": { "title": "Aproveite a tranquilidade", "desc": "Tratamos dos pagamentos, do suporte e de qualquer imprevisto." }
+      }
+    },
+    "testimonials": {
+      "title": "O que dizem as famílias e as babás",
+      "items": {
+        "sofia": { "quote": "A plataforma encontrou a babá perfeita para a minha filha e tratou de todo o contrato. Sinto-me muito mais segura.", "name": "Sofia M.", "role": "Família em Luanda" },
+        "beatriz": { "quote": "Fui entrevistada e verificada antes de conhecer qualquer família. Sinto-me protegida e bem representada pela plataforma.", "name": "Beatriz C.", "role": "Babá verificada" },
+        "ana": { "quote": "O pagamento e o contrato são geridos pela plataforma — nunca tive de negociar nada sozinha.", "name": "Ana P.", "role": "Família em Benguela" }
+      }
+    },
+    "cta": {
+      "title": "Pronta para começar?",
+      "subtitle": "Registe-se em poucos minutos. A nossa equipa trata do resto.",
+      "ctaBaba": "Sou Babá — Registar",
+      "ctaFamilia": "Sou Família — Registar"
+    },
+    "footer": {
+      "tagline": "PLATAFORMA DE BABÁS DE CONFIANÇA",
+      "quoteLine1": "Mais do que uma babá…",
+      "quoteLine2": "uma parceria de confiança para a sua família.",
+      "cta": "Começar agora",
+      "rights": "Todos os direitos reservados."
+    }
   },
   "auth": {
     "register": {

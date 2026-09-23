@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { logoutAction } from "@/features/auth/actions";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 
 export type DashboardNavItem = {
   label: string;
@@ -72,9 +73,12 @@ export function DashboardShell({
         <div className="flex flex-1 flex-col">
           <header className="flex items-center justify-between border-b border-plat-border bg-plat-bg px-5 py-4 md:hidden">
             <span className="text-lg font-semibold text-plat-ink">Nanny Platform</span>
-            <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            <div className="flex items-center gap-3">
+              <LocaleSwitcher />
+              <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
+                {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </header>
 
           {mobileOpen && (
@@ -90,7 +94,8 @@ export function DashboardShell({
             </div>
           )}
 
-          <header className="hidden items-center justify-end border-b border-plat-border bg-plat-bg px-6 py-4 md:flex">
+          <header className="hidden items-center justify-end gap-4 border-b border-plat-border bg-plat-bg px-6 py-4 md:flex">
+            <LocaleSwitcher />
             <span className="text-sm text-plat-ink-muted">{userName}</span>
           </header>
 

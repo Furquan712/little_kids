@@ -1,20 +1,18 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Heart } from "lucide-react";
 import Reveal from "./Reveal";
 import { TeddyBear } from "./icons";
 
-const REASONS = [
-  "Carefully selected & trained babysitters",
-  "Background checked for your safety",
-  "First-aid certified",
-  "Experience with children of all ages",
-  "Personalized matching (based on your family's needs)",
-  "Friendly, professional & reliable",
-];
+const REASON_KEYS = ["verified", "interviewed", "firstAid", "matching", "contracts", "support"] as const;
 
 export default function WhyChooseUs() {
+  const t = useTranslations("home.whyUs");
+
   return (
-    <section id="why-choose-us" className="relative overflow-hidden bg-cream py-24">
+    <section id="why-us" className="relative overflow-hidden bg-cream py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr_0.7fr] lg:gap-8">
         {/* Image */}
         <Reveal from="left" className="mx-auto w-full max-w-sm lg:mx-0">
@@ -30,9 +28,9 @@ export default function WhyChooseUs() {
             </div>
             <div className="animate-float-slow absolute -bottom-4 -left-4 rounded-2xl bg-cream px-4 py-2 shadow-lg shadow-ink/10 sm:-left-8">
               <span className="font-hand text-xl leading-none text-ink sm:text-2xl">
-                because they deserve
+                {t("caption1")}
                 <br />
-                the best
+                {t("caption2")}
               </span>
             </div>
             <Heart
@@ -46,14 +44,14 @@ export default function WhyChooseUs() {
         {/* List */}
         <Reveal delay={100}>
           <h2 className="inline-flex items-center gap-3 font-heading text-4xl font-semibold text-ink sm:text-5xl">
-            Why Choose Us? <Heart className="h-7 w-7 text-rose" strokeWidth={2} />
+            {t("title")} <Heart className="h-7 w-7 text-rose" strokeWidth={2} />
           </h2>
 
           <ul className="mt-8 flex flex-col gap-4">
-            {REASONS.map((reason) => (
-              <li key={reason} className="flex items-start gap-3 font-body text-[17px] text-ink">
+            {REASON_KEYS.map((key) => (
+              <li key={key} className="flex items-start gap-3 font-body text-[17px] text-ink">
                 <Heart className="mt-1 h-4 w-4 shrink-0 fill-rose text-rose" />
-                <span>{reason}</span>
+                <span>{t(`reasons.${key}`)}</span>
               </li>
             ))}
           </ul>

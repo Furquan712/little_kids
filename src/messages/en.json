@@ -1,0 +1,387 @@
+{
+  "common": {
+    "appName": "Nanny Platform",
+    "save": "Save",
+    "cancel": "Cancel",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "requiredField": "This field is required",
+    "optional": "optional",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "genericError": "Something went wrong. Please try again."
+  },
+  "nav": {
+    "souBaba": "I'm a Nanny",
+    "souFamilia": "I'm a Family",
+    "login": "Log in",
+    "logout": "Log out",
+    "dashboard": "Dashboard",
+    "home": "Home",
+    "services": "How we help",
+    "whyUs": "Why us",
+    "howItWorks": "How it works",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "meta": {
+    "title": "Nanny Platform Angola | Verified nannies for your family",
+    "description": "We connect families in Angola with verified nannies. The platform handles the interview, the contract and the payment — so your family gets peace of mind."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Angola · Verified nannies",
+      "headline": "We connect families with trusted nannies and take care of everything for you",
+      "subheadline": "We verify, interview and contract every nanny. The platform handles matching, the contract and the payment — your family never has to do this alone.",
+      "ctaBaba": "I'm a Nanny",
+      "ctaFamilia": "I'm a Family",
+      "trust": {
+        "verifiedLine1": "Verified",
+        "verifiedLine2": "background-checked",
+        "interviewedLine1": "Interviewed",
+        "interviewedLine2": "by our team",
+        "contractedLine1": "Contracted",
+        "contractedLine2": "and protected"
+      }
+    },
+    "services": {
+      "title": "How we help",
+      "subtitle": "Everything you need to hire with confidence, handled by the platform.",
+      "items": {
+        "verification": { "title": "Identity verification", "desc": "We confirm documents and background before any interview takes place." },
+        "interviews": { "title": "Interviews run by us", "desc": "Our team interviews and assesses every candidate." },
+        "contracts": { "title": "Contracts managed by the platform", "desc": "A family service contract and a nanny work contract, generated and signed online." },
+        "payments": { "title": "Centralized payments", "desc": "Payments and commissions are processed by the platform, with no informal arrangements." },
+        "privacy": { "title": "Privacy guaranteed", "desc": "The nanny's contact details are never shared directly with the family." },
+        "support": { "title": "Ongoing support", "desc": "We follow the placement and resolve any issue that comes up." }
+      }
+    },
+    "whyUs": {
+      "title": "Why use the platform?",
+      "caption1": "because your family",
+      "caption2": "deserves the best",
+      "reasons": {
+        "verified": "Verified nannies with confirmed background checks",
+        "interviewed": "Interviewed by our team before any contact is made",
+        "firstAid": "First-aid certified wherever applicable",
+        "matching": "Personalized matching based on your family's needs",
+        "contracts": "Contracts and payments managed by the platform, start to finish",
+        "support": "Dedicated support throughout the whole placement"
+      }
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "Four steps, from sign-up to peace of mind.",
+      "captionLine1": "It's",
+      "captionLine2": "that",
+      "captionLine3": "simple",
+      "steps": {
+        "register": { "title": "Sign up and tell us what you need", "desc": "Create your account and describe your needs or your profile." },
+        "match": { "title": "We find and interview candidates", "desc": "Our team searches, interviews and verifies the right candidates." },
+        "sign": { "title": "Approve and sign the contract", "desc": "Review the recommendation and sign the contract directly on the platform." },
+        "relax": { "title": "Enjoy the peace of mind", "desc": "We handle payments, support and anything unexpected." }
+      }
+    },
+    "testimonials": {
+      "title": "What families and nannies say",
+      "items": {
+        "sofia": { "quote": "The platform found the perfect nanny for my daughter and handled the whole contract. I feel so much more at ease.", "name": "Sofia M.", "role": "Family in Luanda" },
+        "beatriz": { "quote": "I was interviewed and verified before meeting any family. I feel protected and well represented by the platform.", "name": "Beatriz C.", "role": "Verified nanny" },
+        "ana": { "quote": "Payment and the contract are managed by the platform — I never had to negotiate anything on my own.", "name": "Ana P.", "role": "Family in Benguela" }
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Sign up in a few minutes. Our team takes care of the rest.",
+      "ctaBaba": "I'm a Nanny — Sign up",
+      "ctaFamilia": "I'm a Family — Sign up"
+    },
+    "footer": {
+      "tagline": "TRUSTED NANNY PLATFORM",
+      "quoteLine1": "More than a nanny…",
+      "quoteLine2": "a trusted partnership for your family.",
+      "cta": "Get started",
+      "rights": "All rights reserved."
+    }
+  },
+  "auth": {
+    "register": {
+      "babaTitle": "I'm a Nanny — Sign up",
+      "familiaTitle": "I'm a Family — Sign up",
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "province": "Province",
+      "city": "City",
+      "consent": "I have read and accept the terms and privacy policy, and I authorize the processing of my personal data",
+      "needDescription": "Describe your need (children's ages, special requirements)",
+      "submit": "Sign up",
+      "alreadyHaveAccount": "Already have an account?",
+      "loginLink": "Log in",
+      "selectProvince": "Select a province",
+      "selectCity": "Select a city",
+      "success": "Registration complete. Check your email to confirm your account."
+    },
+    "login": {
+      "title": "Log in",
+      "identifier": "Email or phone",
+      "password": "Password",
+      "submit": "Log in",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account yet?",
+      "registerBabaLink": "Sign up as a Nanny",
+      "registerFamiliaLink": "Sign up as a Family"
+    },
+    "forgotPassword": {
+      "title": "Recover your password",
+      "identifier": "Email",
+      "submit": "Send recovery link",
+      "backToLogin": "Back to log in",
+      "checkEmail": "If an account exists with this email, we've sent a recovery link."
+    },
+    "resetPassword": {
+      "title": "New password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "submit": "Reset password",
+      "success": "Password reset. You can now log in.",
+      "invalidToken": "This link is invalid or has expired."
+    },
+    "verifyEmail": {
+      "title": "Email verification",
+      "success": "Email verified successfully.",
+      "invalidToken": "This link is invalid.",
+      "expired": "This link has expired. Please request a new one."
+    },
+    "errors": {
+      "invalidCredentials": "Incorrect email/phone or password.",
+      "accountSuspended": "This account is suspended. Please contact support.",
+      "emailAlreadyUsed": "This email is already registered.",
+      "phoneAlreadyUsed": "This phone number is already registered.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "passwordMismatch": "Passwords do not match.",
+      "consentRequired": "You must accept the terms to continue.",
+      "invalidEmail": "Invalid email.",
+      "invalidPhone": "Invalid phone number.",
+      "required": "This field is required.",
+      "rateLimited": "Too many attempts. Please try again later.",
+      "tokenInvalid": "Invalid link.",
+      "tokenExpired": "Expired link.",
+      "contactRequired": "Provide at least an email or a phone number.",
+      "unknown": "An unexpected error occurred."
+    }
+  },
+  "dashboard": {
+    "welcome": "Hello, {name}",
+    "nannyNextStep": "Complete your profile",
+    "familyNextStep": "Describe your family and start searching for nannies",
+    "settingsLink": "Account settings",
+    "profileStatus": "Profile status",
+    "profileCompletion": "Profile {percent}% complete"
+  },
+  "settings": {
+    "title": "Account settings",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "province": "Province",
+    "city": "City",
+    "save": "Save changes",
+    "saved": "Changes saved.",
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "passwordChanged": "Password changed."
+  },
+  "nannyProfile": {
+    "steps": {
+      "personal": "Personal details",
+      "experience": "Experience",
+      "availability": "Availability",
+      "documents": "Documents",
+      "review": "Review"
+    },
+    "personal": {
+      "birthDate": "Date of birth",
+      "age": "{age} years old",
+      "languages": "Languages spoken",
+      "addLanguage": "Add language"
+    },
+    "experience": {
+      "yearsExperience": "Years of experience",
+      "ageGroupsLabel": "Age groups you have worked with",
+      "ageGroups": {
+        "INFANT": "Infants",
+        "TODDLER": "Toddlers",
+        "SCHOOL_AGE": "School age"
+      },
+      "skillsLabel": "Skills",
+      "skills": {
+        "FIRST_AID": "First aid",
+        "COOKING": "Cooking",
+        "HOMEWORK_HELP": "Homework help",
+        "SPECIAL_NEEDS": "Special needs",
+        "OTHER": "Other"
+      },
+      "otherSkillsPlaceholder": "Describe other skills"
+    },
+    "availability": {
+      "employmentTypeLabel": "Employment type",
+      "employmentType": {
+        "FULL_TIME": "Full-time",
+        "PART_TIME": "Part-time"
+      },
+      "liveInLabel": "Arrangement",
+      "liveIn": {
+        "LIVE_IN": "Live-in",
+        "LIVE_OUT": "Live-out"
+      },
+      "weeklyGridLabel": "Weekly availability",
+      "days": {
+        "MON": "Monday",
+        "TUE": "Tuesday",
+        "WED": "Wednesday",
+        "THU": "Thursday",
+        "FRI": "Friday",
+        "SAT": "Saturday",
+        "SUN": "Sunday"
+      },
+      "from": "From",
+      "to": "To",
+      "salaryMin": "Minimum salary (AOA)",
+      "salaryMax": "Maximum salary (AOA)",
+      "salaryUnitLabel": "Salary unit",
+      "salaryUnit": {
+        "MONTHLY": "Monthly",
+        "HOURLY": "Hourly"
+      },
+      "bio": "Bio"
+    },
+    "documents": {
+      "photoLabel": "Profile photo",
+      "idLabel": "ID document",
+      "referenceLabel": "References (optional)",
+      "certificateLabel": "Certificates (optional)",
+      "medicalLabel": "Medical records",
+      "upload": "Upload file",
+      "remove": "Remove",
+      "sizeLimitError": "The file exceeds the maximum allowed size (5 MB).",
+      "typeNotAllowedError": "File type not allowed."
+    },
+    "review": {
+      "summaryTitle": "Review your profile",
+      "submitForReview": "Submit for review",
+      "submitted": "Profile submitted for review.",
+      "lockedNotice": "The profile is under review; key fields are locked."
+    },
+    "status": {
+      "DRAFT": "Draft",
+      "PENDING_REVIEW": "Under review",
+      "APPROVED": "Approved",
+      "NEEDS_CORRECTION": "Correction needed",
+      "NOT_AVAILABLE": "Not available",
+      "IN_NEGOTIATION": "In negotiation",
+      "PLACED": "Placed"
+    },
+    "correctionNotes": {
+      "title": "Admin correction notes"
+    }
+  },
+  "admin": {
+    "nannies": {
+      "title": "Nannies",
+      "filters": "Filters",
+      "statusLabel": "Status",
+      "provinceLabel": "Province",
+      "verifiedLabel": "Verified",
+      "detailTitle": "Nanny detail",
+      "approve": "Approve",
+      "requestCorrection": "Request correction",
+      "markVerified": "Mark as verified",
+      "suspend": "Suspend",
+      "setNotAvailable": "Mark not available",
+      "setInNegotiation": "Mark in negotiation",
+      "setPlaced": "Mark placed",
+      "correctionFieldLabel": "Field or document",
+      "correctionNoteLabel": "Correction note",
+      "confirmSuspend": "Are you sure you want to suspend this account?",
+      "actionSuccess": "Action completed.",
+      "applyStatus": "Apply"
+    }
+  },
+  "familySearch": {
+    "title": "Search nannies",
+    "filters": {
+      "title": "Filters",
+      "province": "Province",
+      "city": "City",
+      "experience": "Minimum experience (years)",
+      "employmentType": "Employment type",
+      "liveIn": "Arrangement",
+      "ageGroups": "Age groups",
+      "languages": "Languages",
+      "salaryRange": "Salary range (AOA)",
+      "apply": "Apply filters"
+    },
+    "resultCard": {
+      "verifiedBadge": "Verified",
+      "yearsExperience": "{years} years of experience",
+      "viewProfile": "View profile"
+    },
+    "sort": {
+      "label": "Sort by",
+      "newest": "Newest",
+      "experience": "Experience",
+      "salary": "Salary"
+    },
+    "publicProfile": {
+      "summaryTitle": "Summary",
+      "experienceTitle": "Experience",
+      "skillsTitle": "Skills",
+      "availabilityTitle": "Availability",
+      "badgesTitle": "Certifications"
+    },
+    "favorite": {
+      "add": "Add to favorites",
+      "remove": "Remove from favorites",
+      "shortlistedTitle": "Favorite nannies"
+    },
+    "request": {
+      "requestThisNanny": "Request this nanny",
+      "generalTitle": "Request a nanny",
+      "childrenAges": "Children's ages",
+      "needs": "Needs",
+      "liveIn": "Arrangement",
+      "startDate": "Start date",
+      "budgetMin": "Minimum budget (AOA)",
+      "budgetMax": "Maximum budget (AOA)",
+      "specialRequirements": "Special requirements",
+      "submit": "Send request",
+      "success": "Request sent successfully."
+    }
+  },
+  "familyDashboard": {
+    "activeRequestsTitle": "Active requests",
+    "requestStatus": {
+      "NEW": "New",
+      "MATCHING": "Matching",
+      "INTERVIEWING": "Interviewing",
+      "PROPOSED": "Proposed",
+      "APPROVED": "Approved",
+      "CONTRACTED": "Contracted",
+      "CLOSED": "Closed"
+    }
+  }
+}
