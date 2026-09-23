@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { resetPasswordSchema, type ResetPasswordInput } from "@/features/auth/schemas";
 import { resetPasswordAction } from "@/features/auth/actions";
@@ -57,7 +57,7 @@ export function ResetPasswordForm({ token }: { token: string }) {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="newPassword">{t("auth.resetPassword.newPassword")}</Label>
-        <Input id="newPassword" type="password" {...register("newPassword")} />
+        <PasswordInput id="newPassword" {...register("newPassword")} />
         {errors.newPassword && (
           <p className="text-sm text-plat-danger">{t("auth.errors.passwordTooShort")}</p>
         )}
@@ -65,7 +65,7 @@ export function ResetPasswordForm({ token }: { token: string }) {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="confirmPassword">{t("auth.resetPassword.confirmPassword")}</Label>
-        <Input id="confirmPassword" type="password" {...register("confirmPassword")} />
+        <PasswordInput id="confirmPassword" {...register("confirmPassword")} />
         {errors.confirmPassword && (
           <p className="text-sm text-plat-danger">{t("auth.errors.passwordMismatch")}</p>
         )}

@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProvinceCitySelect } from "@/components/ProvinceCitySelect";
@@ -138,18 +139,18 @@ function ChangePasswordCard() {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="currentPassword">{t("settings.currentPassword")}</Label>
-            <Input id="currentPassword" type="password" {...register("currentPassword")} />
+            <PasswordInput id="currentPassword" {...register("currentPassword")} />
           </div>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="newPassword">{t("settings.newPassword")}</Label>
-            <Input id="newPassword" type="password" {...register("newPassword")} />
+            <PasswordInput id="newPassword" {...register("newPassword")} />
             {errors.newPassword && (
               <p className="text-sm text-plat-danger">{t("auth.errors.passwordTooShort")}</p>
             )}
           </div>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="confirmPassword">{t("settings.confirmPassword")}</Label>
-            <Input id="confirmPassword" type="password" {...register("confirmPassword")} />
+            <PasswordInput id="confirmPassword" {...register("confirmPassword")} />
             {errors.confirmPassword && (
               <p className="text-sm text-plat-danger">{t("auth.errors.passwordMismatch")}</p>
             )}

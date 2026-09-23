@@ -263,7 +263,7 @@ async function main() {
   console.log("Favorites: 3 created");
 
   // Request 1 — brand new, no candidates yet.
-  const req1 = await NannyRequest.create({
+  await NannyRequest.create({
     familyId: fernandes,
     childrenAges: [5, 8],
     needs: "Preciso de apoio nas manhãs para levar as crianças à escola",
