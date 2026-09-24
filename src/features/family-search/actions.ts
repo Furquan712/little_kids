@@ -20,6 +20,7 @@ export async function createRequestAction(input: RequestFormInput): Promise<Resu
   const parsed = requestFormSchema.safeParse(input);
   if (!parsed.success) return err("auth.errors.unknown");
 
-  await createNannyRequest(auth.user.id, parsed.data);
+  const result = await createNannyRequest(auth.user.id, parsed.data);
+  if (!result.ok) return err("familySearch.request.nannyNotAvailable");
   return ok(null);
 }

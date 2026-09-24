@@ -4,6 +4,8 @@ import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { getNannyDetail } from "@/features/admin-nannies/service";
 import { NannyDetailActions } from "@/features/admin-nannies/components/NannyDetailActions";
+import { statusBadgeVariant } from "@/lib/badge-status";
+import { computeAge } from "@/lib/date";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,7 +29,7 @@ export default async function AdminNannyDetailPage({
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-plat-ink">{detail.user.fullName}</h1>
         <div className="flex items-center gap-2">
-          <Badge>{detail.profile.status}</Badge>
+          <Badge variant={statusBadgeVariant(detail.profile.status)}>{detail.profile.status}</Badge>
           <Button asChild variant="outline" size="sm">
             <Link href={`/admin/babas/${detail.user.id}/editar`}>{t("editProfile")}</Link>
           </Button>
@@ -45,7 +47,14 @@ export default async function AdminNannyDetailPage({
           <Field label="Telefone" value={detail.user.phone ?? "—"} />
           <Field label="WhatsApp" value={detail.user.whatsapp ?? "—"} />
           <Field label="Localização" value={`${detail.user.city}, ${detail.user.province}`} />
-          <Field label="Data de nascimento" value={detail.profile.birthDate?.slice(0, 10) ?? "—"} />
+          <Field
+            label="Data de nascimento"
+            value={
+              detail.profile.birthDate
+                ? `${detail.profile.birthDate.slice(0, 10)} (${computeAge(detail.profile.birthDate)} anos)`
+                : "—"
+            }
+          />
           <Field label="Idiomas" value={detail.profile.languages.join(", ") || "—"} />
           <Field label="Anos de experiência" value={detail.profile.yearsExperience?.toString() ?? "—"} />
           <Field label="Faixas etárias" value={detail.profile.ageGroups.join(", ") || "—"} />

@@ -18,11 +18,12 @@ export default async function AdminNanniesPage({
   if (!auth.ok) return null;
 
   const raw = await searchParams;
-  const filters = nannyListFiltersSchema.parse({
+  const filterResult = nannyListFiltersSchema.safeParse({
     status: raw.status || undefined,
     province: raw.province || undefined,
     verified: raw.verified || undefined,
   });
+  const filters = filterResult.success ? filterResult.data : {};
 
   const nannies = await listNannies(filters);
   const t = await getTranslations("admin.nannies");

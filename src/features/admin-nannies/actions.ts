@@ -3,6 +3,7 @@
 import { requireRole } from "@/lib/rbac";
 import { auditLog } from "@/lib/audit";
 import { type Result, ok, err } from "@/lib/result";
+import { refineSalaryRange } from "@/features/nanny-profile/schemas";
 import {
   correctionNoteSchema,
   manualStatusSchema,
@@ -102,7 +103,7 @@ export async function adminUpdateNannyAction(
   const auth = await requireRole("ADMIN");
   if (!auth.ok) return err("auth.errors.unknown");
 
-  const parsed = adminEditNannySchema.safeParse(input);
+  const parsed = adminEditNannySchema.superRefine(refineSalaryRange).safeParse(input);
   if (!parsed.success) return err("auth.errors.unknown");
 
   const result = await adminUpdateNanny(nannyUserId, parsed.data);

@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +13,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProvinceCitySelect } from "@/components/ProvinceCitySelect";
-import { AGE_GROUPS, SKILLS, DAYS } from "@/features/nanny-profile/schemas";
+import { fieldErrorKey } from "@/lib/form-errors";
+import { NANNY_LANGUAGES } from "@/lib/languages";
+import { AGE_GROUPS, SKILLS, DAYS, refineSalaryRange } from "@/features/nanny-profile/schemas";
 import { adminEditNannySchema, type AdminEditNannyInput } from "../schemas";
 import { adminUpdateNannyAction } from "../actions";
 
@@ -62,10 +63,12 @@ export function AdminEditNannyForm({ detail }: { detail: NannyDetail }) {
   const [error, setError] = useState<string | null>(null);
   const [dayState, setDayState] = useState<DayState>(() => buildInitialDayState(detail.profile.availability));
 
-  const { register, watch, setValue, control, handleSubmit, formState } = useForm<
+  const { register, watch, setValue, handleSubmit, formState } = useForm<
     Omit<AdminEditNannyInput, "availability">
   >({
-    resolver: zodResolver(adminEditNannySchema.omit({ availability: true })),
+    resolver: zodResolver(
+      adminEditNannySchema.omit({ availability: true }).superRefine(refineSalaryRange),
+    ),
     defaultValues: {
       fullName: detail.user.fullName,
       email: detail.user.email ?? "",
@@ -74,7 +77,7 @@ export function AdminEditNannyForm({ detail }: { detail: NannyDetail }) {
       province: detail.user.province as never,
       city: detail.user.city,
       birthDate: detail.profile.birthDate ? detail.profile.birthDate.slice(0, 10) : "",
-      languages: detail.profile.languages.length ? detail.profile.languages : [""],
+      languages: (detail.profile.languages as AdminEditNannyInput["languages"]) ?? [],
       yearsExperience: detail.profile.yearsExperience ?? 0,
       ageGroups: (detail.profile.ageGroups as AdminEditNannyInput["ageGroups"]) ?? [],
       skills: (detail.profile.skills as AdminEditNannyInput["skills"]) ?? [],
@@ -88,10 +91,9 @@ export function AdminEditNannyForm({ detail }: { detail: NannyDetail }) {
     },
   });
 
-  const { fields, append, remove } = useFieldArray({ control, name: "languages" as never });
-
   const province = watch("province");
   const city = watch("city");
+  const languages = watch("languages") ?? [];
   const ageGroups = watch("ageGroups") ?? [];
   const skills = watch("skills") ?? [];
   const employmentType = watch("employmentType");
@@ -112,7 +114,6 @@ export function AdminEditNannyForm({ detail }: { detail: NannyDetail }) {
 
     const result = await adminUpdateNannyAction(detail.user.id, {
       ...values,
-      languages: values.languages.filter((l) => l.trim().length > 0),
       availability,
     });
     if (!result.ok) {
@@ -171,20 +172,30 @@ export function AdminEditNannyForm({ detail }: { detail: NannyDetail }) {
           <div className="flex flex-col gap-1.5">
             <Label>{t("nannyProfile.personal.birthDate")}</Label>
             <Input type="date" {...register("birthDate")} />
+            {formState.errors.birthDate && (
+              <p className="text-sm text-plat-danger">{t(fieldErrorKey(formState.errors.birthDate.message))}</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <Label>{t("nannyProfile.personal.languages")}</Label>
-            {fields.map((field, index) => (
-              <div key={field.id} className="flex items-center gap-2">
-                <Input {...register(`languages.${index}` as const)} />
-                <Button type="button" variant="ghost" size="sm" onClick={() => remove(index)}>
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
-            ))}
-            <Button type="button" variant="outline" size="sm" className="w-fit" onClick={() => append("")}>
-              <Plus className="h-4 w-4" /> {t("nannyProfile.personal.addLanguage")}
-            </Button>
+            <div className="flex flex-wrap gap-4">
+              {NANNY_LANGUAGES.map((language) => (
+                <label key={language} className="flex items-center gap-2 text-sm text-plat-ink">
+                  <Checkbox
+                    checked={languages.includes(language)}
+                    onCheckedChange={() =>
+                      setValue(
+                        "languages",
+                        languages.includes(language)
+                          ? languages.filter((l) => l !== language)
+                          : [...languages, language],
+                      )
+                    }
+                  />
+                  {language}
+                </label>
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -314,6 +325,9 @@ export function AdminEditNannyForm({ detail }: { detail: NannyDetail }) {
             <div className="flex flex-col gap-1.5">
               <Label>{t("nannyProfile.availability.salaryMax")}</Label>
               <Input type="number" min={0} {...register("salaryMax", { valueAsNumber: true })} />
+              {formState.errors.salaryMax && (
+                <p className="text-sm text-plat-danger">{t(fieldErrorKey(formState.errors.salaryMax.message))}</p>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <Label>{t("nannyProfile.availability.salaryUnitLabel")}</Label>

@@ -198,6 +198,10 @@
       "tokenInvalid": "Invalid link.",
       "tokenExpired": "Expired link.",
       "contactRequired": "Provide at least an email or a phone number.",
+      "salaryRangeInvalid": "Minimum salary cannot be higher than the maximum.",
+      "budgetRangeInvalid": "Minimum budget cannot be higher than the maximum.",
+      "ageOutOfRange": "Age must be between 18 and 75 years.",
+      "startDateInPast": "Start date cannot be in the past.",
       "unknown": "An unexpected error occurred."
     }
   },
@@ -304,7 +308,8 @@
       "summaryTitle": "Review your profile",
       "submitForReview": "Submit for review",
       "submitted": "Profile submitted for review.",
-      "lockedNotice": "The profile is under review; key fields are locked."
+      "lockedNotice": "The profile is under review; key fields are locked.",
+      "incompleteNotice": "Complete all required steps before submitting for review."
     },
     "status": {
       "DRAFT": "Draft",
@@ -490,7 +495,8 @@
       "budgetMax": "Maximum budget (AOA)",
       "specialRequirements": "Special requirements",
       "submit": "Send request",
-      "success": "Request sent successfully."
+      "success": "Request sent successfully.",
+      "nannyNotAvailable": "This nanny is no longer available. Please try a general request instead."
     }
   },
   "familyDashboard": {

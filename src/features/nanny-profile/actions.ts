@@ -6,6 +6,7 @@ import {
   personalStepSchema,
   experienceStepSchema,
   availabilityStepSchema,
+  documentTypeSchema,
   MAX_DOCUMENT_SIZE_BYTES,
   ALLOWED_DOCUMENT_MIME_TYPES,
   type PersonalStepInput,
@@ -20,7 +21,6 @@ import {
   removeNannyDocument,
   submitForReview as submitForReviewService,
 } from "./service";
-import type { DocumentType } from "./types";
 
 export async function updatePersonalStepAction(input: PersonalStepInput): Promise<Result<null>> {
   const auth = await requireRole("NANNY");
@@ -66,10 +66,11 @@ export async function uploadDocumentAction(formData: FormData): Promise<Result<n
   const auth = await requireRole("NANNY");
   if (!auth.ok) return err("auth.errors.unknown");
 
-  const type = formData.get("type") as DocumentType | null;
+  const rawType = formData.get("type");
   const file = formData.get("file") as File | null;
 
-  if (!type || !file) return err("auth.errors.unknown");
+  const parsedType = documentTypeSchema.safeParse(rawType);
+  if (!parsedType.success || !file) return err("auth.errors.unknown");
 
   if (file.size > MAX_DOCUMENT_SIZE_BYTES) return err("nannyProfile.documents.sizeLimitError");
   if (!ALLOWED_DOCUMENT_MIME_TYPES.includes(file.type)) {
@@ -78,12 +79,13 @@ export async function uploadDocumentAction(formData: FormData): Promise<Result<n
 
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  await addNannyDocument(auth.user.id, type, {
+  const result = await addNannyDocument(auth.user.id, parsedType.data, {
     buffer,
     originalName: file.name,
     mimeType: file.type,
     size: file.size,
   });
+  if (result.error) return err("nannyProfile.review.lockedNotice");
 
   return ok(null);
 }
@@ -92,7 +94,8 @@ export async function removeDocumentAction(documentId: string): Promise<Result<n
   const auth = await requireRole("NANNY");
   if (!auth.ok) return err("auth.errors.unknown");
 
-  await removeNannyDocument(auth.user.id, documentId);
+  const result = await removeNannyDocument(auth.user.id, documentId);
+  if (result.error) return err("nannyProfile.review.lockedNotice");
   return ok(null);
 }
 
@@ -101,6 +104,8 @@ export async function submitForReviewAction(): Promise<Result<null>> {
   if (!auth.ok) return err("auth.errors.unknown");
 
   const result = await submitForReviewService(auth.user.id);
-  if (!result.ok) return err("nannyProfile.review.lockedNotice");
+  if (!result.ok) {
+    return err(result.error === "INCOMPLETE_PROFILE" ? "nannyProfile.review.incompleteNotice" : "nannyProfile.review.lockedNotice");
+  }
   return ok(null);
 }

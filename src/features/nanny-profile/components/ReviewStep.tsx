@@ -15,7 +15,7 @@ export function ReviewStep({ profile }: { profile: SerializedNannyProfile }) {
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const locked = profile.status === "PENDING_REVIEW" || profile.status === "APPROVED";
+  const canSubmit = profile.status === "DRAFT" || profile.status === "NEEDS_CORRECTION";
 
   function handleSubmit() {
     setError(null);
@@ -73,14 +73,14 @@ export function ReviewStep({ profile }: { profile: SerializedNannyProfile }) {
         </CardContent>
       </Card>
 
-      {locked && <p className="text-sm text-plat-ink-muted">{t("nannyProfile.review.lockedNotice")}</p>}
+      {!canSubmit && <p className="text-sm text-plat-ink-muted">{t("nannyProfile.review.lockedNotice")}</p>}
       {error && <p className="text-sm text-plat-danger">{error}</p>}
 
       <div className="flex gap-2">
         <Button type="button" variant="outline" onClick={() => router.push("/baba/perfil/documentos")}>
           {t("common.back")}
         </Button>
-        <Button type="button" onClick={handleSubmit} disabled={isPending || locked}>
+        <Button type="button" onClick={handleSubmit} disabled={isPending || !canSubmit}>
           {isPending ? t("common.loading") : t("nannyProfile.review.submitForReview")}
         </Button>
       </div>

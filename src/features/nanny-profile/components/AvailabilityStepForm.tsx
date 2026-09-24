@@ -11,7 +11,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
-import { availabilityStepSchema, DAYS, type AvailabilityStepInput } from "../schemas";
+import { fieldErrorKey } from "@/lib/form-errors";
+import { availabilityStepObjectSchema, refineSalaryRange, DAYS, type AvailabilityStepInput } from "../schemas";
 import { updateAvailabilityStepAction } from "../actions";
 import type { SerializedNannyProfile } from "../types";
 
@@ -35,7 +36,7 @@ export function AvailabilityStepForm({ profile }: { profile: SerializedNannyProf
   const { register, watch, setValue, handleSubmit, formState } = useForm<
     Omit<AvailabilityStepInput, "availability">
   >({
-    resolver: zodResolver(availabilityStepSchema.omit({ availability: true })),
+    resolver: zodResolver(availabilityStepObjectSchema.omit({ availability: true }).superRefine(refineSalaryRange)),
     defaultValues: {
       employmentType: (profile.employmentType as AvailabilityStepInput["employmentType"]) ?? undefined,
       liveIn: (profile.liveIn as AvailabilityStepInput["liveIn"]) ?? undefined,
@@ -149,6 +150,9 @@ export function AvailabilityStepForm({ profile }: { profile: SerializedNannyProf
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="salaryMax">{t("nannyProfile.availability.salaryMax")}</Label>
           <Input id="salaryMax" type="number" min={0} {...register("salaryMax", { valueAsNumber: true })} />
+          {formState.errors.salaryMax && (
+            <p className="text-sm text-plat-danger">{t(fieldErrorKey(formState.errors.salaryMax.message))}</p>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <Label>{t("nannyProfile.availability.salaryUnitLabel")}</Label>

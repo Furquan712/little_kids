@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { fieldErrorKey } from "@/lib/form-errors";
 import { requestFormSchema, type RequestFormInput } from "../schemas";
 import { createRequestAction } from "../actions";
 
@@ -20,7 +21,14 @@ export function RequestForm({ targetNannyId }: { targetNannyId?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const { register, control, watch, setValue, handleSubmit, formState } = useForm<RequestFormInput>({
+  const {
+    register,
+    control,
+    watch,
+    setValue,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RequestFormInput>({
     resolver: zodResolver(requestFormSchema),
     defaultValues: {
       targetNannyId: targetNannyId ?? "",
@@ -39,7 +47,7 @@ export function RequestForm({ targetNannyId }: { targetNannyId?: string }) {
 
   async function onSubmit(values: RequestFormInput) {
     setError(null);
-    const result = await createRequestAction(values);
+    const result = await createRequestAction({ ...values, targetNannyId: targetNannyId || "" });
     if (!result.ok) {
       setError(t(result.error));
       return;
@@ -100,6 +108,7 @@ export function RequestForm({ targetNannyId }: { targetNannyId?: string }) {
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="startDate">{t("familySearch.request.startDate")}</Label>
         <Input id="startDate" type="date" {...register("startDate")} />
+        {errors.startDate && <p className="text-sm text-plat-danger">{t(fieldErrorKey(errors.startDate.message))}</p>}
       </div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -110,6 +119,9 @@ export function RequestForm({ targetNannyId }: { targetNannyId?: string }) {
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="budgetMax">{t("familySearch.request.budgetMax")}</Label>
           <Input id="budgetMax" type="number" min={0} {...register("budgetMax", { valueAsNumber: true })} />
+          {errors.budgetMax && (
+            <p className="text-sm text-plat-danger">{t(fieldErrorKey(errors.budgetMax.message))}</p>
+          )}
         </div>
       </div>
 
@@ -120,8 +132,8 @@ export function RequestForm({ targetNannyId }: { targetNannyId?: string }) {
 
       {error && <p className="text-sm text-plat-danger">{error}</p>}
 
-      <Button type="submit" disabled={formState.isSubmitting} className="w-fit">
-        {formState.isSubmitting ? t("common.loading") : t("familySearch.request.submit")}
+      <Button type="submit" disabled={isSubmitting} className="w-fit">
+        {isSubmitting ? t("common.loading") : t("familySearch.request.submit")}
       </Button>
     </form>
   );

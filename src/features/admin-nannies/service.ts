@@ -107,6 +107,12 @@ export async function approveNanny(nannyUserId: string) {
   profile.approvedAt = new Date();
   profile.correctionNotes = [];
   await profile.save();
+
+  await NannyDocument.updateMany(
+    { nannyUserId, reviewStatus: { $ne: "REJECTED" } },
+    { reviewStatus: "ACCEPTED", $unset: { reviewNote: "" } },
+  );
+
   return { before, after: profile.toObject() };
 }
 

@@ -144,9 +144,17 @@ export async function listFavoriteCards(familyId: string): Promise<PublicNannyCa
 
 export async function createNannyRequest(familyId: string, input: RequestFormInput) {
   await connectToDatabase();
-  return NannyRequest.create({
+
+  let targetNannyId: string | undefined;
+  if (input.targetNannyId) {
+    const targetProfile = await NannyProfile.findOne({ userId: input.targetNannyId, status: "APPROVED" });
+    if (!targetProfile) return { ok: false as const, error: "NANNY_NOT_AVAILABLE" as const };
+    targetNannyId = input.targetNannyId;
+  }
+
+  const request = await NannyRequest.create({
     familyId,
-    targetNannyId: input.targetNannyId || undefined,
+    targetNannyId,
     childrenAges: input.childrenAges,
     needs: input.needs,
     liveIn: input.liveIn,
@@ -156,6 +164,8 @@ export async function createNannyRequest(familyId: string, input: RequestFormInp
     specialRequirements: input.specialRequirements || "",
     status: "NEW",
   });
+
+  return { ok: true as const, request };
 }
 
 export async function listRequestsForFamily(familyId: string) {

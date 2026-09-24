@@ -21,19 +21,22 @@ export default async function SearchPage({
       ? raw.ageGroups
       : [raw.ageGroups]
     : undefined;
+  const languages = raw.languages ? (Array.isArray(raw.languages) ? raw.languages : [raw.languages]) : undefined;
 
-  const parsed = searchFiltersSchema.parse({
+  const filterResult = searchFiltersSchema.safeParse({
     province: raw.province || undefined,
     city: raw.city || undefined,
     minExperience: raw.minExperience || undefined,
     employmentType: raw.employmentType || undefined,
     liveIn: raw.liveIn || undefined,
     ageGroups,
+    languages,
     salaryMin: raw.salaryMin || undefined,
     salaryMax: raw.salaryMax || undefined,
     sort: raw.sort || undefined,
     page: raw.page || undefined,
   });
+  const parsed = filterResult.success ? filterResult.data : searchFiltersSchema.parse({});
 
   const { results, total, page, pageSize } = await searchNannies(parsed);
   const t = await getTranslations("familySearch");

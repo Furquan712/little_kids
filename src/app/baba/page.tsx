@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { getOrCreateNannyProfile, calculateCompletionPercent } from "@/features/nanny-profile/service";
+import { statusBadgeVariant } from "@/lib/badge-status";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -26,7 +27,7 @@ export default async function NannyDashboardPage() {
           <CardTitle>{t("dashboard.profileStatus")}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          <Badge>{t(`nannyProfile.status.${profile.status}`)}</Badge>
+          <Badge variant={statusBadgeVariant(profile.status)}>{t(`nannyProfile.status.${profile.status}`)}</Badge>
           <div>
             <p className="mb-2 text-sm text-plat-ink-muted">
               {t("dashboard.profileCompletion", { percent: completion })}
@@ -38,6 +39,21 @@ export default async function NannyDashboardPage() {
           </Button>
         </CardContent>
       </Card>
+
+      {profile.correctionNotes.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("nannyProfile.correctionNotes.title")}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-2">
+            {profile.correctionNotes.map((note: { field: string; note: string }, index: number) => (
+              <div key={index} className="rounded-md bg-plat-warning/10 p-3 text-sm text-plat-ink">
+                <strong>{note.field}:</strong> {note.note}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
