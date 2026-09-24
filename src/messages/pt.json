@@ -198,6 +198,10 @@
       "tokenInvalid": "Link inválido.",
       "tokenExpired": "Link expirado.",
       "contactRequired": "Indique pelo menos um email ou telefone.",
+      "salaryRangeInvalid": "O salário mínimo não pode ser maior que o máximo.",
+      "budgetRangeInvalid": "O orçamento mínimo não pode ser maior que o máximo.",
+      "ageOutOfRange": "A idade deve estar entre 18 e 75 anos.",
+      "startDateInPast": "A data de início não pode ser no passado.",
       "unknown": "Ocorreu um erro inesperado."
     }
   },
@@ -304,7 +308,8 @@
       "summaryTitle": "Reveja o seu perfil",
       "submitForReview": "Submeter para revisão",
       "submitted": "Perfil submetido para revisão.",
-      "lockedNotice": "O perfil está em revisão; os campos principais estão bloqueados."
+      "lockedNotice": "O perfil está em revisão; os campos principais estão bloqueados.",
+      "incompleteNotice": "Complete todos os passos obrigatórios antes de submeter para revisão."
     },
     "status": {
       "DRAFT": "Rascunho",
@@ -490,7 +495,8 @@
       "budgetMax": "Orçamento máximo (AOA)",
       "specialRequirements": "Requisitos especiais",
       "submit": "Enviar pedido",
-      "success": "Pedido enviado com sucesso."
+      "success": "Pedido enviado com sucesso.",
+      "nannyNotAvailable": "Esta babá já não está disponível. Tente enviar um pedido geral."
     }
   },
   "familyDashboard": {

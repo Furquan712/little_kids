@@ -23,6 +23,7 @@ const NANNIES = [
     yearsExperience: 6,
     ageGroups: ["INFANT", "TODDLER"],
     skills: ["FIRST_AID", "COOKING"],
+    languages: ["Português", "Inglês"],
   },
   {
     fullName: "Beatriz Costa",
@@ -66,6 +67,7 @@ const NANNIES = [
     yearsExperience: 8,
     ageGroups: ["INFANT", "TODDLER", "SCHOOL_AGE"],
     skills: ["FIRST_AID", "COOKING", "HOMEWORK_HELP"],
+    languages: ["Português", "Francês"],
   },
   {
     fullName: "Fátima Neto",
@@ -108,6 +110,7 @@ const NANNIES = [
     yearsExperience: 10,
     ageGroups: ["INFANT", "TODDLER", "SCHOOL_AGE"],
     skills: ["FIRST_AID", "COOKING", "HOMEWORK_HELP"],
+    languages: ["Português", "Umbundu"],
   },
   {
     fullName: "Helena Rosa",
@@ -186,7 +189,7 @@ async function main() {
         province: nanny.province,
         city: nanny.city,
         birthDate: new Date(1990, 0, 1),
-        languages: ["Português"],
+        languages: "languages" in nanny ? nanny.languages : ["Português"],
         yearsExperience: nanny.yearsExperience,
         ageGroups: nanny.ageGroups,
         skills: nanny.skills,

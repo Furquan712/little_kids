@@ -15,7 +15,11 @@ export function FavoriteButton({ nannyId, initialIsFavorite }: { nannyId: string
     setIsFavorite((prev) => !prev);
     startTransition(async () => {
       const result = await toggleFavoriteAction(nannyId);
-      if (result.ok) setIsFavorite(result.data.isFavorite);
+      if (result.ok) {
+        setIsFavorite(result.data.isFavorite);
+      } else {
+        setIsFavorite((prev) => !prev);
+      }
     });
   }
 

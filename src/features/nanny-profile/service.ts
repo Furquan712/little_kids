@@ -91,12 +91,13 @@ export async function addNannyDocument(
   type: DocumentType,
   file: { buffer: Buffer; originalName: string; mimeType: string; size: number },
 ) {
-  await connectToDatabase();
+  const result = await applyEditGuard(userId);
+  if (!result.profile) return { document: null, error: "PROFILE_LOCKED" as const };
 
   const key = `nanny-documents/${userId}/${type}-${Date.now()}-${file.originalName}`;
   await getStorageService().upload({ key, body: file.buffer, contentType: file.mimeType });
 
-  return NannyDocument.create({
+  const document = await NannyDocument.create({
     nannyUserId: userId,
     type,
     fileKey: key,
@@ -105,15 +106,33 @@ export async function addNannyDocument(
     size: file.size,
     visibility: visibilityForDocumentType(type),
   });
+
+  if (result.guard!.revertsToReview) {
+    result.profile.status = "PENDING_REVIEW";
+    result.profile.submittedAt = new Date();
+    await result.profile.save();
+  }
+
+  return { document, error: null };
 }
 
 export async function removeNannyDocument(userId: string, documentId: string) {
-  await connectToDatabase();
+  const result = await applyEditGuard(userId);
+  if (!result.profile) return { ok: false as const, error: "PROFILE_LOCKED" as const };
+
   const doc = await NannyDocument.findOne({ _id: documentId, nannyUserId: userId });
-  if (!doc) return false;
+  if (!doc) return { ok: false as const, error: null };
+
   await getStorageService().delete(doc.fileKey);
   await doc.deleteOne();
-  return true;
+
+  if (result.guard!.revertsToReview) {
+    result.profile.status = "PENDING_REVIEW";
+    result.profile.submittedAt = new Date();
+    await result.profile.save();
+  }
+
+  return { ok: true as const, error: null };
 }
 
 export async function listNannyDocuments(userId: string) {
@@ -145,8 +164,12 @@ export async function calculateCompletionPercent(userId: string): Promise<number
 export async function submitForReview(userId: string) {
   await connectToDatabase();
   const profile = await getOrCreateNannyProfile(userId);
-  const completion = await calculateCompletionPercent(userId);
 
+  if (profile.status !== "DRAFT" && profile.status !== "NEEDS_CORRECTION") {
+    return { ok: false as const, error: "PROFILE_LOCKED" as const };
+  }
+
+  const completion = await calculateCompletionPercent(userId);
   if (completion < 100) {
     return { ok: false as const, error: "INCOMPLETE_PROFILE" as const };
   }

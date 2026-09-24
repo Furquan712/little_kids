@@ -5,6 +5,8 @@ import { headers } from "next/headers";
 import { signIn, auth, signOut } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 import { User } from "@/models/User";
+import { NannyProfile } from "@/models/NannyProfile";
+import { editGuard } from "@/features/nanny-profile/service";
 import bcrypt from "bcryptjs";
 import { type Result, ok, err } from "@/lib/result";
 import { rateLimit } from "@/lib/rate-limit";
@@ -174,6 +176,23 @@ export async function updateAccountSettingsAction(
     if (conflict) return err("auth.errors.phoneAlreadyUsed");
   }
 
+  // Keep the nanny's profile location (used by family search filters and
+  // admin listings) in sync with their account settings — it lives on a
+  // separate document and was never updated by this action before.
+  // Checked before the User write below so the action fails atomically
+  // rather than saving contact details while rejecting the location change.
+  let nannyProfile: Awaited<ReturnType<typeof NannyProfile.findOne>> | null = null;
+  let nannyLocationGuard: ReturnType<typeof editGuard> | null = null;
+  if (session.user.role === "NANNY") {
+    const profile = await NannyProfile.findOne({ userId: session.user.id });
+    if (profile && (profile.province !== parsed.data.province || profile.city !== parsed.data.city)) {
+      const guard = editGuard(profile.status);
+      if (!guard.allowed) return err("nannyProfile.review.lockedNotice");
+      nannyProfile = profile;
+      nannyLocationGuard = guard;
+    }
+  }
+
   await User.findByIdAndUpdate(session.user.id, {
     fullName: parsed.data.fullName,
     email: email || undefined,
@@ -182,6 +201,16 @@ export async function updateAccountSettingsAction(
     province: parsed.data.province,
     city: parsed.data.city,
   });
+
+  if (nannyProfile) {
+    nannyProfile.province = parsed.data.province;
+    nannyProfile.city = parsed.data.city;
+    if (nannyLocationGuard!.revertsToReview) {
+      nannyProfile.status = "PENDING_REVIEW";
+      nannyProfile.submittedAt = new Date();
+    }
+    await nannyProfile.save();
+  }
 
   return ok(null);
 }

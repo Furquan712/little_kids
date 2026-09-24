@@ -6,6 +6,10 @@ const CODE_TO_KEY: Record<string, string> = {
   PASSWORD_MISMATCH: "auth.errors.passwordMismatch",
   CONTACT_REQUIRED: "auth.errors.contactRequired",
   CONSENT_REQUIRED: "auth.errors.consentRequired",
+  SALARY_RANGE_INVALID: "auth.errors.salaryRangeInvalid",
+  BUDGET_RANGE_INVALID: "auth.errors.budgetRangeInvalid",
+  AGE_OUT_OF_RANGE: "auth.errors.ageOutOfRange",
+  START_DATE_IN_PAST: "auth.errors.startDateInPast",
 };
 
 export function fieldErrorKey(code?: string): string {

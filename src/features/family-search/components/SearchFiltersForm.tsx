@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { ANGOLA_PROVINCES, citiesForProvince } from "@/lib/angola-locations";
 import { AGE_GROUPS } from "@/features/nanny-profile/schemas";
+import { NANNY_LANGUAGES } from "@/lib/languages";
 import type { SearchFiltersInput } from "../schemas";
 
 export function SearchFiltersForm({ initial }: { initial: Partial<SearchFiltersInput> }) {
@@ -22,6 +23,7 @@ export function SearchFiltersForm({ initial }: { initial: Partial<SearchFiltersI
   const [employmentType, setEmploymentType] = useState(initial.employmentType ?? "");
   const [liveIn, setLiveIn] = useState(initial.liveIn ?? "");
   const [ageGroups, setAgeGroups] = useState<string[]>(initial.ageGroups ?? []);
+  const [languages, setLanguages] = useState<string[]>(initial.languages ?? []);
   const [salaryMin, setSalaryMin] = useState(initial.salaryMin?.toString() ?? "");
   const [salaryMax, setSalaryMax] = useState(initial.salaryMax?.toString() ?? "");
   const [sort, setSort] = useState(initial.sort ?? "newest");
@@ -34,6 +36,7 @@ export function SearchFiltersForm({ initial }: { initial: Partial<SearchFiltersI
     if (employmentType) params.set("employmentType", employmentType);
     if (liveIn) params.set("liveIn", liveIn);
     ageGroups.forEach((g) => params.append("ageGroups", g));
+    languages.forEach((l) => params.append("languages", l));
     if (salaryMin) params.set("salaryMin", salaryMin);
     if (salaryMax) params.set("salaryMax", salaryMax);
     params.set("sort", sort);
@@ -43,6 +46,10 @@ export function SearchFiltersForm({ initial }: { initial: Partial<SearchFiltersI
 
   function toggleAgeGroup(group: string) {
     setAgeGroups((prev) => (prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group]));
+  }
+
+  function toggleLanguage(language: string) {
+    setLanguages((prev) => (prev.includes(language) ? prev.filter((l) => l !== language) : [...prev, language]));
   }
 
   return (
@@ -154,6 +161,18 @@ export function SearchFiltersForm({ initial }: { initial: Partial<SearchFiltersI
             <label key={group} className="flex items-center gap-2 text-sm text-plat-ink">
               <Checkbox checked={ageGroups.includes(group)} onCheckedChange={() => toggleAgeGroup(group)} />
               {group}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <Label>{t("filters.languages")}</Label>
+        <div className="flex flex-wrap gap-4">
+          {NANNY_LANGUAGES.map((language) => (
+            <label key={language} className="flex items-center gap-2 text-sm text-plat-ink">
+              <Checkbox checked={languages.includes(language)} onCheckedChange={() => toggleLanguage(language)} />
+              {language}
             </label>
           ))}
         </div>
