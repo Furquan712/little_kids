@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -21,13 +21,14 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { fieldErrorKey } from "@/lib/form-errors";
 import { monthKey } from "@/lib/billing";
 import { recordPaymentSchema, PAYMENT_METHODS, type RecordPaymentInput } from "../schemas";
-import { recordPaymentAction } from "../actions";
+import { recordPaymentAction, attachReceiptFileAction } from "../actions";
 
 export function RecordPaymentForm({ placementId }: { placementId: string }) {
   const t = useTranslations();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -59,8 +60,25 @@ export function RecordPaymentForm({ placementId }: { placementId: string }) {
       setError(t(result.error));
       return;
     }
+
+    const receiptFile = fileInputRef.current?.files?.[0];
+    if (receiptFile) {
+      const formData = new FormData();
+      formData.set("paymentId", result.data.paymentId);
+      formData.set("file", receiptFile);
+      const receiptResult = await attachReceiptFileAction(formData);
+      if (!receiptResult.ok) {
+        // The payment itself is already recorded — don't block on the
+        // receipt, just surface it so the admin knows to retry the upload.
+        setError(t(receiptResult.error));
+        router.refresh();
+        return;
+      }
+    }
+
     setOpen(false);
     reset();
+    if (fileInputRef.current) fileInputRef.current.value = "";
     router.refresh();
   }
 
@@ -123,6 +141,20 @@ export function RecordPaymentForm({ placementId }: { placementId: string }) {
           <div className="flex flex-col gap-1.5">
             <Label>{t("payments.record.paidAt")}</Label>
             <Input type="date" {...register("paidAt")} />
+            {errors.paidAt && <p className="text-sm text-plat-danger">{t(fieldErrorKey(errors.paidAt.message))}</p>}
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label>
+              {t("payments.record.receipt")}{" "}
+              <span className="text-plat-ink-muted">({t("common.optional")})</span>
+            </Label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/pdf,image/jpeg,image/png"
+              className="text-sm text-plat-ink-muted"
+            />
           </div>
 
           {error && <p className="text-sm text-plat-danger">{error}</p>}

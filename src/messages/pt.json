@@ -225,6 +225,8 @@
       "budgetRangeInvalid": "O orçamento mínimo não pode ser maior que o máximo.",
       "ageOutOfRange": "A idade deve estar entre 18 e 75 anos.",
       "startDateInPast": "A data de início não pode ser no passado.",
+      "commissionPercentTooHigh": "Uma comissão percentual não pode ser superior a 100%.",
+      "paidAtInFuture": "A data do pagamento não pode ser no futuro.",
       "unknown": "Ocorreu um erro inesperado."
     }
   },
@@ -647,6 +649,8 @@
       "status": "Estado",
       "receipt": "Recibo",
       "downloadReceipt": "Descarregar",
+      "deletePayment": "Eliminar pagamento",
+      "confirmDeletePayment": "Eliminar este pagamento? Esta ação não pode ser desfeita.",
       "noLines": "Ainda não há períodos de faturação.",
       "statusPAID": "Pago",
       "statusPARTIAL": "Parcialmente pago",
@@ -666,6 +670,7 @@
       "method": "Método",
       "reference": "Referência",
       "paidAt": "Data",
+      "receipt": "Ficheiro do recibo",
       "submit": "Guardar pagamento"
     },
     "summary": {

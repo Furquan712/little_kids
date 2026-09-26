@@ -10,6 +10,8 @@ const CODE_TO_KEY: Record<string, string> = {
   BUDGET_RANGE_INVALID: "auth.errors.budgetRangeInvalid",
   AGE_OUT_OF_RANGE: "auth.errors.ageOutOfRange",
   START_DATE_IN_PAST: "auth.errors.startDateInPast",
+  COMMISSION_PERCENT_TOO_HIGH: "auth.errors.commissionPercentTooHigh",
+  PAID_AT_IN_FUTURE: "auth.errors.paidAtInFuture",
 };
 
 export function fieldErrorKey(code?: string): string {

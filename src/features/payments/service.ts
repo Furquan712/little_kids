@@ -215,6 +215,28 @@ export async function attachReceiptFile(
   return { ok: true as const };
 }
 
+/**
+ * Corrects a mis-recorded payment (wrong amount, wrong period, duplicate
+ * entry). There's no "edit" — a payment is a financial record of something
+ * that happened, so fixing a mistake means removing it and recording the
+ * right one, same as voiding a receipt rather than altering it.
+ */
+export async function deletePayment(paymentId: string) {
+  await connectToDatabase();
+  const payment = await Payment.findById(paymentId);
+  if (!payment) return { ok: false as const, error: "NOT_FOUND" as const };
+
+  if (payment.receiptFileKey) {
+    await getStorageService()
+      .delete(payment.receiptFileKey)
+      .catch(() => undefined);
+  }
+
+  const before = payment.toObject();
+  await payment.deleteOne();
+  return { ok: true as const, before };
+}
+
 export async function getPaymentForReceipt(paymentId: string) {
   await connectToDatabase();
   const payment = await Payment.findById(paymentId);

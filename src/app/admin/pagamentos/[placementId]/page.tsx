@@ -67,12 +67,12 @@ export default async function AdminPlacementPaymentsPage({
 
       <Card className="overflow-hidden p-5">
         <h2 className="mb-3 font-medium text-plat-ink">{t("schedule.familyTitle")}</h2>
-        <BillingScheduleTable lines={billing.familyLines} showReceipts />
+        <BillingScheduleTable lines={billing.familyLines} showReceipts allowDelete />
       </Card>
 
       <Card className="overflow-hidden p-5">
         <h2 className="mb-3 font-medium text-plat-ink">{t("schedule.nannyTitle")}</h2>
-        <BillingScheduleTable lines={billing.nannyLines} showReceipts />
+        <BillingScheduleTable lines={billing.nannyLines} showReceipts allowDelete />
       </Card>
     </div>
   );

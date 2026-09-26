@@ -2,16 +2,19 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { statusBadgeVariant } from "@/lib/badge-status";
+import { DeletePaymentButton } from "./DeletePaymentButton";
 import type { BillingLine } from "../types";
 
 export function BillingScheduleTable({
   lines,
   showReceipts = false,
   hideOverdueLabel = false,
+  allowDelete = false,
 }: {
   lines: BillingLine[];
   showReceipts?: boolean;
   hideOverdueLabel?: boolean;
+  allowDelete?: boolean;
 }) {
   const t = useTranslations("payments.schedule");
 
@@ -42,17 +45,19 @@ export function BillingScheduleTable({
               {showReceipts && (
                 <TableCell>
                   {line.payments.length > 0 ? (
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1.5">
                       {line.payments.map((p) => (
-                        <a
-                          key={p.id}
-                          href={`/api/payments/${p.id}/receipt`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-plat-primary-strong underline"
-                        >
-                          {t("downloadReceipt")}
-                        </a>
+                        <div key={p.id} className="flex items-center gap-2">
+                          <a
+                            href={`/api/payments/${p.id}/receipt`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-plat-primary-strong underline"
+                          >
+                            {t("downloadReceipt")}
+                          </a>
+                          {allowDelete && <DeletePaymentButton paymentId={p.id} />}
+                        </div>
                       ))}
                     </div>
                   ) : (

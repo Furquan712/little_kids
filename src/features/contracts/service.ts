@@ -308,10 +308,10 @@ export async function signContractInPerson(
   await connectToDatabase();
 
   const contract = await Contract.findById(contractId);
-  if (!contract) return { ok: false as const };
+  if (!contract || contract.status !== "SENT") return { ok: false as const, error: "NOT_READY" as const };
 
   const placement = await Placement.findById(contract.placementId);
-  if (!placement) return { ok: false as const };
+  if (!placement) return { ok: false as const, error: "NOT_FOUND" as const };
 
   const partyUserId = contract.party === "FAMILY" ? placement.familyId : placement.nannyId;
   const partyUser = await User.findById(partyUserId);
@@ -373,7 +373,11 @@ export async function editContract(placementId: string, input: CreateContractInp
 
   const contracts = await Contract.find({ placementId });
   if (contracts.length !== 2) return { ok: false as const };
-  if (contracts.some((c) => c.status === "SIGNED" || c.status === "ACTIVE")) {
+  // Allow-list rather than deny-list: only a still-unsigned contract (DRAFT
+  // or SENT) may be edited. A deny-list of just SIGNED/ACTIVE would miss
+  // ENDED/TERMINATED, letting a dead placement's contract be resurrected
+  // back into DRAFT via a direct edit request.
+  if (contracts.some((c) => c.status !== "DRAFT" && c.status !== "SENT")) {
     return { ok: false as const, error: "ALREADY_SIGNED" as const };
   }
 
@@ -386,6 +390,13 @@ export async function editContract(placementId: string, input: CreateContractInp
 
   for (const contract of contracts) {
     await Signature.deleteMany({ contractId: contract._id });
+
+    const storage = getStorageService();
+    await Promise.all([
+      contract.pdfKey ? storage.delete(contract.pdfKey).catch(() => undefined) : Promise.resolve(),
+      contract.signedPdfKey ? storage.delete(contract.signedPdfKey).catch(() => undefined) : Promise.resolve(),
+    ]);
+
     contract.version += 1;
     contract.terms = terms;
     contract.nannySalary = input.nannySalary;
@@ -414,7 +425,11 @@ export async function terminateOrEndContracts(placementId: string, reason: strin
   const status = mode === "END" ? "ENDED" : "TERMINATED";
 
   placement.status = status;
-  if (mode === "END") placement.endDate = new Date();
+  // Both modes stop billing as of now — END and TERMINATE differ in reason/
+  // manner, not in whether new monthly periods keep accruing. Leaving
+  // endDate unset for TERMINATE would let the billing schedule keep
+  // generating new "due" periods every month forever.
+  placement.endDate = new Date();
   await placement.save();
 
   await Contract.updateMany({ placementId }, { status, terminationReason: reason });

@@ -225,6 +225,8 @@
       "budgetRangeInvalid": "Minimum budget cannot be higher than the maximum.",
       "ageOutOfRange": "Age must be between 18 and 75 years.",
       "startDateInPast": "Start date cannot be in the past.",
+      "commissionPercentTooHigh": "A percentage commission cannot be higher than 100%.",
+      "paidAtInFuture": "Payment date cannot be in the future.",
       "unknown": "An unexpected error occurred."
     }
   },
@@ -647,6 +649,8 @@
       "status": "Status",
       "receipt": "Receipt",
       "downloadReceipt": "Download",
+      "deletePayment": "Delete payment",
+      "confirmDeletePayment": "Delete this payment? This can't be undone.",
       "noLines": "No billing periods yet.",
       "statusPAID": "Paid",
       "statusPARTIAL": "Partially paid",
@@ -666,6 +670,7 @@
       "method": "Method",
       "reference": "Reference",
       "paidAt": "Date",
+      "receipt": "Receipt file",
       "submit": "Save payment"
     },
     "summary": {

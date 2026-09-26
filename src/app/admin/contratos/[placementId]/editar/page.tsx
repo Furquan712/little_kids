@@ -15,6 +15,15 @@ export default async function EditContractPage({
   const contracts = await getPlacementContracts(placementId);
   if (!contracts) notFound();
 
+  // Defense in depth: the detail page only shows the "Edit" link while both
+  // contracts are still DRAFT/SENT, but that's a UI-level check. Enforce the
+  // same rule here so a stale bookmark or direct URL can't reopen the
+  // builder for a signed, active, ended, or terminated contract.
+  const editableStatuses = new Set(["DRAFT", "SENT"]);
+  if (!editableStatuses.has(contracts.family_contract.status) || !editableStatuses.has(contracts.nanny_contract.status)) {
+    notFound();
+  }
+
   const initial = {
     startDate: contracts.family_contract.terms.startDate,
     duties: contracts.family_contract.terms.duties,

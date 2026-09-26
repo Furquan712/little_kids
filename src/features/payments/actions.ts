@@ -9,7 +9,7 @@ import {
   MAX_RECEIPT_SIZE_BYTES,
   ALLOWED_RECEIPT_MIME_TYPES,
 } from "./schemas";
-import { recordPayment, attachReceiptFile } from "./service";
+import { recordPayment, attachReceiptFile, deletePayment } from "./service";
 
 export async function recordPaymentAction(input: RecordPaymentInput): Promise<Result<{ paymentId: string }>> {
   const auth = await requireRole("ADMIN");
@@ -42,6 +42,18 @@ export async function attachReceiptFileAction(formData: FormData): Promise<Resul
   const buffer = Buffer.from(await file.arrayBuffer());
   const result = await attachReceiptFile(paymentId, { buffer, originalName: file.name, mimeType: file.type });
   if (!result.ok) return err("auth.errors.unknown");
+
+  return ok(null);
+}
+
+export async function deletePaymentAction(paymentId: string): Promise<Result<null>> {
+  const auth = await requireRole("ADMIN");
+  if (!auth.ok) return err("auth.errors.unknown");
+
+  const result = await deletePayment(paymentId);
+  if (!result.ok) return err("auth.errors.unknown");
+
+  await auditLog(auth.user.id, "DELETE_PAYMENT", "Payment", paymentId, result.before, null);
 
   return ok(null);
 }

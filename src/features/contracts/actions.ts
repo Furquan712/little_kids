@@ -9,6 +9,8 @@ import {
   editContractSchema,
   signContractOnlineSchema,
   terminateContractSchema,
+  MAX_SIGNED_SCAN_SIZE_BYTES,
+  ALLOWED_SIGNED_SCAN_MIME_TYPES,
   type CreateContractInput,
   type EditContractInput,
   type SignContractOnlineInput,
@@ -105,8 +107,13 @@ export async function signContractInPersonAction(formData: FormData): Promise<Re
   const file = formData.get("file") as File | null;
   if (!contractId || !file) return err("auth.errors.unknown");
 
+  if (file.size > MAX_SIGNED_SCAN_SIZE_BYTES) return err("nannyProfile.documents.sizeLimitError");
+  if (!ALLOWED_SIGNED_SCAN_MIME_TYPES.includes(file.type)) {
+    return err("nannyProfile.documents.typeNotAllowedError");
+  }
+
   const buffer = Buffer.from(await file.arrayBuffer());
-  const result = await signContractInPerson(contractId, { buffer, mimeType: file.type || "application/pdf" });
+  const result = await signContractInPerson(contractId, { buffer, mimeType: file.type });
   if (!result.ok) return err("auth.errors.unknown");
 
   await auditLog(auth.user.id, "SIGN_IN_PERSON", "Contract", contractId, null, null);
