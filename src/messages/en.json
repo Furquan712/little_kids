@@ -596,5 +596,94 @@
       "empty": "You don't have any contracts yet.",
       "view": "View contract"
     }
+  },
+  "payments": {
+    "errors": {
+      "periodOutOfRange": "That period is outside the placement's active range."
+    },
+    "methods": {
+      "BANK_TRANSFER": "Bank transfer",
+      "MULTICAIXA_EXPRESS": "Multicaixa Express",
+      "MOBILE_MONEY": "Mobile money",
+      "CASH": "Cash"
+    },
+    "schedule": {
+      "period": "Period",
+      "dueDate": "Due date",
+      "expected": "Expected",
+      "paid": "Paid",
+      "status": "Status",
+      "receipt": "Receipt",
+      "downloadReceipt": "Download",
+      "noLines": "No billing periods yet.",
+      "statusPAID": "Paid",
+      "statusPARTIAL": "Partially paid",
+      "statusDUE": "Due",
+      "statusOVERDUE": "Overdue",
+      "familyTitle": "Family payments",
+      "nannyTitle": "Nanny payouts"
+    },
+    "record": {
+      "trigger": "Record payment",
+      "title": "Record a payment",
+      "direction": "Direction",
+      "fromFamily": "From family",
+      "toNanny": "To nanny",
+      "periodMonth": "Period",
+      "amount": "Amount (AOA)",
+      "method": "Method",
+      "reference": "Reference",
+      "paidAt": "Date",
+      "submit": "Save payment"
+    },
+    "summary": {
+      "commissionEarned": "Commission earned",
+      "familyOutstanding": "Family outstanding balance",
+      "nannyOutstanding": "Nanny outstanding balance"
+    },
+    "admin": {
+      "title": "Payments",
+      "familyColumn": "Family",
+      "nannyColumn": "Nanny",
+      "familyOutstanding": "Family outstanding",
+      "nannyOutstanding": "Nanny outstanding",
+      "overdueColumn": "Overdue",
+      "overdueYes": "Overdue",
+      "overdueNo": "Up to date",
+      "status": {
+        "ACTIVE": "Active",
+        "ENDED": "Ended",
+        "TERMINATED": "Terminated",
+        "REPLACED": "Replaced"
+      }
+    },
+    "reports": {
+      "title": "Reports",
+      "monthLabel": "Month",
+      "exportCsv": "Export CSV",
+      "commissionRevenue": "Commission revenue",
+      "totalPaidToNannies": "Total paid to nannies",
+      "activeContracts": "Active contracts",
+      "overdueTitle": "Overdue payments",
+      "familyColumn": "Family",
+      "nannyColumn": "Nanny",
+      "directionColumn": "Direction",
+      "periodColumn": "Period",
+      "dueDateColumn": "Due date",
+      "outstandingColumn": "Outstanding",
+      "directionFromFamily": "Family → Platform",
+      "directionToNanny": "Platform → Nanny",
+      "noOverdue": "Nothing overdue right now."
+    },
+    "family": {
+      "title": "Payments",
+      "outstanding": "Outstanding balance",
+      "noPlacements": "You don't have any active placements yet."
+    },
+    "nanny": {
+      "title": "Payments",
+      "scheduled": "Scheduled balance",
+      "noPlacements": "You don't have any active placements yet."
+    }
   }
 }

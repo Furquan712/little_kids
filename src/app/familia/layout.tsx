@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { LayoutDashboard, Search, Heart, Settings, FileText } from "lucide-react";
+import { LayoutDashboard, Search, Heart, Settings, FileText, Wallet } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
@@ -22,6 +22,11 @@ export default async function FamilyLayout({ children }: { children: React.React
       label: t("contracts.myContracts.title"),
       href: "/familia/contratos",
       icon: <FileText className="h-4 w-4" />,
+    },
+    {
+      label: t("payments.family.title"),
+      href: "/familia/pagamentos",
+      icon: <Wallet className="h-4 w-4" />,
     },
     {
       label: t("dashboard.settingsLink"),

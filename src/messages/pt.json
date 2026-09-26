@@ -596,5 +596,94 @@
       "empty": "Ainda não tem contratos.",
       "view": "Ver contrato"
     }
+  },
+  "payments": {
+    "errors": {
+      "periodOutOfRange": "Esse período está fora do intervalo ativo da colocação."
+    },
+    "methods": {
+      "BANK_TRANSFER": "Transferência bancária",
+      "MULTICAIXA_EXPRESS": "Multicaixa Express",
+      "MOBILE_MONEY": "Mobile money",
+      "CASH": "Numerário"
+    },
+    "schedule": {
+      "period": "Período",
+      "dueDate": "Vencimento",
+      "expected": "Esperado",
+      "paid": "Pago",
+      "status": "Estado",
+      "receipt": "Recibo",
+      "downloadReceipt": "Descarregar",
+      "noLines": "Ainda não há períodos de faturação.",
+      "statusPAID": "Pago",
+      "statusPARTIAL": "Parcialmente pago",
+      "statusDUE": "Por pagar",
+      "statusOVERDUE": "Em atraso",
+      "familyTitle": "Pagamentos da família",
+      "nannyTitle": "Pagamentos à babá"
+    },
+    "record": {
+      "trigger": "Registar pagamento",
+      "title": "Registar um pagamento",
+      "direction": "Direção",
+      "fromFamily": "Da família",
+      "toNanny": "À babá",
+      "periodMonth": "Período",
+      "amount": "Valor (AOA)",
+      "method": "Método",
+      "reference": "Referência",
+      "paidAt": "Data",
+      "submit": "Guardar pagamento"
+    },
+    "summary": {
+      "commissionEarned": "Comissão ganha",
+      "familyOutstanding": "Saldo em dívida da família",
+      "nannyOutstanding": "Saldo em dívida à babá"
+    },
+    "admin": {
+      "title": "Pagamentos",
+      "familyColumn": "Família",
+      "nannyColumn": "Babá",
+      "familyOutstanding": "Em dívida (família)",
+      "nannyOutstanding": "Em dívida (babá)",
+      "overdueColumn": "Atraso",
+      "overdueYes": "Em atraso",
+      "overdueNo": "Em dia",
+      "status": {
+        "ACTIVE": "Ativa",
+        "ENDED": "Terminada",
+        "TERMINATED": "Rescindida",
+        "REPLACED": "Substituída"
+      }
+    },
+    "reports": {
+      "title": "Relatórios",
+      "monthLabel": "Mês",
+      "exportCsv": "Exportar CSV",
+      "commissionRevenue": "Receita de comissão",
+      "totalPaidToNannies": "Total pago a babás",
+      "activeContracts": "Contratos ativos",
+      "overdueTitle": "Pagamentos em atraso",
+      "familyColumn": "Família",
+      "nannyColumn": "Babá",
+      "directionColumn": "Direção",
+      "periodColumn": "Período",
+      "dueDateColumn": "Vencimento",
+      "outstandingColumn": "Em dívida",
+      "directionFromFamily": "Família → Plataforma",
+      "directionToNanny": "Plataforma → Babá",
+      "noOverdue": "Não há nada em atraso neste momento."
+    },
+    "family": {
+      "title": "Pagamentos",
+      "outstanding": "Saldo em dívida",
+      "noPlacements": "Ainda não tem colocações ativas."
+    },
+    "nanny": {
+      "title": "Pagamentos",
+      "scheduled": "Saldo previsto",
+      "noPlacements": "Ainda não tem colocações ativas."
+    }
   }
 }

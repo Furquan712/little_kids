@@ -9,6 +9,7 @@ const SUCCESS = new Set([
   "DONE",
   "RECOMMENDED",
   "ACCEPTED",
+  "PAID",
 ]);
 
 const WARNING = new Set([
@@ -21,6 +22,7 @@ const WARNING = new Set([
   "MATCHING",
   "PROPOSED",
   "SCHEDULED",
+  "PARTIAL",
 ]);
 
 const DANGER = new Set([
@@ -31,9 +33,10 @@ const DANGER = new Set([
   "DECLINED",
   "CLOSED",
   "ENDED",
+  "OVERDUE",
 ]);
 
-const INFO = new Set(["INVITED", "CONTACTED"]);
+const INFO = new Set(["INVITED", "CONTACTED", "DUE"]);
 
 export function statusBadgeVariant(status: string): NonNullable<BadgeProps["variant"]> {
   if (SUCCESS.has(status)) return "success";

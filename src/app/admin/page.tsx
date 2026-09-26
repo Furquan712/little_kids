@@ -5,6 +5,7 @@ import { User } from "@/models/User";
 import { NannyProfile } from "@/models/NannyProfile";
 import { NannyRequest } from "@/models/NannyRequest";
 import { Placement } from "@/models/Placement";
+import { getCurrentMonthCommissionRevenue } from "@/features/payments/service";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminDashboardPage() {
@@ -14,13 +15,15 @@ export default async function AdminDashboardPage() {
   const t = await getTranslations();
   await connectToDatabase();
 
-  const [totalNannies, totalFamilies, pendingReview, openRequests, activeContracts] = await Promise.all([
-    User.countDocuments({ role: "NANNY" }),
-    User.countDocuments({ role: "FAMILY" }),
-    NannyProfile.countDocuments({ status: "PENDING_REVIEW" }),
-    NannyRequest.countDocuments({ status: { $ne: "CLOSED" } }),
-    Placement.countDocuments({ status: "ACTIVE" }),
-  ]);
+  const [totalNannies, totalFamilies, pendingReview, openRequests, activeContracts, monthlyRevenue] =
+    await Promise.all([
+      User.countDocuments({ role: "NANNY" }),
+      User.countDocuments({ role: "FAMILY" }),
+      NannyProfile.countDocuments({ status: "PENDING_REVIEW" }),
+      NannyRequest.countDocuments({ status: { $ne: "CLOSED" } }),
+      Placement.countDocuments({ status: "ACTIVE" }),
+      getCurrentMonthCommissionRevenue(),
+    ]);
 
   const cards = [
     { label: "Total de babás", value: totalNannies },
@@ -28,7 +31,7 @@ export default async function AdminDashboardPage() {
     { label: "Perfis em revisão", value: pendingReview },
     { label: "Pedidos abertos", value: openRequests },
     { label: "Contratos ativos", value: activeContracts },
-    { label: "Receita este mês (AOA)", value: 0 },
+    { label: "Receita este mês (AOA)", value: monthlyRevenue.toLocaleString("pt-AO") },
   ];
 
   return (
