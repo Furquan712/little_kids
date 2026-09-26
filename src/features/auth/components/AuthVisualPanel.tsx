@@ -15,8 +15,8 @@ type PanelContent = {
 
 const PANELS: Record<string, PanelContent> = {
   "/login": {
-    image: "/images/hero.png",
-    alt: "Nanny playing with a little girl in a bright living room",
+    image: "/images/book-nanny.png",
+    alt: "A mother messaging on her phone while her daughter plays nearby",
     headingKey: "auth.visual.login.heading",
     subtitleKey: "auth.visual.login.subtitle",
   },
