@@ -790,5 +790,47 @@
       "familia": "Sou Família",
       "baba": "Sou Babá"
     }
+  },
+  "apiAnalysis": {
+    "title": "Análise de API",
+    "subtitle": "Utilização e limites em tempo real dos serviços externos de que a plataforma depende.",
+    "refreshNote": "Obtido em tempo real a cada visita — o plano gratuito do Cloudinary permite 500 chamadas à API de administração por hora.",
+    "mongo": {
+      "title": "MongoDB",
+      "storageUsed": "Armazenamento utilizado",
+      "limitNote": "Face a um limite configurado de {limit} (defina MONGODB_STORAGE_LIMIT_MB para corresponder ao seu plano real do Atlas).",
+      "dataSize": "Tamanho dos dados",
+      "storageSize": "Tamanho em disco",
+      "indexSize": "Tamanho dos índices",
+      "collections": "Coleções",
+      "documents": "Documentos"
+    },
+    "brevo": {
+      "title": "Brevo (Email e SMS)",
+      "notConfigured": "O Brevo não está configurado — a aplicação está a usar o serviço de email de consola. Defina BREVO_API_KEY para ver a utilização em tempo real.",
+      "fetchFailed": "Não foi possível contactar a API do Brevo. Verifique se o BREVO_API_KEY é válido.",
+      "emailSection": "Email",
+      "smsSection": "SMS",
+      "plan": "Plano",
+      "creditsLeft": "Créditos restantes",
+      "sentLast90": "Enviados (últimos 90 dias)",
+      "deliveredLast90": "Entregues (últimos 90 dias)",
+      "noSmsPlan": "Esta conta não tem créditos de SMS."
+    },
+    "cloudinary": {
+      "title": "Cloudinary (Armazenamento)",
+      "fetchFailed": "Não foi possível contactar a API do Cloudinary. Verifique as suas credenciais Cloudinary.",
+      "plan": "Plano",
+      "storageUsed": "Armazenamento utilizado",
+      "bandwidthUsed": "Largura de banda utilizada",
+      "transformations": "Transformações",
+      "totalObjects": "Total de objetos (Cloudinary)",
+      "credits": "Créditos utilizados",
+      "creditsNote": "O plano gratuito do Cloudinary mede armazenamento, largura de banda e transformações em conjunto como créditos partilhados, em vez de um limite de armazenamento separado.",
+      "appBreakdownTitle": "O que já carregámos",
+      "images": "Imagens (fotos e assinaturas)",
+      "documents": "Documentos (BI, certificados, contratos, recibos)",
+      "rateLimit": "Limite da API de administração"
+    }
   }
 }

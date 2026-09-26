@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { LayoutDashboard, Users, ClipboardList, Home, FileText, Wallet, BarChart3 } from "lucide-react";
+import { LayoutDashboard, Users, ClipboardList, Home, FileText, Wallet, BarChart3, Activity } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
@@ -18,6 +18,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { label: t("contracts.list.title"), href: "/admin/contratos", icon: <FileText className="h-4 w-4" /> },
     { label: t("payments.admin.title"), href: "/admin/pagamentos", icon: <Wallet className="h-4 w-4" /> },
     { label: t("payments.reports.title"), href: "/admin/relatorios", icon: <BarChart3 className="h-4 w-4" /> },
+    { label: t("apiAnalysis.title"), href: "/admin/api-analise", icon: <Activity className="h-4 w-4" /> },
   ];
 
   return (

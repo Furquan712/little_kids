@@ -790,5 +790,47 @@
       "familia": "I'm a Family",
       "baba": "I'm a Nanny"
     }
+  },
+  "apiAnalysis": {
+    "title": "API Analysis",
+    "subtitle": "Live usage and quota for the external services this platform depends on.",
+    "refreshNote": "Fetched live on every visit — Cloudinary's free plan allows 500 admin API calls per hour.",
+    "mongo": {
+      "title": "MongoDB",
+      "storageUsed": "Storage used",
+      "limitNote": "Against a configured {limit} plan limit (set MONGODB_STORAGE_LIMIT_MB to match your actual Atlas tier).",
+      "dataSize": "Data size",
+      "storageSize": "Storage size (on disk)",
+      "indexSize": "Index size",
+      "collections": "Collections",
+      "documents": "Documents"
+    },
+    "brevo": {
+      "title": "Brevo (Email & SMS)",
+      "notConfigured": "Brevo isn't configured — the app is using the console email service. Set BREVO_API_KEY to see live usage.",
+      "fetchFailed": "Couldn't reach Brevo's API. Check that BREVO_API_KEY is valid.",
+      "emailSection": "Email",
+      "smsSection": "SMS",
+      "plan": "Plan",
+      "creditsLeft": "Credits left",
+      "sentLast90": "Sent (last 90 days)",
+      "deliveredLast90": "Delivered (last 90 days)",
+      "noSmsPlan": "No SMS credits on this account."
+    },
+    "cloudinary": {
+      "title": "Cloudinary (Storage)",
+      "fetchFailed": "Couldn't reach Cloudinary's API. Check your Cloudinary credentials.",
+      "plan": "Plan",
+      "storageUsed": "Storage used",
+      "bandwidthUsed": "Bandwidth used",
+      "transformations": "Transformations",
+      "totalObjects": "Total objects (Cloudinary)",
+      "credits": "Credits used",
+      "creditsNote": "Cloudinary's free plan measures storage, bandwidth and transformations together as shared credits, rather than a separate storage cap.",
+      "appBreakdownTitle": "What we've uploaded",
+      "images": "Images (photos & signatures)",
+      "documents": "Documents (IDs, certificates, contracts, receipts)",
+      "rateLimit": "Admin API rate limit"
+    }
   }
 }
