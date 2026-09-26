@@ -134,9 +134,28 @@
     }
   },
   "auth": {
+    "visual": {
+      "login": {
+        "heading": "Bem-vinda de volta",
+        "subtitle": "Inicie sessão para continuar exatamente onde ficou — as suas colocações, contratos e pagamentos estão todos num só lugar."
+      },
+      "registerFamilia": {
+        "heading": "Encontre a babá perfeita para a sua família",
+        "subtitle": "Tratamos da procura, das entrevistas e do contrato, para que só conheça babás que já verificámos."
+      },
+      "registerBaba": {
+        "heading": "Junte-se à nossa comunidade de babás de confiança",
+        "subtitle": "Construa o seu perfil, seja verificada e comece a receber convites para entrevista de famílias perto de si."
+      },
+      "default": {
+        "heading": "Cuidado em quem pode confiar",
+        "subtitle": "Todas as babás na nossa plataforma são verificadas, entrevistadas e contratadas — para que famílias e babás se sintam seguras."
+      }
+    },
     "register": {
       "babaTitle": "Sou Babá — Registar",
       "familiaTitle": "Sou Família — Registar",
+      "subtitle": "Demora apenas alguns minutos para começar.",
       "fullName": "Nome completo",
       "email": "Email",
       "phone": "Telefone",
@@ -156,6 +175,7 @@
     },
     "login": {
       "title": "Entrar",
+      "subtitle": "Introduza os seus dados para aceder ao seu painel.",
       "identifier": "Email ou telefone",
       "password": "Palavra-passe",
       "submit": "Entrar",

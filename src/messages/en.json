@@ -134,9 +134,28 @@
     }
   },
   "auth": {
+    "visual": {
+      "login": {
+        "heading": "Welcome back",
+        "subtitle": "Sign in to pick up right where you left off — your placements, contracts and payments are all in one place."
+      },
+      "registerFamilia": {
+        "heading": "Find the perfect nanny for your family",
+        "subtitle": "We handle the search, the interviews and the contract, so you only meet nannies we've already verified."
+      },
+      "registerBaba": {
+        "heading": "Join our community of trusted nannies",
+        "subtitle": "Build your profile, get verified, and start receiving interview invitations from families near you."
+      },
+      "default": {
+        "heading": "Care you can trust",
+        "subtitle": "Every nanny on our platform is verified, interviewed and contracted — so families and nannies both feel safe."
+      }
+    },
     "register": {
       "babaTitle": "I'm a Nanny — Sign up",
       "familiaTitle": "I'm a Family — Sign up",
+      "subtitle": "It only takes a couple of minutes to get started.",
       "fullName": "Full name",
       "email": "Email",
       "phone": "Phone",
@@ -156,6 +175,7 @@
     },
     "login": {
       "title": "Log in",
+      "subtitle": "Enter your details to access your dashboard.",
       "identifier": "Email or phone",
       "password": "Password",
       "submit": "Log in",
