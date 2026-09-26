@@ -76,6 +76,21 @@ body {
   font-family: var(--font-body), serif;
 }
 
+/* Browsers default <button> to cursor: default (not a hand), unlike <a>.
+   Every clickable control in this app — buttons, icon buttons, Radix
+   triggers (Select/Checkbox/RadioGroup/Dialog all render <button>) —
+   should show a pointer on hover, and not-allowed when disabled. */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]):not([data-disabled]) {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+[role="button"][data-disabled] {
+  cursor: not-allowed;
+}
+
 ::selection {
   background: var(--rose);
   color: #fff;
