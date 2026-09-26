@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Nanny Platform",
+    "appName": "Primeiros Encantos",
     "save": "Save",
     "cancel": "Cancel",
     "next": "Next",
@@ -39,12 +39,12 @@
     "language": "Language"
   },
   "meta": {
-    "title": "Nanny Platform Angola | Verified nannies for your family",
-    "description": "We connect families in Angola with verified nannies. The platform handles the interview, the contract and the payment — so your family gets peace of mind."
+    "title": "Primeiros Encantos | Trusted Babysitting & Nanny Services in Angola",
+    "description": "Primeiros Encantos connects families in Angola with background-checked, first-aid trained nannies and babysitters. From occasional babysitting to full-time childcare, we handle the interview, the contract and the payment — so your family gets peace of mind."
   },
   "home": {
     "hero": {
-      "eyebrow": "Angola · Verified nannies",
+      "eyebrow": "Angola · Trusted Nannies & Babysitting",
       "headline": "We connect families with trusted nannies and take care of everything for you",
       "subheadline": "We verify, interview and contract every nanny. The platform handles matching, the contract and the payment — your family never has to do this alone.",
       "ctaBaba": "I'm a Nanny",

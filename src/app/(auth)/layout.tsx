@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { AuthVisualPanel } from "@/features/auth/components/AuthVisualPanel";
+import { BRAND_NAME } from "@/lib/brand";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,10 +15,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="w-full border-b border-plat-border bg-plat-bg">
           <div className="mx-auto flex max-w-lg items-center justify-between px-5 py-3 sm:px-8 lg:max-w-none lg:justify-end">
             <Link href="/" className="flex items-center gap-2 font-heading text-lg font-semibold text-plat-ink lg:hidden">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-plat-primary text-plat-ink">
-                <Heart className="h-4 w-4" fill="currentColor" strokeWidth={0} />
+              <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
+                <Image src="/images/logo.png" alt={BRAND_NAME} fill sizes="32px" className="object-cover" />
               </span>
-              Nanny Platform
+              {BRAND_NAME}
             </Link>
             <LocaleSwitcher />
           </div>
@@ -28,10 +29,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             href="/"
             className="mb-8 hidden items-center gap-2.5 font-heading text-xl font-semibold text-plat-ink lg:flex"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-plat-primary text-plat-ink shadow-sm">
-              <Heart className="h-5 w-5" fill="currentColor" strokeWidth={0} />
+            <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full shadow-sm">
+              <Image src="/images/logo.png" alt={BRAND_NAME} fill sizes="40px" className="object-cover" />
             </span>
-            Nanny Platform
+            {BRAND_NAME}
           </Link>
 
           <div className="w-full max-w-md rounded-3xl border border-plat-border bg-plat-bg p-8 shadow-xl shadow-plat-ink/5 sm:p-10">

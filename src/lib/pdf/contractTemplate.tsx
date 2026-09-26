@@ -1,4 +1,6 @@
-import { Document, Page, View, Text, StyleSheet, Image, Svg, Path, renderToBuffer } from "@react-pdf/renderer";
+import { Document, Page, View, Text, StyleSheet, Image, renderToBuffer } from "@react-pdf/renderer";
+import { BRAND_NAME } from "@/lib/brand";
+import { getPdfLogoBuffer } from "@/lib/pdf/logo";
 
 const COLORS = {
   primary: "#E58F89",
@@ -45,18 +47,8 @@ const styles = StyleSheet.create({
   },
   signatureImage: { width: 160, height: 60, marginVertical: 6 },
   footer: { position: "absolute", bottom: 24, left: 40, right: 40, fontSize: 7, color: COLORS.inkMuted },
+  logo: { width: 30, height: 30, borderRadius: 15 },
 });
-
-function LogoMark() {
-  return (
-    <Svg width={22} height={22} viewBox="0 0 24 24">
-      <Path
-        d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 4.3 2.4C10.4 4.7 12.3 3.7 14.3 4c3.5.5 5.3 4.1 3.7 7.7C15.5 16.4 12 21 12 21Z"
-        fill={COLORS.primary}
-      />
-    </Svg>
-  );
-}
 
 export type ContractPdfData = {
   party: "FAMILY" | "NANNY";
@@ -89,14 +81,15 @@ function money(value: number) {
   return `${value.toLocaleString("pt-AO")} AOA`;
 }
 
-function Header({ version }: { version: number }) {
+function Header({ version, logoBuffer }: { version: number; logoBuffer: Buffer }) {
   return (
     <View style={styles.header}>
       <View style={styles.brandRow}>
-        <LogoMark />
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+        <Image src={logoBuffer} style={styles.logo} />
         <View>
-          <Text style={styles.brand}>Nanny Platform</Text>
-          <Text style={styles.brandSub}>Plataforma de babás de confiança — Angola</Text>
+          <Text style={styles.brand}>{BRAND_NAME}</Text>
+          <Text style={styles.brandSub}>Babysitting & Nanny Services — Angola</Text>
         </View>
       </View>
       <Text style={styles.brandSub}>v{version}</Text>
@@ -106,18 +99,18 @@ function Header({ version }: { version: number }) {
 
 function Footer() {
   return (
-    <Text style={styles.footer}>Documento gerado pela Nanny Platform · Este contrato é regido pela lei angolana.</Text>
+    <Text style={styles.footer}>Documento gerado pela {BRAND_NAME} · Este contrato é regido pela lei angolana.</Text>
   );
 }
 
-export function ContractDocument({ data }: { data: ContractPdfData }) {
+export function ContractDocument({ data, logoBuffer }: { data: ContractPdfData; logoBuffer: Buffer }) {
   const isFamily = data.party === "FAMILY";
   const title = isFamily ? "Contrato de Serviço com a Família" : "Contrato de Trabalho da Babá";
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Header version={data.version} />
+        <Header version={data.version} logoBuffer={logoBuffer} />
 
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.meta}>Emitido em {data.createdAt}</Text>
@@ -125,7 +118,7 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Partes</Text>
           <Text style={styles.paragraph}>
-            A Nanny Platform atua como empregadora/mediadora entre a família e a babá. Este documento rege a
+            A {BRAND_NAME} atua como empregadora/mediadora entre a família e a babá. Este documento rege a
             relação {isFamily ? "entre a família e a plataforma" : "de trabalho entre a babá e a plataforma"}{" "}
             para a colocação abaixo descrita.
           </Text>
@@ -195,7 +188,7 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
                 <Text style={styles.value}>{money(data.familyTotal)} / mês</Text>
               </View>
               <Text style={{ ...styles.meta, marginTop: 4 }}>
-                Pagamento processado através da Nanny Platform, conforme calendário mensal.
+                Pagamento processado através da {BRAND_NAME}, conforme calendário mensal.
               </Text>
             </>
           )}
@@ -206,7 +199,7 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
 
       {data.signature && (
         <Page size="A4" style={styles.page}>
-          <Header version={data.version} />
+          <Header version={data.version} logoBuffer={logoBuffer} />
           <Text style={styles.title}>Página de assinatura</Text>
           <Text style={styles.meta}>{title}</Text>
 
@@ -231,5 +224,6 @@ export function ContractDocument({ data }: { data: ContractPdfData }) {
 }
 
 export async function renderContractPdf(data: ContractPdfData): Promise<Buffer> {
-  return renderToBuffer(<ContractDocument data={data} />);
+  const logoBuffer = await getPdfLogoBuffer();
+  return renderToBuffer(<ContractDocument data={data} logoBuffer={logoBuffer} />);
 }

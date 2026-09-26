@@ -9,6 +9,7 @@ import { getStorageService } from "@/lib/storage";
 import { getEmailService } from "@/lib/email";
 import { renderContractPdf } from "@/lib/pdf/contractTemplate";
 import { hashToken } from "@/lib/tokens";
+import { BRAND_NAME } from "@/lib/brand";
 import type { CreateContractInput } from "./schemas";
 import type { ContractSummary, PlacementContracts, AdminContractListItem, ContractTerms } from "./types";
 
@@ -231,7 +232,7 @@ export async function sendContract(contractId: string) {
     await notifyParty(
       partyUserId,
       contract.party,
-      "O seu contrato está pronto para revisão — Nanny Platform",
+      `O seu contrato está pronto para revisão — ${BRAND_NAME}`,
       "O seu contrato está pronto para revisão e assinatura na plataforma.",
     );
   }
@@ -291,7 +292,7 @@ export async function signContractOnline(
     await notifyParty(
       userId,
       "NANNY",
-      "O seu contrato foi assinado — Nanny Platform",
+      `O seu contrato foi assinado — ${BRAND_NAME}`,
       "Confirmamos a assinatura do seu contrato de trabalho.",
     );
   }
@@ -336,7 +337,7 @@ export async function signContractInPerson(
     await notifyParty(
       partyUserId,
       "NANNY",
-      "O seu contrato foi assinado — Nanny Platform",
+      `O seu contrato foi assinado — ${BRAND_NAME}`,
       "Confirmamos a assinatura (em pessoa) do seu contrato de trabalho.",
     );
   }
@@ -363,7 +364,7 @@ export async function checkAndActivatePlacement(placementId: string) {
   await notifyParty(
     placement.familyId,
     "FAMILY",
-    "O seu contrato foi assinado por todas as partes — Nanny Platform",
+    `O seu contrato foi assinado por todas as partes — ${BRAND_NAME}`,
     "Ambas as partes assinaram o contrato. A colocação está agora ativa.",
   );
 }

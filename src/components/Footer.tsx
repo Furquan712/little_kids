@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Heart, ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import { InstagramIcon, WhatsAppIcon, TikTokIcon, Rainbow } from "./icons";
+import { BRAND_NAME } from "@/lib/brand";
 
 const SOCIALS = [
   { icon: InstagramIcon, label: "Instagram", href: "#" },
@@ -21,17 +23,8 @@ export default function Footer() {
         <Reveal>
           <div className="flex flex-col items-center gap-10 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
             {/* Logo */}
-            <div className="flex flex-col items-center lg:items-start">
-              <span className="flex items-center gap-1.5 font-heading text-2xl font-semibold text-ink sm:text-3xl">
-                <svg viewBox="0 0 24 24" fill="var(--coral)" className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true">
-                  <path d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 4.3 2.4C10.4 4.7 12.3 3.7 14.3 4c3.5.5 5.3 4.1 3.7 7.7C15.5 16.4 12 21 12 21Z" />
-                </svg>
-                Little
-                <span className="text-rose">Moments</span>
-              </span>
-              <span className="mt-1 pl-6 text-[10px] font-semibold tracking-[0.18em] text-body sm:text-[11px]">
-                {t("tagline")}
-              </span>
+            <div className="relative h-32 w-32 shrink-0 sm:h-40 sm:w-40">
+              <Image src="/images/footer-logo.png" alt={BRAND_NAME} fill sizes="160px" className="object-contain" />
             </div>
 
             {/* Tagline */}
@@ -89,7 +82,7 @@ export default function Footer() {
 
       <div className="mt-8 border-t border-ink/10 py-6">
         <p className="text-center font-body text-xs text-body">
-          © {new Date().getFullYear()} Little Moments. {t("rights")}
+          © {new Date().getFullYear()} {BRAND_NAME}. {t("rights")}
         </p>
       </div>
     </footer>

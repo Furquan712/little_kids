@@ -164,7 +164,7 @@ async function main() {
 
   const admin = await upsertUser({
     role: "ADMIN",
-    fullName: "Admin Nanny Platform",
+    fullName: "Admin Primeiros Encantos",
     email: "admin@nannyplatform.ao",
     province: "Luanda",
     city: "Luanda",

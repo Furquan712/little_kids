@@ -7,6 +7,7 @@ import { VerificationToken } from "@/models/VerificationToken";
 import { generateUrlToken, generateOtpCode, hashToken } from "@/lib/tokens";
 import { getEmailService } from "@/lib/email";
 import { getSmsProvider } from "@/lib/sms";
+import { BRAND_NAME } from "@/lib/brand";
 import type { RegisterNannyInput, RegisterFamilyInput } from "./schemas";
 
 const EMAIL_TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
@@ -36,7 +37,7 @@ export async function sendEmailVerification(userId: string, email: string, fullN
   await getEmailService().send({
     to: email,
     toName: fullName,
-    subject: "Confirme o seu email — Nanny Platform",
+    subject: `Confirme o seu email — ${BRAND_NAME}`,
     html: `<p>Olá ${fullName},</p><p>Confirme o seu email clicando no link abaixo:</p><p><a href="${link}">${link}</a></p>`,
   });
 }
@@ -47,7 +48,7 @@ export async function sendPhoneOtp(userId: string, phone: string) {
 
   await getSmsProvider().send({
     to: phone,
-    message: `O seu código de verificação Nanny Platform é ${code}. Válido por 10 minutos.`,
+    message: `O seu código de verificação ${BRAND_NAME} é ${code}. Válido por 10 minutos.`,
   });
 }
 
@@ -163,13 +164,13 @@ export async function requestPasswordReset(identifier: string) {
     await getEmailService().send({
       to: user.email,
       toName: user.fullName,
-      subject: "Redefinir palavra-passe — Nanny Platform",
+      subject: `Redefinir palavra-passe — ${BRAND_NAME}`,
       html: `<p>Olá ${user.fullName},</p><p>Clique no link para redefinir a sua palavra-passe:</p><p><a href="${link}">${link}</a></p><p>Este link expira em 1 hora.</p>`,
     });
   } else if (user.phone) {
     await getSmsProvider().send({
       to: user.phone,
-      message: `Redefina a sua palavra-passe Nanny Platform aqui: ${link}`,
+      message: `Redefina a sua palavra-passe ${BRAND_NAME} aqui: ${link}`,
     });
   }
 }

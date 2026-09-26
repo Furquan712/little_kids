@@ -1,4 +1,5 @@
 import { BrevoClient } from "@getbrevo/brevo";
+import { BRAND_NAME } from "@/lib/brand";
 import type { EmailService, SendEmailInput } from "./index";
 
 export class BrevoEmailService implements EmailService {
@@ -8,7 +9,7 @@ export class BrevoEmailService implements EmailService {
     await this.client.transactionalEmails.sendTransacEmail({
       sender: {
         email: process.env.BREVO_SENDER_EMAIL!,
-        name: process.env.BREVO_SENDER_NAME ?? "Nanny Platform",
+        name: process.env.BREVO_SENDER_NAME ?? BRAND_NAME,
       },
       to: [{ email: input.to, name: input.toName }],
       subject: input.subject,

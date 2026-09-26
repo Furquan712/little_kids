@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Nanny Platform",
+    "appName": "Primeiros Encantos",
     "save": "Guardar",
     "cancel": "Cancelar",
     "next": "Seguinte",
@@ -39,12 +39,12 @@
     "language": "Idioma"
   },
   "meta": {
-    "title": "Nanny Platform Angola | Babás verificadas para a sua família",
-    "description": "Ligamos famílias em Angola a babás verificadas. A plataforma trata da entrevista, do contrato e do pagamento — para que a sua família tenha tranquilidade."
+    "title": "Primeiros Encantos | Babysitting e Serviços de Babá de Confiança em Angola",
+    "description": "A Primeiros Encantos liga famílias em Angola a babás e amas de confiança, com verificação de antecedentes e formação em primeiros socorros. Da babysitting ocasional aos cuidados infantis a tempo inteiro, tratamos da entrevista, do contrato e do pagamento — para que a sua família tenha tranquilidade."
   },
   "home": {
     "hero": {
-      "eyebrow": "Angola · Babás verificadas",
+      "eyebrow": "Angola · Babás e Babysitting de Confiança",
       "headline": "Ligamos famílias a babás de confiança e tratamos de tudo por si",
       "subheadline": "Verificamos, entrevistamos e contratamos cada babá. A plataforma trata da correspondência, do contrato e do pagamento — a sua família nunca trata disto sozinha.",
       "ctaBaba": "Sou Babá",

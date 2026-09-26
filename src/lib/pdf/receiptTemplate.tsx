@@ -1,4 +1,6 @@
-import { Document, Page, View, Text, StyleSheet, Svg, Path, renderToBuffer } from "@react-pdf/renderer";
+import { Document, Page, View, Text, StyleSheet, Image, renderToBuffer } from "@react-pdf/renderer";
+import { BRAND_NAME } from "@/lib/brand";
+import { getPdfLogoBuffer } from "@/lib/pdf/logo";
 
 const COLORS = {
   primary: "#E58F89",
@@ -39,18 +41,8 @@ const styles = StyleSheet.create({
   amountLabel: { fontSize: 9, color: COLORS.inkMuted, marginBottom: 4 },
   amountValue: { fontSize: 20, fontWeight: 700, color: COLORS.ink },
   footer: { position: "absolute", bottom: 24, left: 40, right: 40, fontSize: 7, color: COLORS.inkMuted },
+  logo: { width: 30, height: 30, borderRadius: 15 },
 });
-
-function LogoMark() {
-  return (
-    <Svg width={22} height={22} viewBox="0 0 24 24">
-      <Path
-        d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 4.3 2.4C10.4 4.7 12.3 3.7 14.3 4c3.5.5 5.3 4.1 3.7 7.7C15.5 16.4 12 21 12 21Z"
-        fill={COLORS.primary}
-      />
-    </Svg>
-  );
-}
 
 const METHOD_LABELS: Record<string, string> = {
   BANK_TRANSFER: "Transferência bancária",
@@ -75,7 +67,7 @@ function money(value: number) {
   return `${value.toLocaleString("pt-AO")} AOA`;
 }
 
-export function ReceiptDocument({ data }: { data: ReceiptPdfData }) {
+export function ReceiptDocument({ data, logoBuffer }: { data: ReceiptPdfData; logoBuffer: Buffer }) {
   const isFamily = data.direction === "IN_FROM_FAMILY";
 
   return (
@@ -83,10 +75,11 @@ export function ReceiptDocument({ data }: { data: ReceiptPdfData }) {
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <View style={styles.brandRow}>
-            <LogoMark />
+            {/* eslint-disable-next-line jsx-a11y/alt-text */}
+            <Image src={logoBuffer} style={styles.logo} />
             <View>
-              <Text style={styles.brand}>Nanny Platform</Text>
-              <Text style={styles.brandSub}>Plataforma de babás de confiança — Angola</Text>
+              <Text style={styles.brand}>{BRAND_NAME}</Text>
+              <Text style={styles.brandSub}>Babysitting & Nanny Services — Angola</Text>
             </View>
           </View>
           <Text style={styles.brandSub}>Recibo #{data.receiptNumber}</Text>
@@ -95,8 +88,8 @@ export function ReceiptDocument({ data }: { data: ReceiptPdfData }) {
         <Text style={styles.title}>{isFamily ? "Recibo de pagamento" : "Comprovativo de pagamento à babá"}</Text>
         <Text style={styles.meta}>
           {isFamily
-            ? "Confirma o pagamento recebido da família pela Nanny Platform."
-            : "Confirma o pagamento efetuado à babá pela Nanny Platform."}
+            ? `Confirma o pagamento recebido da família pela ${BRAND_NAME}.`
+            : `Confirma o pagamento efetuado à babá pela ${BRAND_NAME}.`}
         </Text>
 
         <View style={styles.section}>
@@ -139,7 +132,7 @@ export function ReceiptDocument({ data }: { data: ReceiptPdfData }) {
         </View>
 
         <Text style={styles.footer}>
-          Documento gerado automaticamente pela Nanny Platform. Este recibo comprova o pagamento acima descrito.
+          Documento gerado automaticamente pela {BRAND_NAME}. Este recibo comprova o pagamento acima descrito.
         </Text>
       </Page>
     </Document>
@@ -147,5 +140,6 @@ export function ReceiptDocument({ data }: { data: ReceiptPdfData }) {
 }
 
 export async function renderReceiptPdf(data: ReceiptPdfData): Promise<Buffer> {
-  return renderToBuffer(<ReceiptDocument data={data} />);
+  const logoBuffer = await getPdfLogoBuffer();
+  return renderToBuffer(<ReceiptDocument data={data} logoBuffer={logoBuffer} />);
 }

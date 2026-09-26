@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Menu, X, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { BRAND_NAME, BRAND_TAGLINE } from "@/lib/brand";
 
 export default function SiteHeader() {
   const t = useTranslations();
@@ -48,16 +50,14 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         {/* Logo */}
         <Link href="/#top" className="group flex flex-col">
-          <span className="relative flex items-center gap-1.5 font-heading text-2xl font-semibold leading-none sm:text-3xl">
-            <svg viewBox="0 0 24 24" fill="var(--coral)" className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true">
-              <path d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 4.3 2.4C10.4 4.7 12.3 3.7 14.3 4c3.5.5 5.3 4.1 3.7 7.7C15.5 16.4 12 21 12 21Z" />
-            </svg>
-            <span className="text-ink">Little</span>
-            <span className="text-rose">Moments</span>
-            <Sun className="absolute -right-5 -top-2 h-4 w-4 text-gold sm:-right-6 sm:h-5 sm:w-5" strokeWidth={2.5} />
+          <span className="relative flex items-center gap-2 font-heading text-xl font-semibold leading-none text-ink sm:text-2xl">
+            <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-rose/20 sm:h-11 sm:w-11">
+              <Image src="/images/logo.png" alt={BRAND_NAME} fill sizes="44px" className="object-cover" priority />
+            </span>
+            {BRAND_NAME}
           </span>
-          <span className="mt-0.5 pl-6 text-[10px] font-semibold tracking-[0.18em] text-body sm:text-[11px]">
-            {t("home.footer.tagline")}
+          <span className="mt-0.5 pl-12 text-[10px] font-semibold tracking-[0.18em] text-body sm:pl-[3.25rem] sm:text-[11px]">
+            {BRAND_TAGLINE}
           </span>
         </Link>
 
