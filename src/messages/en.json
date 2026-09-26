@@ -88,6 +88,7 @@
       "captionLine1": "It's",
       "captionLine2": "that",
       "captionLine3": "simple",
+      "seeFullProcess": "See the full process",
       "steps": {
         "register": { "title": "Sign up and tell us what you need", "desc": "Create your account and describe your needs or your profile." },
         "match": { "title": "We find and interview candidates", "desc": "Our team searches, interviews and verifies the right candidates." },
@@ -120,6 +121,7 @@
   "contactPage": {
     "title": "Get in touch",
     "subtitle": "Have a question about the platform, registration, or an ongoing placement? Our team responds as quickly as possible.",
+    "imageCaption": "We're just a message away",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "messageLabel": "Message",
@@ -684,6 +686,79 @@
       "title": "Payments",
       "scheduled": "Scheduled balance",
       "noPlacements": "You don't have any active placements yet."
+    }
+  },
+  "howItWorksPage": {
+    "title": "How it works",
+    "subtitle": "One platform, two journeys. See exactly what happens from sign-up to your first day together — whether you're a family or a nanny.",
+    "chartLabel": "The process at a glance",
+    "tabs": {
+      "parents": "For Families",
+      "nanny": "For Nannies"
+    },
+    "parents": {
+      "intro": "From telling us what your family needs to enjoying a fully managed placement — here is every step, in order.",
+      "steps": {
+        "register": {
+          "title": "Create your account",
+          "desc": "Register as a family with your contact details and location. Verify your email or phone and you're ready to go."
+        },
+        "describeNeeds": {
+          "title": "Tell us what you need",
+          "desc": "Search our verified nannies yourself, or submit a request describing your children's ages, schedule, live-in/live-out preference and budget."
+        },
+        "match": {
+          "title": "We shortlist and interview",
+          "desc": "Our admin team searches verified profiles, invites the best matches, and runs interviews on your behalf — no back-and-forth for you."
+        },
+        "approve": {
+          "title": "Meet your recommended nanny",
+          "desc": "We recommend one to three candidates with a full profile summary and interview notes. Approve your favourite, or ask us for other options."
+        },
+        "sign": {
+          "title": "Sign the contract online",
+          "desc": "Once approved, we generate your family service contract. Review it and sign electronically — or in person — directly on the platform."
+        },
+        "relax": {
+          "title": "Enjoy the peace of mind",
+          "desc": "Your nanny starts on schedule. We handle monthly payments, receipts, and support for as long as the placement lasts."
+        }
+      }
+    },
+    "nanny": {
+      "intro": "From building your profile to getting paid every month — here is every step of joining the platform as a nanny.",
+      "steps": {
+        "register": {
+          "title": "Create your account",
+          "desc": "Register as a nanny with your contact details and location, and verify your email or phone number."
+        },
+        "buildProfile": {
+          "title": "Build your profile",
+          "desc": "Add your experience, age-group specialities, skills and availability, then upload your ID photo and any certificates or references."
+        },
+        "getVerified": {
+          "title": "Get verified by our team",
+          "desc": "Submit your profile for review. An admin checks your documents and either approves you or asks for a quick correction."
+        },
+        "invitations": {
+          "title": "Receive interview invitations",
+          "desc": "When a family's needs match your profile, you'll be invited to an interview — with no family contact details shared until you're placed."
+        },
+        "signContract": {
+          "title": "Get recommended and sign",
+          "desc": "If the family approves you, we prepare your work contract with your salary, schedule and duties. Sign it online in a few clicks."
+        },
+        "getPaid": {
+          "title": "Start working and get paid",
+          "desc": "Begin the placement on your agreed start date. The platform pays you every month and keeps a full record of your payment history."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join as a family looking for trusted care, or as a nanny ready to work.",
+      "familia": "I'm a Family",
+      "baba": "I'm a Nanny"
     }
   }
 }

@@ -75,8 +75,8 @@ export default function Hero() {
             <Parallax strength={0.06}>
               <div className="relative aspect-[6/5] overflow-hidden rounded-[3.5rem] rounded-bl-[7rem] shadow-2xl shadow-ink/20">
                 <Image
-                  src="/images/hero-mother-child.jpg"
-                  alt="Mother laughing with her child, piggyback, in the garden"
+                  src="/images/hero.png"
+                  alt="Nanny playing with a little girl in a bright, cosy living room"
                   fill
                   priority
                   sizes="(min-width: 1024px) 50vw, 90vw"

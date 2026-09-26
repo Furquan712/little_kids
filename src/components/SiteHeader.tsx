@@ -16,7 +16,7 @@ export default function SiteHeader() {
     { key: "home", href: "/#top" },
     { key: "services", href: "/#services" },
     { key: "whyUs", href: "/#why-us" },
-    { key: "howItWorks", href: "/#how-it-works" },
+    { key: "howItWorks", href: "/como-funciona" },
     { key: "testimonials", href: "/#testimonials" },
     { key: "contact", href: "/contacto" },
   ] as const;

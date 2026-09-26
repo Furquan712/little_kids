@@ -88,6 +88,7 @@
       "captionLine1": "É",
       "captionLine2": "simples",
       "captionLine3": "assim",
+      "seeFullProcess": "Ver o processo completo",
       "steps": {
         "register": { "title": "Registe-se e diga-nos o que precisa", "desc": "Crie a sua conta e descreva as suas necessidades ou o seu perfil." },
         "match": { "title": "Nós encontramos e entrevistamos", "desc": "A nossa equipa procura, entrevista e verifica as candidatas certas." },
@@ -120,6 +121,7 @@
   "contactPage": {
     "title": "Fale connosco",
     "subtitle": "Tem uma dúvida sobre a plataforma, o registo ou uma colocação em curso? A nossa equipa responde o mais rápido possível.",
+    "imageCaption": "Estamos a uma mensagem de distância",
     "nameLabel": "Nome",
     "emailLabel": "Email",
     "messageLabel": "Mensagem",
@@ -684,6 +686,79 @@
       "title": "Pagamentos",
       "scheduled": "Saldo previsto",
       "noPlacements": "Ainda não tem colocações ativas."
+    }
+  },
+  "howItWorksPage": {
+    "title": "Como funciona",
+    "subtitle": "Uma plataforma, dois percursos. Veja exatamente o que acontece desde o registo até ao primeiro dia juntos — seja família ou babá.",
+    "chartLabel": "O processo em resumo",
+    "tabs": {
+      "parents": "Para Famílias",
+      "nanny": "Para Babás"
+    },
+    "parents": {
+      "intro": "Desde dizer-nos do que a sua família precisa até desfrutar de uma colocação totalmente gerida — aqui está cada passo, por ordem.",
+      "steps": {
+        "register": {
+          "title": "Crie a sua conta",
+          "desc": "Registe-se como família com os seus dados de contacto e localização. Verifique o seu email ou telefone e está pronta a começar."
+        },
+        "describeNeeds": {
+          "title": "Diga-nos do que precisa",
+          "desc": "Procure as nossas babás verificadas ou submeta um pedido a descrever as idades dos seus filhos, o horário, a preferência interna/externa e o orçamento."
+        },
+        "match": {
+          "title": "Nós selecionamos e entrevistamos",
+          "desc": "A nossa equipa de administração procura perfis verificados, convida as melhores candidatas e realiza as entrevistas em seu nome — sem idas e vindas para si."
+        },
+        "approve": {
+          "title": "Conheça a babá recomendada",
+          "desc": "Recomendamos uma a três candidatas com um resumo completo do perfil e notas da entrevista. Aprove a sua preferida ou peça outras opções."
+        },
+        "sign": {
+          "title": "Assine o contrato online",
+          "desc": "Após a aprovação, geramos o contrato de serviço da família. Reveja e assine eletronicamente — ou presencialmente — diretamente na plataforma."
+        },
+        "relax": {
+          "title": "Desfrute da tranquilidade",
+          "desc": "A sua babá começa na data combinada. Tratamos dos pagamentos mensais, recibos e apoio durante toda a colocação."
+        }
+      }
+    },
+    "nanny": {
+      "intro": "Desde construir o seu perfil até receber o pagamento todos os meses — aqui está cada passo para se juntar à plataforma como babá.",
+      "steps": {
+        "register": {
+          "title": "Crie a sua conta",
+          "desc": "Registe-se como babá com os seus dados de contacto e localização, e verifique o seu email ou telefone."
+        },
+        "buildProfile": {
+          "title": "Construa o seu perfil",
+          "desc": "Adicione a sua experiência, faixas etárias de especialização, competências e disponibilidade, depois carregue a foto do BI e certificados ou referências."
+        },
+        "getVerified": {
+          "title": "Seja verificada pela nossa equipa",
+          "desc": "Submeta o seu perfil para revisão. Um administrador verifica os seus documentos e aprova-o ou pede uma correção rápida."
+        },
+        "invitations": {
+          "title": "Receba convites para entrevista",
+          "desc": "Quando as necessidades de uma família correspondem ao seu perfil, é convidada para uma entrevista — sem partilha de contactos da família até à colocação."
+        },
+        "signContract": {
+          "title": "Seja recomendada e assine",
+          "desc": "Se a família a aprovar, preparamos o seu contrato de trabalho com o salário, horário e funções. Assine online em poucos cliques."
+        },
+        "getPaid": {
+          "title": "Comece a trabalhar e receba",
+          "desc": "Inicie a colocação na data combinada. A plataforma paga-lhe todos os meses e mantém um registo completo do seu histórico de pagamentos."
+        }
+      }
+    },
+    "cta": {
+      "title": "Pronta para começar?",
+      "subtitle": "Junte-se como família à procura de cuidados de confiança, ou como babá pronta para trabalhar.",
+      "familia": "Sou Família",
+      "baba": "Sou Babá"
     }
   }
 }
