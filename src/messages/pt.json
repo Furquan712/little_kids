@@ -21,7 +21,8 @@
     "collapseSidebar": "Recolher menu",
     "expandSidebar": "Expandir menu",
     "noResults": "Nenhum resultado encontrado.",
-    "resultsCount": "{count} resultados"
+    "resultsCount": "{count} resultados",
+    "noChartData": "Ainda não há dados para este período."
   },
   "nav": {
     "souBaba": "Sou Babá",
@@ -233,7 +234,16 @@
     "familyNextStep": "Descreva a família e comece a procurar babás",
     "settingsLink": "Definições da conta",
     "profileStatus": "Estado do perfil",
-    "profileCompletion": "Perfil {percent}% completo"
+    "profileCompletion": "Perfil {percent}% completo",
+    "charts": {
+      "revenueTrend": "Receita — últimos 6 meses",
+      "revenueTrendUnit": "AOA",
+      "nannyPipeline": "Estado das babás",
+      "familyPayments": "Os seus pagamentos — últimos 6 meses",
+      "familyPaymentsUnit": "AOA",
+      "nannyEarnings": "Os seus ganhos — últimos 6 meses",
+      "nannyEarningsUnit": "AOA"
+    }
   },
   "settings": {
     "title": "Definições da conta",

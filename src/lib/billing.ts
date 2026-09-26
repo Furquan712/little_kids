@@ -39,3 +39,9 @@ export function enumeratePeriods(startDate: Date, endDate: Date): string[] {
   }
   return periods;
 }
+
+/** The last `count` "YYYY-MM" periods up to and including `now`'s month, oldest first. */
+export function lastNMonthKeys(count: number, now: Date = new Date()): string[] {
+  const start = new Date(now.getFullYear(), now.getMonth() - (count - 1), 1);
+  return enumeratePeriods(start, now);
+}

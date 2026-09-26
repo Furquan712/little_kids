@@ -10,6 +10,7 @@ import { Interview } from "@/models/Interview";
 import { Placement } from "@/models/Placement";
 import { Contract } from "@/models/Contract";
 import { Signature } from "@/models/Signature";
+import { Payment } from "@/models/Payment";
 
 const MONGODB_URI = process.env.MONGODB_URI ?? "mongodb://127.0.0.1:27017/nanny_platform";
 
@@ -251,6 +252,7 @@ async function main() {
   const oldContractIds = oldContracts.map((c) => c._id);
 
   await Signature.deleteMany({ contractId: { $in: oldContractIds } });
+  await Payment.deleteMany({ placementId: { $in: oldPlacementIds } });
   await Contract.deleteMany({ _id: { $in: oldContractIds } });
   await Placement.deleteMany({ _id: { $in: oldPlacementIds } });
   await Interview.deleteMany({ candidateId: { $in: oldCandidateIds } });
@@ -411,6 +413,94 @@ async function main() {
     },
   ]);
 
+  // Request 4b — an older ACTIVE placement with several months of payment
+  // history, so the payments dashboards/charts have real data to show
+  // instead of an empty "no data yet" state.
+  const req4b = await NannyRequest.create({
+    familyId: neto,
+    targetNannyId: nannyUsers["ana.silva@example.com"],
+    childrenAges: [5, 8],
+    needs: "Preciso de apoio nas tardes após a escola",
+    liveIn: "LIVE_OUT",
+    startDate: new Date("2026-05-01"),
+    budgetMin: 40000,
+    budgetMax: 60000,
+    specialRequirements: "",
+    status: "CONTRACTED",
+  });
+  const placement4b = await Placement.create({
+    requestId: req4b._id,
+    familyId: neto,
+    nannyId: nannyUsers["ana.silva@example.com"],
+    startDate: new Date("2026-05-01"),
+    status: "ACTIVE",
+  });
+  const sharedContractFields4b = {
+    placementId: placement4b._id,
+    version: 1,
+    terms: {
+      startDate: "2026-05-01",
+      duties: "Apoio escolar e atividades no período pós-escola",
+      scheduleText: "Segunda a sexta, 13:00–18:00",
+      noticePeriodDays: 30,
+      terminationTerms: "30 dias de aviso prévio por escrito",
+    },
+    nannySalary: 45000,
+    commissionType: "PERCENTAGE" as const,
+    commissionValue: 15,
+    commissionAmount: 6750,
+    familyTotal: 51750,
+    status: "ACTIVE" as const,
+  };
+  const familyContract4b = await Contract.create({ ...sharedContractFields4b, party: "FAMILY" });
+  const nannyContract4b = await Contract.create({ ...sharedContractFields4b, party: "NANNY" });
+  await Signature.create([
+    {
+      contractId: familyContract4b._id,
+      userId: neto,
+      typedName: "Família Neto",
+      ip: "127.0.0.1",
+      userAgent: "seed-script",
+      signedAt: new Date("2026-04-28T09:00:00Z"),
+      method: "ONLINE",
+    },
+    {
+      contractId: nannyContract4b._id,
+      userId: nannyUsers["ana.silva@example.com"],
+      typedName: "Ana Silva",
+      ip: "127.0.0.1",
+      userAgent: "seed-script",
+      signedAt: new Date("2026-04-28T15:00:00Z"),
+      method: "ONLINE",
+    },
+  ]);
+  await NannyProfile.findOneAndUpdate({ userId: nannyUsers["ana.silva@example.com"] }, { status: "PLACED" });
+
+  // Four fully-paid months (May-Aug); September is left unpaid so the
+  // overdue flag and report have something real to show too.
+  const paidMonths = ["2026-05", "2026-06", "2026-07", "2026-08"];
+  const paymentDocs = paidMonths.flatMap((periodMonth, i) => [
+    {
+      placementId: placement4b._id,
+      direction: "IN_FROM_FAMILY" as const,
+      periodMonth,
+      amount: 51750,
+      method: "BANK_TRANSFER",
+      reference: `NF-${periodMonth}`,
+      paidAt: new Date(2026, 4 + i, 3),
+    },
+    {
+      placementId: placement4b._id,
+      direction: "OUT_TO_NANNY" as const,
+      periodMonth,
+      amount: 45000,
+      method: "MOBILE_MONEY",
+      reference: `NP-${periodMonth}`,
+      paidAt: new Date(2026, 4 + i, 5),
+    },
+  ]);
+  await Payment.create(paymentDocs);
+
   // Request 5 — CLOSED, no candidates: a withdrawn/fulfilled-elsewhere request.
   await NannyRequest.create({
     familyId: rodrigues,
@@ -424,7 +514,8 @@ async function main() {
     status: "CLOSED",
   });
 
-  console.log("Requests: 5 created (NEW, MATCHING, PROPOSED, CONTRACTED, CLOSED)");
+  console.log("Requests: 6 created (NEW, MATCHING, PROPOSED, 2x CONTRACTED, CLOSED)");
+  console.log("Payments: 8 recorded across 4 months for the Neto/Ana Silva placement");
   console.log("Seed complete.");
   await mongoose.disconnect();
 }

@@ -21,7 +21,8 @@
     "collapseSidebar": "Collapse menu",
     "expandSidebar": "Expand menu",
     "noResults": "No results found.",
-    "resultsCount": "{count} results"
+    "resultsCount": "{count} results",
+    "noChartData": "No data yet for this period."
   },
   "nav": {
     "souBaba": "I'm a Nanny",
@@ -233,7 +234,16 @@
     "familyNextStep": "Describe your family and start searching for nannies",
     "settingsLink": "Account settings",
     "profileStatus": "Profile status",
-    "profileCompletion": "Profile {percent}% complete"
+    "profileCompletion": "Profile {percent}% complete",
+    "charts": {
+      "revenueTrend": "Revenue — last 6 months",
+      "revenueTrendUnit": "AOA",
+      "nannyPipeline": "Nanny pipeline",
+      "familyPayments": "Your payments — last 6 months",
+      "familyPaymentsUnit": "AOA",
+      "nannyEarnings": "Your earnings — last 6 months",
+      "nannyEarningsUnit": "AOA"
+    }
   },
   "settings": {
     "title": "Account settings",

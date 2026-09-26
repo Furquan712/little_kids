@@ -2,17 +2,22 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { listRequestsForFamily } from "@/features/family-search/service";
+import { getFamilyPaymentTrend } from "@/features/payments/service";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { TrendChart } from "@/components/charts/TrendChart";
 
 export default async function FamilyDashboardPage() {
   const auth = await requireRole("FAMILY");
   if (!auth.ok) return null;
 
   const t = await getTranslations();
-  const requests = await listRequestsForFamily(auth.user.id);
+  const [requests, paymentTrend] = await Promise.all([
+    listRequestsForFamily(auth.user.id),
+    getFamilyPaymentTrend(auth.user.id, 6),
+  ]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -28,6 +33,19 @@ export default async function FamilyDashboardPage() {
           <Button asChild>
             <Link href="/familia/procurar">{t("familySearch.title")}</Link>
           </Button>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base text-plat-ink">{t("dashboard.charts.familyPayments")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <TrendChart
+            data={paymentTrend}
+            color="var(--plat-primary-strong)"
+            unit={t("dashboard.charts.familyPaymentsUnit")}
+          />
         </CardContent>
       </Card>
 

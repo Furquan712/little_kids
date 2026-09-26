@@ -3,8 +3,9 @@ import { Placement } from "@/models/Placement";
 import { Contract } from "@/models/Contract";
 import { Payment } from "@/models/Payment";
 import { User } from "@/models/User";
+import { NannyProfile } from "@/models/NannyProfile";
 import { getStorageService } from "@/lib/storage";
-import { monthKey, dueDateForPeriod, enumeratePeriods } from "@/lib/billing";
+import { monthKey, dueDateForPeriod, enumeratePeriods, lastNMonthKeys } from "@/lib/billing";
 import type { RecordPaymentInput } from "./schemas";
 import type {
   BillingLine,
@@ -319,4 +320,73 @@ export function buildReportCsv(report: MonthlyReport): string {
     );
   }
   return lines.join("\n");
+}
+
+export async function getRevenueTrend(months = 6, now: Date = new Date()): Promise<{ month: string; value: number }[]> {
+  const keys = lastNMonthKeys(months, now);
+  return Promise.all(
+    keys.map(async (month) => {
+      const report = await getMonthlyReport(month, now);
+      return { month, value: report.commissionRevenue };
+    }),
+  );
+}
+
+const NANNY_PIPELINE_STATUSES = [
+  "DRAFT",
+  "PENDING_REVIEW",
+  "APPROVED",
+  "NEEDS_CORRECTION",
+  "IN_NEGOTIATION",
+  "PLACED",
+  "NOT_AVAILABLE",
+] as const;
+
+export async function getNannyPipelineCounts(): Promise<{ status: string; count: number }[]> {
+  await connectToDatabase();
+  const counts = await Promise.all(
+    NANNY_PIPELINE_STATUSES.map((status) => NannyProfile.countDocuments({ status })),
+  );
+  return NANNY_PIPELINE_STATUSES.map((status, i) => ({ status, count: counts[i] }));
+}
+
+async function getPaymentTrendForPlacements(
+  placementFilter: Record<string, unknown>,
+  direction: PaymentDirection,
+  months: number,
+  now: Date,
+): Promise<{ month: string; value: number }[]> {
+  await connectToDatabase();
+  const keys = lastNMonthKeys(months, now);
+
+  const placements = await Placement.find(placementFilter);
+  const placementIds = placements.map((p) => p._id);
+  const payments = await Payment.find({
+    placementId: { $in: placementIds },
+    direction,
+    periodMonth: { $in: keys },
+  });
+
+  const byMonth = new Map(keys.map((k) => [k, 0]));
+  for (const payment of payments) {
+    byMonth.set(payment.periodMonth, (byMonth.get(payment.periodMonth) ?? 0) + payment.amount);
+  }
+
+  return keys.map((month) => ({ month, value: byMonth.get(month) ?? 0 }));
+}
+
+export async function getFamilyPaymentTrend(
+  familyId: string,
+  months = 6,
+  now: Date = new Date(),
+): Promise<{ month: string; value: number }[]> {
+  return getPaymentTrendForPlacements({ familyId }, "IN_FROM_FAMILY", months, now);
+}
+
+export async function getNannyEarningsTrend(
+  nannyId: string,
+  months = 6,
+  now: Date = new Date(),
+): Promise<{ month: string; value: number }[]> {
+  return getPaymentTrendForPlacements({ nannyId }, "OUT_TO_NANNY", months, now);
 }
