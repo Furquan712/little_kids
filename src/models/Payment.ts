@@ -10,6 +10,7 @@ const paymentSchema = new Schema(
     reference: { type: String },
     paidAt: { type: Date },
     recordedById: { type: Types.ObjectId, ref: "User" },
+    receiptFileKey: { type: String },
   },
   { timestamps: true },
 );

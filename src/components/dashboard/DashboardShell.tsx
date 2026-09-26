@@ -1,12 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Heart, LogOut, Menu, X, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { LogOut, Menu, X, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { logoutAction } from "@/features/auth/actions";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 export type DashboardNavItem = {
@@ -138,10 +140,10 @@ export function DashboardShell({
         >
           <div className={cn("mb-6 flex items-center gap-2", collapsed ? "flex-col" : "justify-between")}>
             <div className={cn("flex items-center gap-2.5", collapsed && "flex-col")}>
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-plat-primary text-plat-ink shadow-sm">
-                <Heart className="h-4 w-4" fill="currentColor" strokeWidth={0} />
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-sm">
+                <Image src="/images/logo.png" alt={BRAND_NAME} fill sizes="36px" className="object-cover" />
               </span>
-              {!collapsed && <span className="truncate text-base font-semibold text-plat-ink">Nanny Platform</span>}
+              {!collapsed && <span className="truncate text-base font-semibold text-plat-ink">{BRAND_NAME}</span>}
             </div>
             <button
               onClick={toggleCollapsed}
@@ -178,10 +180,10 @@ export function DashboardShell({
         <div className="flex flex-1 flex-col overflow-hidden">
           <header className="flex shrink-0 items-center justify-between border-b border-plat-border bg-plat-bg px-5 py-4 md:hidden">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-plat-primary text-plat-ink">
-                <Heart className="h-4 w-4" fill="currentColor" strokeWidth={0} />
+              <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
+                <Image src="/images/logo.png" alt={BRAND_NAME} fill sizes="32px" className="object-cover" />
               </span>
-              <span className="text-lg font-semibold text-plat-ink">Nanny Platform</span>
+              <span className="text-lg font-semibold text-plat-ink">{BRAND_NAME}</span>
             </div>
             <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

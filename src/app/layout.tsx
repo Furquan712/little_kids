@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fredoka, Caveat, Lora } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, getLocale } from "next-intl/server";
+import { SEO_KEYWORDS } from "@/lib/seo";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -27,6 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t("title"),
     description: t("description"),
+    keywords: SEO_KEYWORDS,
   };
 }
 

@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { fieldErrorKey } from "@/lib/form-errors";
 import { createContractSchema, type CreateContractInput } from "../schemas";
 import { createContractAction, editContractAction } from "../actions";
 
@@ -93,7 +94,12 @@ export function ContractBuilderForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label>{t("nannySalary")}</Label>
-          <Input type="number" min={0} {...register("nannySalary", { valueAsNumber: true })} />
+          <Input type="number" min={1} {...register("nannySalary", { valueAsNumber: true })} />
+          {formState.errors.nannySalary && (
+            <p className="text-sm text-plat-danger">
+              {tRoot(fieldErrorKey(formState.errors.nannySalary.message) as never)}
+            </p>
+          )}
         </div>
         <div className="flex flex-col gap-1.5">
           <Label>{t("noticePeriodDays")}</Label>
@@ -119,7 +125,17 @@ export function ContractBuilderForm({
 
       <div className="flex flex-col gap-1.5">
         <Label>{t("commissionValue")}</Label>
-        <Input type="number" min={0} {...register("commissionValue", { valueAsNumber: true })} />
+        <Input
+          type="number"
+          min={0}
+          max={commissionType === "PERCENTAGE" ? 100 : undefined}
+          {...register("commissionValue", { valueAsNumber: true })}
+        />
+        {formState.errors.commissionValue && (
+          <p className="text-sm text-plat-danger">
+            {tRoot(fieldErrorKey(formState.errors.commissionValue.message) as never)}
+          </p>
+        )}
       </div>
 
       <div className="rounded-lg border border-plat-border bg-plat-bg-pink/40 p-4 text-sm text-plat-ink">

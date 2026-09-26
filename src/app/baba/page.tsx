@@ -2,19 +2,27 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { getOrCreateNannyProfile, calculateCompletionPercent } from "@/features/nanny-profile/service";
+import { getNannyEarningsTrend } from "@/features/payments/service";
 import { statusBadgeVariant } from "@/lib/badge-status";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { TrendChart } from "@/components/charts/TrendChart";
 
 export default async function NannyDashboardPage() {
   const auth = await requireRole("NANNY");
   if (!auth.ok) return null;
 
   const t = await getTranslations();
+  // Sequential: calculateCompletionPercent also calls getOrCreateNannyProfile,
+  // and running both concurrently on a brand-new account races two inserts
+  // against NannyProfile's unique userId index.
   const profile = await getOrCreateNannyProfile(auth.user.id);
-  const completion = await calculateCompletionPercent(auth.user.id);
+  const [completion, earningsTrend] = await Promise.all([
+    calculateCompletionPercent(auth.user.id),
+    getNannyEarningsTrend(auth.user.id, 6),
+  ]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -37,6 +45,19 @@ export default async function NannyDashboardPage() {
           <Button asChild className="w-fit">
             <Link href="/baba/perfil/dados-pessoais">{t("dashboard.nannyNextStep")}</Link>
           </Button>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base text-plat-ink">{t("dashboard.charts.nannyEarnings")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <TrendChart
+            data={earningsTrend}
+            color="var(--plat-success)"
+            unit={t("dashboard.charts.nannyEarningsUnit")}
+          />
         </CardContent>
       </Card>
 

@@ -1,0 +1,36 @@
+export const SEO_KEYWORDS = [
+  // Core services
+  "Babysitting",
+  "Nanny Services",
+  "Childcare",
+  "Babysitter",
+  "Professional Nanny",
+  "Childcare Services",
+  "Occasional Babysitting",
+  "Regular Babysitting",
+  "Evening Babysitting",
+  "Overnight Care",
+  // Trust & quality
+  "Trusted Childcare",
+  "Safe Childcare",
+  "Reliable Babysitters",
+  "Qualified Babysitters",
+  "Experienced Nannies",
+  "First Aid Trained",
+  "Background Checked",
+  "Professional Childcare",
+  // Parents & family
+  "Family Support",
+  "Parent Support",
+  "Peace of Mind",
+  "Flexible Childcare",
+  "Personalized Care",
+  "Family-Friendly Services",
+  // Emotional / brand positioning
+  "Loving Care",
+  "Gentle Care",
+  "Childhood Memories",
+  "Little Moments",
+  "Early Childhood",
+  "Child Development",
+];

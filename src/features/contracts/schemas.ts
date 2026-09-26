@@ -1,21 +1,32 @@
 import { z } from "zod";
 
-export const createContractSchema = z.object({
+export const createContractObjectSchema = z.object({
   startDate: z.string().min(1, "REQUIRED"),
   duties: z.string().trim().min(1, "REQUIRED"),
   scheduleText: z.string().trim().min(1, "REQUIRED"),
   paymentSchedule: z.string().trim().min(1, "REQUIRED"),
   noticePeriodDays: z.number().int().min(0),
   terminationTerms: z.string().trim().min(1, "REQUIRED"),
-  nannySalary: z.number().int().min(0),
+  nannySalary: z.number().int().min(1, "REQUIRED"),
   commissionType: z.enum(["PERCENTAGE", "FIXED"], { message: "REQUIRED" }),
   commissionValue: z.number().min(0),
 });
+
+export function refineCommissionValue(
+  data: { commissionType: "PERCENTAGE" | "FIXED"; commissionValue: number },
+  ctx: z.RefinementCtx,
+) {
+  if (data.commissionType === "PERCENTAGE" && data.commissionValue > 100) {
+    ctx.addIssue({ code: "custom", message: "COMMISSION_PERCENT_TOO_HIGH", path: ["commissionValue"] });
+  }
+}
+
+export const createContractSchema = createContractObjectSchema.superRefine(refineCommissionValue);
 export type CreateContractInput = z.infer<typeof createContractSchema>;
 
-export const editContractSchema = createContractSchema.extend({
-  placementId: z.string().min(1),
-});
+export const editContractSchema = createContractObjectSchema
+  .extend({ placementId: z.string().min(1) })
+  .superRefine(refineCommissionValue);
 export type EditContractInput = z.infer<typeof editContractSchema>;
 
 export const signContractOnlineSchema = z.object({
@@ -39,3 +50,6 @@ export const contractListFiltersSchema = z.object({
     .optional(),
 });
 export type ContractListFilters = z.infer<typeof contractListFiltersSchema>;
+
+export const MAX_SIGNED_SCAN_SIZE_BYTES = 10 * 1024 * 1024;
+export const ALLOWED_SIGNED_SCAN_MIME_TYPES = ["application/pdf", "image/jpeg", "image/png"];

@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Nanny Platform",
+    "appName": "Primeiros Encantos",
     "save": "Save",
     "cancel": "Cancel",
     "next": "Next",
@@ -21,7 +21,8 @@
     "collapseSidebar": "Collapse menu",
     "expandSidebar": "Expand menu",
     "noResults": "No results found.",
-    "resultsCount": "{count} results"
+    "resultsCount": "{count} results",
+    "noChartData": "No data yet for this period."
   },
   "nav": {
     "souBaba": "I'm a Nanny",
@@ -38,12 +39,12 @@
     "language": "Language"
   },
   "meta": {
-    "title": "Nanny Platform Angola | Verified nannies for your family",
-    "description": "We connect families in Angola with verified nannies. The platform handles the interview, the contract and the payment — so your family gets peace of mind."
+    "title": "Primeiros Encantos | Trusted Babysitting & Nanny Services in Angola",
+    "description": "Primeiros Encantos connects families in Angola with background-checked, first-aid trained nannies and babysitters. From occasional babysitting to full-time childcare, we handle the interview, the contract and the payment — so your family gets peace of mind."
   },
   "home": {
     "hero": {
-      "eyebrow": "Angola · Verified nannies",
+      "eyebrow": "Angola · Trusted Nannies & Babysitting",
       "headline": "We connect families with trusted nannies and take care of everything for you",
       "subheadline": "We verify, interview and contract every nanny. The platform handles matching, the contract and the payment — your family never has to do this alone.",
       "ctaBaba": "I'm a Nanny",
@@ -88,6 +89,7 @@
       "captionLine1": "It's",
       "captionLine2": "that",
       "captionLine3": "simple",
+      "seeFullProcess": "See the full process",
       "steps": {
         "register": { "title": "Sign up and tell us what you need", "desc": "Create your account and describe your needs or your profile." },
         "match": { "title": "We find and interview candidates", "desc": "Our team searches, interviews and verifies the right candidates." },
@@ -114,12 +116,15 @@
       "quoteLine1": "More than a nanny…",
       "quoteLine2": "a trusted partnership for your family.",
       "cta": "Get started",
-      "rights": "All rights reserved."
+      "rights": "All rights reserved.",
+      "exploreHeading": "Explore",
+      "joinHeading": "Join us"
     }
   },
   "contactPage": {
     "title": "Get in touch",
     "subtitle": "Have a question about the platform, registration, or an ongoing placement? Our team responds as quickly as possible.",
+    "imageCaption": "We're just a message away",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "messageLabel": "Message",
@@ -132,9 +137,28 @@
     }
   },
   "auth": {
+    "visual": {
+      "login": {
+        "heading": "Welcome back",
+        "subtitle": "Sign in to pick up right where you left off — your placements, contracts and payments are all in one place."
+      },
+      "registerFamilia": {
+        "heading": "Find the perfect nanny for your family",
+        "subtitle": "We handle the search, the interviews and the contract, so you only meet nannies we've already verified."
+      },
+      "registerBaba": {
+        "heading": "Join our community of trusted nannies",
+        "subtitle": "Build your profile, get verified, and start receiving interview invitations from families near you."
+      },
+      "default": {
+        "heading": "Care you can trust",
+        "subtitle": "Every nanny on our platform is verified, interviewed and contracted — so families and nannies both feel safe."
+      }
+    },
     "register": {
       "babaTitle": "I'm a Nanny — Sign up",
       "familiaTitle": "I'm a Family — Sign up",
+      "subtitle": "It only takes a couple of minutes to get started.",
       "fullName": "Full name",
       "email": "Email",
       "phone": "Phone",
@@ -154,6 +178,7 @@
     },
     "login": {
       "title": "Log in",
+      "subtitle": "Enter your details to access your dashboard.",
       "identifier": "Email or phone",
       "password": "Password",
       "submit": "Log in",
@@ -202,6 +227,8 @@
       "budgetRangeInvalid": "Minimum budget cannot be higher than the maximum.",
       "ageOutOfRange": "Age must be between 18 and 75 years.",
       "startDateInPast": "Start date cannot be in the past.",
+      "commissionPercentTooHigh": "A percentage commission cannot be higher than 100%.",
+      "paidAtInFuture": "Payment date cannot be in the future.",
       "unknown": "An unexpected error occurred."
     }
   },
@@ -211,7 +238,16 @@
     "familyNextStep": "Describe your family and start searching for nannies",
     "settingsLink": "Account settings",
     "profileStatus": "Profile status",
-    "profileCompletion": "Profile {percent}% complete"
+    "profileCompletion": "Profile {percent}% complete",
+    "charts": {
+      "revenueTrend": "Revenue — last 6 months",
+      "revenueTrendUnit": "AOA",
+      "nannyPipeline": "Nanny pipeline",
+      "familyPayments": "Your payments — last 6 months",
+      "familyPaymentsUnit": "AOA",
+      "nannyEarnings": "Your earnings — last 6 months",
+      "nannyEarningsUnit": "AOA"
+    }
   },
   "settings": {
     "title": "Account settings",
@@ -595,6 +631,213 @@
       "title": "My contracts",
       "empty": "You don't have any contracts yet.",
       "view": "View contract"
+    }
+  },
+  "payments": {
+    "errors": {
+      "periodOutOfRange": "That period is outside the placement's active range."
+    },
+    "methods": {
+      "BANK_TRANSFER": "Bank transfer",
+      "MULTICAIXA_EXPRESS": "Multicaixa Express",
+      "MOBILE_MONEY": "Mobile money",
+      "CASH": "Cash"
+    },
+    "schedule": {
+      "period": "Period",
+      "dueDate": "Due date",
+      "expected": "Expected",
+      "paid": "Paid",
+      "status": "Status",
+      "receipt": "Receipt",
+      "downloadReceipt": "Download",
+      "deletePayment": "Delete payment",
+      "confirmDeletePayment": "Delete this payment? This can't be undone.",
+      "noLines": "No billing periods yet.",
+      "statusPAID": "Paid",
+      "statusPARTIAL": "Partially paid",
+      "statusDUE": "Due",
+      "statusOVERDUE": "Overdue",
+      "familyTitle": "Family payments",
+      "nannyTitle": "Nanny payouts"
+    },
+    "record": {
+      "trigger": "Record payment",
+      "title": "Record a payment",
+      "direction": "Direction",
+      "fromFamily": "From family",
+      "toNanny": "To nanny",
+      "periodMonth": "Period",
+      "amount": "Amount (AOA)",
+      "method": "Method",
+      "reference": "Reference",
+      "paidAt": "Date",
+      "receipt": "Receipt file",
+      "submit": "Save payment"
+    },
+    "summary": {
+      "commissionEarned": "Commission earned",
+      "familyOutstanding": "Family outstanding balance",
+      "nannyOutstanding": "Nanny outstanding balance"
+    },
+    "admin": {
+      "title": "Payments",
+      "familyColumn": "Family",
+      "nannyColumn": "Nanny",
+      "familyOutstanding": "Family outstanding",
+      "nannyOutstanding": "Nanny outstanding",
+      "overdueColumn": "Overdue",
+      "overdueYes": "Overdue",
+      "overdueNo": "Up to date",
+      "status": {
+        "ACTIVE": "Active",
+        "ENDED": "Ended",
+        "TERMINATED": "Terminated",
+        "REPLACED": "Replaced"
+      }
+    },
+    "reports": {
+      "title": "Reports",
+      "monthLabel": "Month",
+      "exportCsv": "Export CSV",
+      "commissionRevenue": "Commission revenue",
+      "totalPaidToNannies": "Total paid to nannies",
+      "activeContracts": "Active contracts",
+      "overdueTitle": "Overdue payments",
+      "familyColumn": "Family",
+      "nannyColumn": "Nanny",
+      "directionColumn": "Direction",
+      "periodColumn": "Period",
+      "dueDateColumn": "Due date",
+      "outstandingColumn": "Outstanding",
+      "directionFromFamily": "Family → Platform",
+      "directionToNanny": "Platform → Nanny",
+      "noOverdue": "Nothing overdue right now."
+    },
+    "family": {
+      "title": "Payments",
+      "outstanding": "Outstanding balance",
+      "noPlacements": "You don't have any active placements yet."
+    },
+    "nanny": {
+      "title": "Payments",
+      "scheduled": "Scheduled balance",
+      "noPlacements": "You don't have any active placements yet."
+    }
+  },
+  "howItWorksPage": {
+    "title": "How it works",
+    "subtitle": "One platform, two journeys. See exactly what happens from sign-up to your first day together — whether you're a family or a nanny.",
+    "chartLabel": "The process at a glance",
+    "tabs": {
+      "parents": "For Families",
+      "nanny": "For Nannies"
+    },
+    "parents": {
+      "intro": "From telling us what your family needs to enjoying a fully managed placement — here is every step, in order.",
+      "steps": {
+        "register": {
+          "title": "Create your account",
+          "desc": "Register as a family with your contact details and location. Verify your email or phone and you're ready to go."
+        },
+        "describeNeeds": {
+          "title": "Tell us what you need",
+          "desc": "Search our verified nannies yourself, or submit a request describing your children's ages, schedule, live-in/live-out preference and budget."
+        },
+        "match": {
+          "title": "We shortlist and interview",
+          "desc": "Our admin team searches verified profiles, invites the best matches, and runs interviews on your behalf — no back-and-forth for you."
+        },
+        "approve": {
+          "title": "Meet your recommended nanny",
+          "desc": "We recommend one to three candidates with a full profile summary and interview notes. Approve your favourite, or ask us for other options."
+        },
+        "sign": {
+          "title": "Sign the contract online",
+          "desc": "Once approved, we generate your family service contract. Review it and sign electronically — or in person — directly on the platform."
+        },
+        "relax": {
+          "title": "Enjoy the peace of mind",
+          "desc": "Your nanny starts on schedule. We handle monthly payments, receipts, and support for as long as the placement lasts."
+        }
+      }
+    },
+    "nanny": {
+      "intro": "From building your profile to getting paid every month — here is every step of joining the platform as a nanny.",
+      "steps": {
+        "register": {
+          "title": "Create your account",
+          "desc": "Register as a nanny with your contact details and location, and verify your email or phone number."
+        },
+        "buildProfile": {
+          "title": "Build your profile",
+          "desc": "Add your experience, age-group specialities, skills and availability, then upload your ID photo and any certificates or references."
+        },
+        "getVerified": {
+          "title": "Get verified by our team",
+          "desc": "Submit your profile for review. An admin checks your documents and either approves you or asks for a quick correction."
+        },
+        "invitations": {
+          "title": "Receive interview invitations",
+          "desc": "When a family's needs match your profile, you'll be invited to an interview — with no family contact details shared until you're placed."
+        },
+        "signContract": {
+          "title": "Get recommended and sign",
+          "desc": "If the family approves you, we prepare your work contract with your salary, schedule and duties. Sign it online in a few clicks."
+        },
+        "getPaid": {
+          "title": "Start working and get paid",
+          "desc": "Begin the placement on your agreed start date. The platform pays you every month and keeps a full record of your payment history."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join as a family looking for trusted care, or as a nanny ready to work.",
+      "familia": "I'm a Family",
+      "baba": "I'm a Nanny"
+    }
+  },
+  "apiAnalysis": {
+    "title": "API Analysis",
+    "subtitle": "Live usage and quota for the external services this platform depends on.",
+    "refreshNote": "Fetched live on every visit — Cloudinary's free plan allows 500 admin API calls per hour.",
+    "mongo": {
+      "title": "MongoDB",
+      "storageUsed": "Storage used",
+      "limitNote": "Against a configured {limit} plan limit (set MONGODB_STORAGE_LIMIT_MB to match your actual Atlas tier).",
+      "dataSize": "Data size",
+      "storageSize": "Storage size (on disk)",
+      "indexSize": "Index size",
+      "collections": "Collections",
+      "documents": "Documents"
+    },
+    "brevo": {
+      "title": "Brevo (Email & SMS)",
+      "notConfigured": "Brevo isn't configured — the app is using the console email service. Set BREVO_API_KEY to see live usage.",
+      "fetchFailed": "Couldn't reach Brevo's API. Check that BREVO_API_KEY is valid.",
+      "emailSection": "Email",
+      "smsSection": "SMS",
+      "plan": "Plan",
+      "creditsLeft": "Credits left",
+      "sentLast90": "Sent (last 90 days)",
+      "deliveredLast90": "Delivered (last 90 days)",
+      "noSmsPlan": "No SMS credits on this account."
+    },
+    "cloudinary": {
+      "title": "Cloudinary (Storage)",
+      "fetchFailed": "Couldn't reach Cloudinary's API. Check your Cloudinary credentials.",
+      "plan": "Plan",
+      "storageUsed": "Storage used",
+      "bandwidthUsed": "Bandwidth used",
+      "transformations": "Transformations",
+      "totalObjects": "Total objects (Cloudinary)",
+      "credits": "Credits used",
+      "creditsNote": "Cloudinary's free plan measures storage, bandwidth and transformations together as shared credits, rather than a separate storage cap.",
+      "appBreakdownTitle": "What we've uploaded",
+      "images": "Images (photos & signatures)",
+      "documents": "Documents (IDs, certificates, contracts, receipts)",
+      "rateLimit": "Admin API rate limit"
     }
   }
 }
