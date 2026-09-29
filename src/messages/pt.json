@@ -895,41 +895,175 @@
   "legal": {
     "backHome": "Voltar ao início",
     "terms": {
-      "title": "Termos de Serviço",
+      "title": "Termos e Condições",
       "lastUpdated": "Última atualização: setembro de 2026",
-      "placeholderNotice": "Este é um texto provisório, pendente de revisão por um advogado licenciado em Angola. Não deve ser considerado como texto legal final.",
+      "intro": [
+        "Bem-vindo(a) à First Moments Childcare Angola.",
+        "Estes Termos e Condições explicam as condições aplicáveis quando visita o nosso website, solicita os nossos serviços ou efetua uma reserva connosco.",
+        "Ao utilizar o nosso website ou reservar os nossos serviços, aceita estes Termos e Condições."
+      ],
       "sections": [
         {
-          "heading": "1. O que a Primeiros Encantos faz",
-          "body": "A Primeiros Encantos atua como empregadora/mediadora entre famílias e babás em Angola. Tratamos do matching, das entrevistas, dos contratos e dos pagamentos — famílias e babás nunca trocam contactos diretamente fora da plataforma."
+          "heading": "1. Sobre a First Moments",
+          "blocks": [
+            { "type": "p", "text": "A First Moments Childcare Angola é um serviço profissional de cuidados infantis que liga famílias a profissionais de cuidados infantis cuidadosamente selecionados." },
+            { "type": "p", "text": "Os nossos serviços podem incluir:" },
+            { "type": "ul", "items": ["Babysitting", "Cuidados infantis regulares", "Serviços de babá", "Cuidados a recém-nascidos e bebés", "Cuidados infantis ao final do dia e durante a noite", "Cuidados infantis em eventos", "Cuidados infantis durante férias", "Apoio aos trabalhos de casa e atividades", "Outros serviços de cuidados infantis acordados com a família"] },
+            { "type": "p", "text": "Os serviços e a disponibilidade podem variar consoante a localização e a disponibilidade do profissional." }
+          ]
         },
         {
-          "heading": "2. Contas e elegibilidade",
-          "body": "Deve fornecer informação de registo correta e manter as suas credenciais de acesso seguras. Famílias e babás devem ter pelo menos 18 anos para se registar."
+          "heading": "2. Reservar os Nossos Serviços",
+          "blocks": [
+            { "type": "p", "text": "Um pedido de serviço submetido através do nosso website não constitui automaticamente uma reserva confirmada." },
+            { "type": "p", "text": "Uma reserva é confirmada quando:" },
+            { "type": "ul", "items": ["Recebemos a informação necessária para organizar o serviço", "Foi identificado e aceite um profissional adequado", "Os detalhes da reserva foram confirmados", "Foi recebido o pagamento ou depósito exigido"] },
+            { "type": "p", "text": "Reservamo-nos o direito de recusar uma reserva caso não possamos disponibilizar um profissional adequado ou caso o serviço solicitado esteja fora do nosso âmbito." }
+          ]
         },
         {
-          "heading": "3. Matching e contratos",
-          "body": "As recomendações são feitas pela nossa equipa com base na informação fornecida. Uma colocação só fica ativa depois de a família e a babá assinarem os respetivos contratos através da plataforma."
+          "heading": "3. Informação Fornecida pelos Pais",
+          "blocks": [
+            { "type": "p", "text": "Os pais ou encarregados de educação são responsáveis por fornecer informação exata e completa sobre a criança." },
+            { "type": "p", "text": "Isto pode incluir informação sobre:" },
+            { "type": "ul", "items": ["Idade e data de nascimento", "Alergias", "Requisitos alimentares", "Condições médicas", "Medicação", "Rotinas diárias", "Condições de sono", "Considerações comportamentais ou de desenvolvimento", "Contactos de emergência", "Pessoas autorizadas"] },
+            { "type": "p", "text": "Informe-nos de imediato caso alguma informação importante seja alterada." },
+            { "type": "p", "text": "Fornecer informação incompleta ou inexata pode afetar a nossa capacidade de prestar cuidados seguros e adequados." }
+          ]
         },
         {
-          "heading": "4. Pagamentos",
-          "body": "As famílias pagam à Primeiros Encantos, que paga à babá após deduzir a comissão acordada. Todos os valores são registados em kwanzas angolanas (AOA)."
+          "heading": "4. Os Nossos Profissionais",
+          "blocks": [
+            { "type": "p", "text": "Procuramos selecionar profissionais com base na experiência, adequação, disponibilidade e requisitos de cada posição." },
+            { "type": "p", "text": "O nosso processo de seleção pode incluir:" },
+            { "type": "ul", "items": ["Verificação de identidade", "Entrevistas", "Verificação de referências", "Verificação de experiência", "Avaliação de competências", "Formação em primeiros socorros", "Formação em proteção infantil"] },
+            { "type": "p", "text": "Os requisitos específicos de seleção podem variar consoante a posição." },
+            { "type": "p", "text": "Embora tomemos medidas razoáveis para selecionar profissionais adequados, a seleção não pode garantir que um incidente nunca ocorrerá." }
+          ]
         },
         {
-          "heading": "5. Conduta e cessação",
-          "body": "Podemos suspender ou encerrar uma conta em caso de informação falsa, comportamento abusivo ou violação destes termos. Qualquer uma das partes pode terminar uma colocação com aviso prévio, conforme definido no contrato."
+          "heading": "5. Segurança Infantil",
+          "blocks": [
+            { "type": "p", "text": "A segurança e o bem-estar das crianças são centrais para o nosso serviço." },
+            { "type": "p", "text": "A First Moments adota uma política de tolerância zero para:" },
+            { "type": "ul", "items": ["Abuso", "Violência", "Negligência", "Exploração", "Assédio", "Conduta inadequada para com crianças"] },
+            { "type": "p", "text": "Qualquer preocupação séria de proteção será levada a sério e poderá ser reportada às autoridades competentes sempre que exigido ou apropriado." }
+          ]
         },
         {
-          "heading": "6. Responsabilidade",
-          "body": "A Primeiros Encantos verifica a informação fornecida pelas babás na medida descrita na plataforma, mas as famílias mantêm a responsabilidade pelas suas próprias decisões de supervisão dos cuidados infantis."
+          "heading": "6. Responsabilidades dos Pais e Encarregados de Educação",
+          "blocks": [
+            { "type": "p", "text": "Os pais e encarregados de educação comprometem-se a:" },
+            { "type": "ul", "items": ["Fornecer informação exata sobre a criança", "Informar-nos sobre preocupações de saúde e segurança relevantes", "Fornecer alimentação, vestuário, medicação e outros itens necessários para a criança", "Proporcionar um ambiente seguro para o profissional", "Fornecer informação de contacto de emergência", "Tratar os profissionais com dignidade e respeito", "Pagar as taxas acordadas dentro do prazo estipulado", "Seguir os nossos procedimentos de reserva e cancelamento"] }
+          ]
         },
         {
-          "heading": "7. Alterações a estes termos",
-          "body": "Podemos atualizar estes termos periodicamente. A utilização continuada da plataforma após uma alteração significa que aceita os termos atualizados."
+          "heading": "7. Taxas e Pagamentos",
+          "blocks": [
+            { "type": "p", "text": "Todas as taxas aplicáveis serão comunicadas ao Cliente antes da confirmação de uma reserva." },
+            { "type": "p", "text": "O preço pode depender de fatores como:" },
+            { "type": "ul", "items": ["Duração", "Número de crianças", "Hora do dia", "Tipo de serviço", "Localização", "Requisitos especiais", "Serviços noturnos ou de emergência"] },
+            { "type": "p", "text": "Horas adicionais ou pedidos especiais podem implicar custos adicionais." }
+          ]
         },
         {
-          "heading": "8. Contacto",
-          "body": "Questões sobre estes termos podem ser enviadas através da nossa página de Contacto."
+          "heading": "8. Cancelamento e Reagendamento",
+          "blocks": [
+            { "type": "p", "text": "As nossas condições de cancelamento e reagendamento serão comunicadas durante o processo de reserva." },
+            { "type": "p", "text": "Podem aplicar-se taxas de cancelamento consoante a proximidade do cancelamento em relação ao serviço agendado." },
+            { "type": "p", "text": "Poderemos considerar emergências genuínas caso a caso." }
+          ]
+        },
+        {
+          "heading": "9. Substituição de Profissional",
+          "blocks": [
+            { "type": "p", "text": "Caso um profissional fique indisponível, envidaremos esforços razoáveis para disponibilizar uma substituição adequada." },
+            { "type": "p", "text": "No entanto, não podemos garantir que uma substituição estará sempre disponível, particularmente em reservas de última hora." },
+            { "type": "p", "text": "Caso não seja possível disponibilizar uma substituição adequada, o Cliente poderá receber um reembolso ou crédito de serviço, de acordo com a nossa política de reservas." }
+          ]
+        },
+        {
+          "heading": "10. Horas Adicionais",
+          "blocks": [
+            { "type": "p", "text": "Os profissionais são agendados de acordo com o horário de reserva acordado." },
+            { "type": "p", "text": "Caso sejam necessários cuidados adicionais, o Cliente deve solicitar o tempo adicional através da First Moments sempre que possível." },
+            { "type": "p", "text": "As horas adicionais poderão estar sujeitas a disponibilidade e a custos adicionais." }
+          ]
+        },
+        {
+          "heading": "11. Transporte",
+          "blocks": [
+            { "type": "p", "text": "O transporte não está incluído nos serviços de cuidados infantis padrão, salvo acordo prévio específico." },
+            { "type": "p", "text": "Um profissional não transportará uma criança sem a autorização necessária e um acordo aprovado." }
+          ]
+        },
+        {
+          "heading": "12. Emergências Médicas",
+          "blocks": [
+            { "type": "p", "text": "Os nossos profissionais não são profissionais médicos, salvo se especificamente contratados e qualificados para uma função médica." },
+            { "type": "p", "text": "Em caso de emergência, um profissional poderá contactar os serviços de emergência e o contacto de emergência designado da criança." },
+            { "type": "p", "text": "Os pais devem fornecer informação médica e de emergência relevante antes do início do serviço." }
+          ]
+        },
+        {
+          "heading": "13. Fotografia e Redes Sociais",
+          "blocks": [
+            { "type": "p", "text": "Respeitamos a privacidade das crianças e das famílias." },
+            { "type": "p", "text": "Não utilizaremos fotografias ou vídeos de uma criança para fins de marketing, publicidade ou redes sociais sem o consentimento adequado dos pais ou encarregados de educação." }
+          ]
+        },
+        {
+          "heading": "14. Confidencialidade",
+          "blocks": [
+            { "type": "p", "text": "A informação partilhada com a First Moments no âmbito dos serviços de cuidados infantis é tratada como confidencial." },
+            { "type": "p", "text": "Isto pode incluir:" },
+            { "type": "ul", "items": ["Informação familiar", "Moradas", "Dados de contacto", "Informação médica", "Informação sobre as crianças", "Informação de segurança", "Fotografias", "Assuntos familiares privados"] },
+            { "type": "p", "text": "A informação só será divulgada quando apropriado, autorizado, legalmente exigido, ou necessário para proteger a segurança de alguém." }
+          ]
+        },
+        {
+          "heading": "15. Contratação Direta de Profissionais",
+          "blocks": [
+            { "type": "p", "text": "Os profissionais apresentados às famílias através da First Moments fazem parte da nossa rede profissional." },
+            { "type": "p", "text": "Caso uma família deseje empregar permanentemente ou contratar diretamente um profissional apresentado através da First Moments, a família deve contactar-nos relativamente ao nosso processo de colocação e taxas aplicáveis." }
+          ]
+        },
+        {
+          "heading": "16. Reclamações e Preocupações",
+          "blocks": [
+            { "type": "p", "text": "Encorajamos as famílias a contactar-nos o mais rapidamente possível caso tenham uma preocupação sobre o nosso serviço ou um profissional." },
+            { "type": "p", "text": "Poderemos investigar as preocupações e tomar as medidas apropriadas, que podem incluir:" },
+            { "type": "ul", "items": ["Reatribuição do profissional", "Formação adicional", "Supervisão reforçada", "Suspensão", "Substituição", "Cessação do vínculo do profissional"] }
+          ]
+        },
+        {
+          "heading": "17. Utilização do Website",
+          "blocks": [
+            { "type": "p", "text": "Concorda em utilizar o nosso website de forma lícita e responsável." },
+            { "type": "p", "text": "Não deve:" },
+            { "type": "ul", "items": ["Submeter informação falsa ou enganosa", "Tentar interferir com a segurança do website", "Utilizar o website para fins fraudulentos", "Copiar o nosso conteúdo sem autorização", "Utilizar indevidamente a nossa marca, logótipo ou materiais"] }
+          ]
+        },
+        {
+          "heading": "18. Propriedade Intelectual",
+          "blocks": [
+            { "type": "p", "text": "O nome First Moments, o logótipo, o design do website, os conteúdos escritos, as fotografias, os gráficos e outros materiais originais são protegidos pela legislação de propriedade intelectual aplicável." },
+            { "type": "p", "text": "Não podem ser copiados, reproduzidos ou utilizados comercialmente sem a nossa autorização prévia por escrito." }
+          ]
+        },
+        {
+          "heading": "19. Alterações a Estes Termos",
+          "blocks": [
+            { "type": "p", "text": "Poderemos atualizar estes Termos e Condições periodicamente." },
+            { "type": "p", "text": "Quando efetuarmos alterações, atualizaremos a data de \"Última atualização\" no topo desta página." }
+          ]
+        },
+        {
+          "heading": "20. Lei Aplicável",
+          "blocks": [
+            { "type": "p", "text": "Estes Termos e Condições destinam-se a operar em conformidade com a legislação aplicável da República de Angola." },
+            { "type": "p", "text": "Caso um litígio não possa ser resolvido diretamente entre as partes, poderá ser submetido à autoridade ou tribunal competente apropriado." }
+          ]
         }
       ]
     },
