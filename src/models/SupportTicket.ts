@@ -19,11 +19,15 @@ const supportTicketSchema = new Schema(
       enum: ["OPEN", "IN_PROGRESS", "RESOLVED"],
       default: "OPEN",
     },
+    assignedToId: { type: Types.ObjectId, ref: "User" },
     resolution: { type: String },
     messages: { type: [ticketMessageSchema], default: [] },
   },
   { timestamps: true },
 );
+
+supportTicketSchema.index({ openedById: 1 });
+supportTicketSchema.index({ status: 1 });
 
 export type SupportTicketDocument = InferSchemaType<typeof supportTicketSchema>;
 
