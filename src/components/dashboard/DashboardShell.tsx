@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { logoutAction } from "@/features/auth/actions";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { NotificationBell } from "@/components/dashboard/NotificationBell";
 import { BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
@@ -47,11 +48,13 @@ export function DashboardShell({
   navItems,
   userName,
   logoutLabel,
+  notificationsHref,
   children,
 }: {
   navItems: DashboardNavItem[];
   userName: string;
   logoutLabel: string;
+  notificationsHref: string;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -185,9 +188,12 @@ export function DashboardShell({
               </span>
               <span className="text-lg font-semibold text-plat-ink">{BRAND_NAME}</span>
             </div>
-            <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            <div className="flex items-center gap-1">
+              <NotificationBell href={notificationsHref} />
+              <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
+                {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </header>
 
           {mobileOpen && (
@@ -204,6 +210,7 @@ export function DashboardShell({
           )}
 
           <header className="hidden shrink-0 items-center justify-end gap-3 border-b border-plat-border bg-plat-bg px-6 py-3 md:flex">
+            <NotificationBell href={notificationsHref} />
             <span className="text-sm text-plat-ink-muted">{userName}</span>
             <Avatar name={userName} className="h-8 w-8 text-xs" />
           </header>

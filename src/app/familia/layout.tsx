@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { LayoutDashboard, Search, Heart, Settings, FileText, Wallet } from "lucide-react";
+import { LayoutDashboard, Search, Heart, Settings, FileText, Wallet, Bell, LifeBuoy } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { requireRole } from "@/lib/rbac";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
@@ -28,6 +28,8 @@ export default async function FamilyLayout({ children }: { children: React.React
       href: "/familia/pagamentos",
       icon: <Wallet className="h-4 w-4" />,
     },
+    { label: t("support.title"), href: "/familia/suporte", icon: <LifeBuoy className="h-4 w-4" /> },
+    { label: t("notifications.title"), href: "/familia/notificacoes", icon: <Bell className="h-4 w-4" /> },
     {
       label: t("dashboard.settingsLink"),
       href: "/familia/configuracoes",
@@ -36,7 +38,12 @@ export default async function FamilyLayout({ children }: { children: React.React
   ];
 
   return (
-    <DashboardShell navItems={navItems} userName={result.user.fullName} logoutLabel={t("nav.logout")}>
+    <DashboardShell
+      navItems={navItems}
+      userName={result.user.fullName}
+      logoutLabel={t("nav.logout")}
+      notificationsHref="/familia/notificacoes"
+    >
       {children}
     </DashboardShell>
   );

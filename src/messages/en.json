@@ -839,5 +839,56 @@
       "documents": "Documents (IDs, certificates, contracts, receipts)",
       "rateLimit": "Admin API rate limit"
     }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "You have no notifications yet.",
+    "markAllRead": "Mark all as read",
+    "unreadBadge": "unread"
+  },
+  "support": {
+    "title": "Support",
+    "newTicket": "New ticket",
+    "empty": "You have no support tickets yet.",
+    "types": {
+      "ISSUE": "Issue",
+      "COMPLAINT": "Complaint",
+      "REPLACEMENT": "Replacement request"
+    },
+    "statuses": {
+      "OPEN": "Open",
+      "IN_PROGRESS": "In progress",
+      "RESOLVED": "Resolved"
+    },
+    "form": {
+      "typeLabel": "Type",
+      "placementLabel": "Related placement (optional)",
+      "placementNone": "Not related to a placement",
+      "messageLabel": "Message",
+      "submit": "Open ticket"
+    },
+    "thread": {
+      "replyPlaceholder": "Write a reply…",
+      "send": "Send",
+      "resolutionLabel": "Resolution note",
+      "resolve": "Resolve",
+      "resolveAsReplacement": "Resolve & request a replacement nanny",
+      "assign": "Assign to me",
+      "assignedTo": "Assigned to",
+      "unassigned": "Unassigned",
+      "statusLabel": "Status"
+    },
+    "admin": {
+      "queueTitle": "Support tickets",
+      "filterStatus": "Status",
+      "filterType": "Type",
+      "allStatuses": "All statuses",
+      "allTypes": "All types",
+      "openedBy": "Opened by",
+      "noTickets": "No tickets match these filters."
+    },
+    "replacement": {
+      "success": "The placement was marked as replaced and a new request was created with the family's original requirements."
+    }
   }
 }

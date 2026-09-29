@@ -839,5 +839,56 @@
       "documents": "Documentos (BI, certificados, contratos, recibos)",
       "rateLimit": "Limite da API de administração"
     }
+  },
+  "notifications": {
+    "title": "Notificações",
+    "empty": "Ainda não tem notificações.",
+    "markAllRead": "Marcar tudo como lido",
+    "unreadBadge": "não lidas"
+  },
+  "support": {
+    "title": "Suporte",
+    "newTicket": "Novo ticket",
+    "empty": "Ainda não tem tickets de suporte.",
+    "types": {
+      "ISSUE": "Problema",
+      "COMPLAINT": "Reclamação",
+      "REPLACEMENT": "Pedido de substituição"
+    },
+    "statuses": {
+      "OPEN": "Aberto",
+      "IN_PROGRESS": "Em andamento",
+      "RESOLVED": "Resolvido"
+    },
+    "form": {
+      "typeLabel": "Tipo",
+      "placementLabel": "Colocação relacionada (opcional)",
+      "placementNone": "Não relacionado com uma colocação",
+      "messageLabel": "Mensagem",
+      "submit": "Abrir ticket"
+    },
+    "thread": {
+      "replyPlaceholder": "Escreva uma resposta…",
+      "send": "Enviar",
+      "resolutionLabel": "Nota de resolução",
+      "resolve": "Resolver",
+      "resolveAsReplacement": "Resolver e pedir substituição de babá",
+      "assign": "Atribuir a mim",
+      "assignedTo": "Atribuído a",
+      "unassigned": "Não atribuído",
+      "statusLabel": "Estado"
+    },
+    "admin": {
+      "queueTitle": "Tickets de suporte",
+      "filterStatus": "Estado",
+      "filterType": "Tipo",
+      "allStatuses": "Todos os estados",
+      "allTypes": "Todos os tipos",
+      "openedBy": "Aberto por",
+      "noTickets": "Nenhum ticket corresponde a estes filtros."
+    },
+    "replacement": {
+      "success": "A colocação foi marcada como substituída e foi criado um novo pedido com os requisitos originais da família."
+    }
   }
 }
