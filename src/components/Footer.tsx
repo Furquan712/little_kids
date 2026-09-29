@@ -17,6 +17,7 @@ const SOCIALS = [
 export default function Footer() {
   const t = useTranslations("home.footer");
   const tNav = useTranslations("nav");
+  const tLegal = useTranslations("legal");
 
   const EXPLORE_LINKS = [
     { label: tNav("home"), href: "/#top" },
@@ -122,9 +123,25 @@ export default function Footer() {
       <Rainbow className="pointer-events-none absolute -bottom-2 right-6 hidden h-16 w-28 opacity-70 sm:right-10 lg:block" />
 
       <div className="border-t border-ink/10 py-6">
-        <p className="text-center font-body text-xs text-body">
-          © {new Date().getFullYear()} {BRAND_NAME}. {t("rights")}
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-5 sm:flex-row sm:justify-between sm:px-8">
+          <p className="font-body text-xs text-body">
+            © {new Date().getFullYear()} {BRAND_NAME}. {t("rights")}
+          </p>
+          <div className="flex gap-4 font-body text-xs text-body">
+            <Link
+              href="/termos"
+              className="transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
+            >
+              {tLegal("terms.title")}
+            </Link>
+            <Link
+              href="/privacidade"
+              className="transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
+            >
+              {tLegal("privacy.title")}
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

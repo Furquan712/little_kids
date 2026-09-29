@@ -890,5 +890,82 @@
     "replacement": {
       "success": "A colocação foi marcada como substituída e foi criado um novo pedido com os requisitos originais da família."
     }
+  },
+  "legal": {
+    "backHome": "Voltar ao início",
+    "terms": {
+      "title": "Termos de Serviço",
+      "lastUpdated": "Última atualização: setembro de 2026",
+      "placeholderNotice": "Este é um texto provisório, pendente de revisão por um advogado licenciado em Angola. Não deve ser considerado como texto legal final.",
+      "sections": [
+        {
+          "heading": "1. O que a Primeiros Encantos faz",
+          "body": "A Primeiros Encantos atua como empregadora/mediadora entre famílias e babás em Angola. Tratamos do matching, das entrevistas, dos contratos e dos pagamentos — famílias e babás nunca trocam contactos diretamente fora da plataforma."
+        },
+        {
+          "heading": "2. Contas e elegibilidade",
+          "body": "Deve fornecer informação de registo correta e manter as suas credenciais de acesso seguras. Famílias e babás devem ter pelo menos 18 anos para se registar."
+        },
+        {
+          "heading": "3. Matching e contratos",
+          "body": "As recomendações são feitas pela nossa equipa com base na informação fornecida. Uma colocação só fica ativa depois de a família e a babá assinarem os respetivos contratos através da plataforma."
+        },
+        {
+          "heading": "4. Pagamentos",
+          "body": "As famílias pagam à Primeiros Encantos, que paga à babá após deduzir a comissão acordada. Todos os valores são registados em kwanzas angolanas (AOA)."
+        },
+        {
+          "heading": "5. Conduta e cessação",
+          "body": "Podemos suspender ou encerrar uma conta em caso de informação falsa, comportamento abusivo ou violação destes termos. Qualquer uma das partes pode terminar uma colocação com aviso prévio, conforme definido no contrato."
+        },
+        {
+          "heading": "6. Responsabilidade",
+          "body": "A Primeiros Encantos verifica a informação fornecida pelas babás na medida descrita na plataforma, mas as famílias mantêm a responsabilidade pelas suas próprias decisões de supervisão dos cuidados infantis."
+        },
+        {
+          "heading": "7. Alterações a estes termos",
+          "body": "Podemos atualizar estes termos periodicamente. A utilização continuada da plataforma após uma alteração significa que aceita os termos atualizados."
+        },
+        {
+          "heading": "8. Contacto",
+          "body": "Questões sobre estes termos podem ser enviadas através da nossa página de Contacto."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Política de Privacidade",
+      "lastUpdated": "Última atualização: setembro de 2026",
+      "placeholderNotice": "Este é um texto provisório, pendente de revisão por um advogado licenciado em Angola, incluindo a conformidade com a lei de proteção de dados de Angola (Lei n.º 22/11). Não deve ser considerado como texto legal final.",
+      "sections": [
+        {
+          "heading": "1. Informação que recolhemos",
+          "body": "Recolhemos a informação fornecida no registo (nome, contactos, cidade/província), os dados do perfil da babá (experiência, disponibilidade, expectativa salarial) e os documentos que as babás carregam para verificação (BI, referências, certificados e, com consentimento explícito, registos médicos)."
+        },
+        {
+          "heading": "2. Como a utilizamos",
+          "body": "Utilizamos esta informação para fazer o matching, agendar entrevistas, gerar contratos, registar pagamentos e enviar notificações sobre a sua conta e colocações."
+        },
+        {
+          "heading": "3. Quem pode ver o quê",
+          "body": "Documentos de identificação e registos médicos são visíveis apenas à nossa equipa de administração — nunca às famílias. Certificados e referências podem ser mostrados às famílias como um selo “Verificado”, sem os ficheiros subjacentes. Os contactos da babá (email, telefone, WhatsApp) nunca são partilhados com famílias; toda a comunicação passa pela plataforma."
+        },
+        {
+          "heading": "4. Serviços de terceiros",
+          "body": "Utilizamos o Brevo para enviar emails e SMS transacionais, e o Cloudinary para armazenar documentos e fotos carregados. Estes fornecedores processam dados em nosso nome e não os utilizam para fins próprios."
+        },
+        {
+          "heading": "5. Retenção de dados",
+          "body": "Mantemos os dados da conta e das colocações enquanto a sua conta estiver ativa, e pelo período necessário para cumprir obrigações legais e contabilísticas posteriores."
+        },
+        {
+          "heading": "6. Os seus direitos",
+          "body": "Pode solicitar uma cópia dos seus dados, pedir a sua correção, ou solicitar a eliminação da conta contactando-nos através da página de Contacto."
+        },
+        {
+          "heading": "7. Contacto",
+          "body": "Questões sobre esta política podem ser enviadas através da nossa página de Contacto."
+        }
+      ]
+    }
   }
 }

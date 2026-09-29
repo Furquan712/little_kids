@@ -890,5 +890,82 @@
     "replacement": {
       "success": "The placement was marked as replaced and a new request was created with the family's original requirements."
     }
+  },
+  "legal": {
+    "backHome": "Back to home",
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: September 2026",
+      "placeholderNotice": "This is placeholder text pending review by a licensed lawyer in Angola. Do not treat it as final legal language.",
+      "sections": [
+        {
+          "heading": "1. What Primeiros Encantos does",
+          "body": "Primeiros Encantos acts as the employer/mediator between families and nannies in Angola. We run matching, interviews, contracts and payments — families and nannies never exchange contact details directly outside the platform."
+        },
+        {
+          "heading": "2. Accounts and eligibility",
+          "body": "You must provide accurate registration information and keep your login credentials secure. Families and nannies must be at least 18 years old to register."
+        },
+        {
+          "heading": "3. Matching and contracts",
+          "body": "Recommendations are made by our team based on the information provided. A placement only becomes active once both the family and the nanny have signed their respective contracts through the platform."
+        },
+        {
+          "heading": "4. Payments",
+          "body": "Families pay Primeiros Encantos, who pays the nanny after deducting the agreed commission. All amounts are recorded in Angolan kwanza (AOA)."
+        },
+        {
+          "heading": "5. Conduct and termination",
+          "body": "We may suspend or terminate an account for providing false information, abusive behaviour, or breach of these terms. Either party may end a placement with notice as set out in their contract."
+        },
+        {
+          "heading": "6. Liability",
+          "body": "Primeiros Encantos verifies the information nannies provide to the extent described on the platform, but families remain responsible for their own supervision decisions regarding childcare."
+        },
+        {
+          "heading": "7. Changes to these terms",
+          "body": "We may update these terms from time to time. Continued use of the platform after a change means you accept the updated terms."
+        },
+        {
+          "heading": "8. Contact",
+          "body": "Questions about these terms can be sent through our Contact page."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: September 2026",
+      "placeholderNotice": "This is placeholder text pending review by a licensed lawyer in Angola, including compliance with Angola's data protection law (Lei n.º 22/11). Do not treat it as final legal language.",
+      "sections": [
+        {
+          "heading": "1. Information we collect",
+          "body": "We collect the information you provide at registration (name, contact details, city/province), nanny profile details (experience, availability, salary expectations), and documents nannies upload for verification (ID, references, certificates, and — with explicit consent — medical records)."
+        },
+        {
+          "heading": "2. How we use it",
+          "body": "We use this information to run matching, schedule interviews, generate contracts, record payments and send you notifications about your account and placements."
+        },
+        {
+          "heading": "3. Who can see what",
+          "body": "ID documents and medical records are visible to our admin team only — never to families. Certificates and references may be shown to families as a “Verified” badge without the underlying files. Nanny contact details (email, phone, WhatsApp) are never shared with families; all communication is routed through the platform."
+        },
+        {
+          "heading": "4. Third-party services",
+          "body": "We use Brevo to send transactional emails and SMS, and Cloudinary to store uploaded documents and photos. These providers process data on our behalf and do not use it for their own purposes."
+        },
+        {
+          "heading": "5. Data retention",
+          "body": "We retain account and placement data for as long as your account is active, and as required to meet legal and accounting obligations afterwards."
+        },
+        {
+          "heading": "6. Your rights",
+          "body": "You may request a copy of your data, ask us to correct it, or request account deletion by contacting us through the Contact page."
+        },
+        {
+          "heading": "7. Contact",
+          "body": "Questions about this policy can be sent through our Contact page."
+        }
+      ]
+    }
   }
 }
