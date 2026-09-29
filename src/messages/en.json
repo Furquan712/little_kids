@@ -16,6 +16,7 @@
     "no": "No",
     "close": "Close",
     "genericError": "Something went wrong. Please try again.",
+    "retry": "Try again",
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "collapseSidebar": "Collapse menu",

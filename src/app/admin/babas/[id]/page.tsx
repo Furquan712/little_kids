@@ -23,6 +23,7 @@ export default async function AdminNannyDetailPage({
   if (!detail) notFound();
 
   const t = await getTranslations("admin.nannies");
+  const tCommon = await getTranslations("common");
 
   return (
     <div className="flex flex-col gap-6">
@@ -90,7 +91,7 @@ export default async function AdminNannyDetailPage({
               <Badge variant={doc.reviewStatus === "ACCEPTED" ? "success" : "outline"}>{doc.reviewStatus}</Badge>
             </a>
           ))}
-          {detail.documents.length === 0 && <p className="text-plat-ink-muted">—</p>}
+          {detail.documents.length === 0 && <p className="text-plat-ink-muted">{tCommon("noResults")}</p>}
         </CardContent>
       </Card>
 

@@ -40,6 +40,7 @@ export default async function SearchPage({
 
   const { results, total, page, pageSize } = await searchNannies(parsed);
   const t = await getTranslations("familySearch");
+  const tCommon = await getTranslations("common");
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
@@ -53,7 +54,7 @@ export default async function SearchPage({
         ))}
       </div>
 
-      {results.length === 0 && <p className="text-plat-ink-muted">—</p>}
+      {results.length === 0 && <p className="text-plat-ink-muted">{tCommon("noResults")}</p>}
 
       {totalPages > 1 && (
         <div className="flex items-center gap-2">
