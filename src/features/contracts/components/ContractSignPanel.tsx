@@ -101,8 +101,8 @@ export function ContractSignPanel({ contract }: { contract: ContractSummary }) {
             <p className="text-sm text-plat-ink-muted">{t("sign.readNotice")}</p>
 
             <div className="flex flex-col gap-1.5">
-              <Label>{t("sign.typedNameLabel")}</Label>
-              <Input value={typedName} onChange={(e) => setTypedName(e.target.value)} />
+              <Label htmlFor="typedName">{t("sign.typedNameLabel")}</Label>
+              <Input id="typedName" value={typedName} onChange={(e) => setTypedName(e.target.value)} />
             </div>
 
             <div className="flex flex-col gap-1.5">

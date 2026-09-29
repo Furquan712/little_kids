@@ -72,29 +72,34 @@ export function ContractBuilderForm({
       <h1 className="text-2xl font-semibold text-plat-ink">{placementId ? t("editTitle") : t("title")}</h1>
 
       <div className="flex flex-col gap-1.5">
-        <Label>{t("startDate")}</Label>
-        <Input type="date" {...register("startDate")} />
+        <Label htmlFor="startDate">{t("startDate")}</Label>
+        <Input id="startDate" type="date" {...register("startDate")} />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label>{t("duties")}</Label>
-        <Textarea rows={3} {...register("duties")} />
+        <Label htmlFor="duties">{t("duties")}</Label>
+        <Textarea id="duties" rows={3} {...register("duties")} />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label>{t("scheduleText")}</Label>
-        <Textarea rows={2} {...register("scheduleText")} />
+        <Label htmlFor="scheduleText">{t("scheduleText")}</Label>
+        <Textarea id="scheduleText" rows={2} {...register("scheduleText")} />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label>{t("paymentSchedule")}</Label>
-        <Textarea rows={2} {...register("paymentSchedule")} placeholder="Ex.: Pago mensalmente até ao dia 5" />
+        <Label htmlFor="paymentSchedule">{t("paymentSchedule")}</Label>
+        <Textarea
+          id="paymentSchedule"
+          rows={2}
+          {...register("paymentSchedule")}
+          placeholder="Ex.: Pago mensalmente até ao dia 5"
+        />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <Label>{t("nannySalary")}</Label>
-          <Input type="number" min={1} {...register("nannySalary", { valueAsNumber: true })} />
+          <Label htmlFor="nannySalary">{t("nannySalary")}</Label>
+          <Input id="nannySalary" type="number" min={1} {...register("nannySalary", { valueAsNumber: true })} />
           {formState.errors.nannySalary && (
             <p className="text-sm text-plat-danger">
               {tRoot(fieldErrorKey(formState.errors.nannySalary.message) as never)}
@@ -102,8 +107,13 @@ export function ContractBuilderForm({
           )}
         </div>
         <div className="flex flex-col gap-1.5">
-          <Label>{t("noticePeriodDays")}</Label>
-          <Input type="number" min={0} {...register("noticePeriodDays", { valueAsNumber: true })} />
+          <Label htmlFor="noticePeriodDays">{t("noticePeriodDays")}</Label>
+          <Input
+            id="noticePeriodDays"
+            type="number"
+            min={0}
+            {...register("noticePeriodDays", { valueAsNumber: true })}
+          />
         </div>
       </div>
 
@@ -124,8 +134,9 @@ export function ContractBuilderForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label>{t("commissionValue")}</Label>
+        <Label htmlFor="commissionValue">{t("commissionValue")}</Label>
         <Input
+          id="commissionValue"
           type="number"
           min={0}
           max={commissionType === "PERCENTAGE" ? 100 : undefined}
@@ -148,8 +159,8 @@ export function ContractBuilderForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label>{t("terminationTerms")}</Label>
-        <Textarea rows={2} {...register("terminationTerms")} />
+        <Label htmlFor="terminationTerms">{t("terminationTerms")}</Label>
+        <Textarea id="terminationTerms" rows={2} {...register("terminationTerms")} />
       </div>
 
       {error && <p className="text-sm text-plat-danger">{error}</p>}
