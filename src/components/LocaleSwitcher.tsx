@@ -43,7 +43,7 @@ export function LocaleSwitcher({
         onClick={() => switchTo("pt-AO")}
         aria-pressed={locale === "pt-AO"}
         className={cn(
-          "rounded-full px-2.5 py-1 transition-colors",
+          "rounded-full px-2.5 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose",
           locale === "pt-AO"
             ? "bg-rose text-white"
             : variant === "dark"
@@ -59,7 +59,7 @@ export function LocaleSwitcher({
         onClick={() => switchTo("en")}
         aria-pressed={locale === "en"}
         className={cn(
-          "rounded-full px-2.5 py-1 transition-colors",
+          "rounded-full px-2.5 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose",
           locale === "en"
             ? "bg-rose text-white"
             : variant === "dark"

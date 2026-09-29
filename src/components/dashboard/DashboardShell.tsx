@@ -112,7 +112,7 @@ export function DashboardShell({
               onClick={() => setMobileOpen(false)}
               title={showLabels ? undefined : item.label}
               className={cn(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plat-primary",
                 !showLabels && "justify-center",
                 active
                   ? "bg-plat-primary text-plat-ink shadow-sm shadow-plat-primary/40"
@@ -152,7 +152,7 @@ export function DashboardShell({
               onClick={toggleCollapsed}
               aria-label={collapsed ? t("expandSidebar") : t("collapseSidebar")}
               title={collapsed ? t("expandSidebar") : t("collapseSidebar")}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-plat-ink-muted transition-colors hover:bg-plat-bg-pink hover:text-plat-ink"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-plat-ink-muted transition-colors hover:bg-plat-bg-pink hover:text-plat-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plat-primary"
             >
               {collapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
             </button>
@@ -170,7 +170,7 @@ export function DashboardShell({
               onClick={handleLogout}
               title={logoutLabel}
               className={cn(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-plat-ink-muted transition-colors hover:bg-plat-bg-pink",
+                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-plat-ink-muted transition-colors hover:bg-plat-bg-pink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plat-primary",
                 collapsed && "justify-center",
               )}
             >
@@ -190,7 +190,11 @@ export function DashboardShell({
             </div>
             <div className="flex items-center gap-1">
               <NotificationBell href={notificationsHref} />
-              <button onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
+              <button
+                onClick={() => setMobileOpen((v) => !v)}
+                aria-label="Menu"
+                className="flex h-9 w-9 items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plat-primary"
+              >
                 {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
@@ -201,7 +205,7 @@ export function DashboardShell({
               {renderNav(true)}
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-plat-ink-muted hover:bg-plat-bg-pink"
+                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-plat-ink-muted hover:bg-plat-bg-pink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plat-primary"
               >
                 <LogOut className="h-4 w-4" />
                 {logoutLabel}

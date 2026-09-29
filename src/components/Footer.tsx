@@ -60,7 +60,7 @@ export default function Footer() {
 
             <Link
               href="/registrar/familia"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-6 py-3 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-6 py-3 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
             >
               {t("cta")} <ArrowUpRight className="h-4 w-4" />
             </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-sm transition-transform hover:-translate-y-1 hover:text-rose"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-sm transition-transform hover:-translate-y-1 hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
                   >
                     <Icon className="h-5 w-5" />
                   </a>
@@ -95,7 +95,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm text-ink transition-colors hover:text-rose"
+                  className="rounded font-body text-sm text-ink transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
                 >
                   {link.label}
                 </Link>
@@ -110,7 +110,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm text-ink transition-colors hover:text-rose"
+                  className="rounded font-body text-sm text-ink transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
                 >
                   {link.label}
                 </Link>
