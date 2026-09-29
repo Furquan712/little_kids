@@ -9,7 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "seed": "tsx --env-file=.env.local scripts/seed.ts",
-    "cron": "tsx --env-file=.env.local scripts/cron.ts"
+    "cron": "tsx --env-file=.env.local scripts/cron.ts",
+    "test:e2e": "node --env-file=.env.local node_modules/.bin/playwright test"
   },
   "dependencies": {
     "@getbrevo/brevo": "^6.0.3",
@@ -42,6 +43,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -9,6 +9,10 @@ export const authConfig: NextAuthConfig = {
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   providers: [],
+  // Self-hosted (no platform auto-injects a trusted host the way Vercel
+  // does) and there's no fixed public domain yet — trust the request's own
+  // Host header rather than requiring AUTH_URL to match it exactly.
+  trustHost: true,
   callbacks: {
     jwt({ token, user }) {
       if (user) {

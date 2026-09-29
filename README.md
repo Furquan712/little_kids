@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Primeiros Encantos
 
-## Getting Started
+A nanny-matching platform for Angola. The platform is the employer/mediator between families and nannies — it runs matching, interviews, contracts and payments; families and nannies never exchange contact details directly.
 
-First, run the development server:
+Stack: Next.js (App Router) + TypeScript, MongoDB + Mongoose, Auth.js v5, Tailwind + shadcn/ui, Brevo (email/SMS), Cloudinary (file storage), `@react-pdf/renderer` (contract/receipt PDFs).
+
+## Getting started
 
 ```bash
+npm install
+npm run seed   # idempotent: 1 admin, 5 nannies, 3 families
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Seeded users all share the password `Password123!` (admin: `admin@nannyplatform.ao`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` — local dev server
+- `npm run build` / `npm run start` — production build and serve
+- `npm run lint` / `npm run typecheck` — ESLint / `tsc --noEmit`
+- `npm run seed` — (re-)seed local MongoDB with demo data
+- `npm run cron` — local/dev payment-reminder worker (`node-cron`, daily at 08:00 Africa/Luanda)
+- `npm run test:e2e` — Playwright end-to-end tests against a local production build (see below)
 
-## Learn More
+## End-to-end tests
 
-To learn more about Next.js, take a look at the following resources:
+`tests/e2e/` covers the PRD's four required flows: nanny registration → approval, family request → recommendation → approval, contract signing, and payment recording. The suite builds and boots a real production server (not `next dev`) on port 3100 and connects directly to `MONGODB_URI` to set up fixtures, so run it against a seeded database:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run seed
+npm run test:e2e
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment checklist
 
-## Deploy on Vercel
+Not deployed yet — going live is a separate decision. Before it happens:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Choose hosting (Vercel, or a Node host if the payment-reminder cron worker needs to run continuously)
+- [ ] Register/point the production domain, and confirm HTTPS is enforced
+- [ ] Provision a production MongoDB cluster with automated backups (separate from any development database)
+- [ ] Provision production storage (Cloudinary) and a production Brevo sender identity, separate from development credentials
+- [ ] Set `AUTH_SECRET` to a fresh production value and set `APP_BASE_URL` to the real domain
+- [ ] Wire up error tracking (e.g. Sentry)
+- [ ] Create the real admin account(s) for launch
+- [ ] Remove/replace all seed data in the production database
+- [ ] Have the Terms of Service and Privacy Policy pages (`/termos`, `/privacidade`) reviewed by a licensed lawyer — they currently hold placeholder text
+- [ ] Decide how the payment-reminder worker (`npm run cron`) runs continuously in production (a long-running process, or a hosted cron trigger hitting an API route)
