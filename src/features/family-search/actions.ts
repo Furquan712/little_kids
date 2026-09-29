@@ -1,6 +1,7 @@
 "use server";
 
 import { requireRole } from "@/lib/rbac";
+import { notifyAdmins } from "@/lib/notify";
 import { type Result, ok, err } from "@/lib/result";
 import { requestFormSchema, type RequestFormInput } from "./schemas";
 import { toggleFavorite, createNannyRequest } from "./service";
@@ -22,5 +23,6 @@ export async function createRequestAction(input: RequestFormInput): Promise<Resu
 
   const result = await createNannyRequest(auth.user.id, parsed.data);
   if (!result.ok) return err("familySearch.request.nannyNotAvailable");
+  await notifyAdmins("ADMIN_NEW_REQUEST", { familyName: auth.user.fullName });
   return ok(null);
 }

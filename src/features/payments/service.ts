@@ -5,6 +5,7 @@ import { Payment } from "@/models/Payment";
 import { User } from "@/models/User";
 import { NannyProfile } from "@/models/NannyProfile";
 import { getStorageService } from "@/lib/storage";
+import { notify } from "@/lib/notify";
 import { monthKey, dueDateForPeriod, enumeratePeriods, lastNMonthKeys } from "@/lib/billing";
 import type { RecordPaymentInput } from "./schemas";
 import type {
@@ -194,6 +195,18 @@ export async function recordPayment(input: RecordPaymentInput, recordedById: str
     paidAt: new Date(input.paidAt),
     recordedById,
   });
+
+  if (input.direction === "OUT_TO_NANNY") {
+    await notify(placement.nannyId.toString(), "NANNY_PAYMENT_COMPLETED", {
+      amount: input.amount,
+      periodMonth: input.periodMonth,
+    });
+  } else {
+    await notify(placement.familyId.toString(), "FAMILY_PAYMENT_RECEIPT", {
+      amount: input.amount,
+      periodMonth: input.periodMonth,
+    });
+  }
 
   return { ok: true as const, payment };
 }

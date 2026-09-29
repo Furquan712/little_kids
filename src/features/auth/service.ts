@@ -7,6 +7,7 @@ import { VerificationToken } from "@/models/VerificationToken";
 import { generateUrlToken, generateOtpCode, hashToken } from "@/lib/tokens";
 import { getEmailService } from "@/lib/email";
 import { getSmsProvider } from "@/lib/sms";
+import { notify } from "@/lib/notify";
 import { BRAND_NAME } from "@/lib/brand";
 import type { RegisterNannyInput, RegisterFamilyInput } from "./schemas";
 
@@ -104,6 +105,8 @@ export async function registerFamily(input: RegisterFamilyInput) {
   if (user.phone) {
     await sendPhoneOtp(user._id.toString(), user.phone);
   }
+
+  await notify(user._id.toString(), "FAMILY_REGISTRATION_CONFIRMED");
 
   return user;
 }

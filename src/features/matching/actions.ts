@@ -2,6 +2,7 @@
 
 import { requireRole } from "@/lib/rbac";
 import { auditLog } from "@/lib/audit";
+import { notify } from "@/lib/notify";
 import { type Result, ok, err } from "@/lib/result";
 import {
   addCandidateSchema,
@@ -53,6 +54,7 @@ export async function addCandidateAction(input: AddCandidateInput): Promise<Resu
   await auditLog(auth.user.id, "ADD_CANDIDATE", "NannyRequest", parsed.data.requestId, null, {
     nannyUserId: parsed.data.nannyUserId,
   });
+  await notify(parsed.data.nannyUserId, "NANNY_INTERVIEW_INVITATION");
 
   return ok(null);
 }
@@ -89,11 +91,21 @@ export async function scheduleInterviewAction(input: ScheduleInterviewInput): Pr
   const parsed = scheduleInterviewSchema.safeParse(input);
   if (!parsed.success) return err("auth.errors.unknown");
 
-  const interview = await scheduleInterview(parsed.data.candidateId, parsed.data.scheduledAt, parsed.data.mode);
+  const { interview, wasRescheduled, nannyId } = await scheduleInterview(
+    parsed.data.candidateId,
+    parsed.data.scheduledAt,
+    parsed.data.mode,
+  );
   await auditLog(auth.user.id, "SCHEDULE_INTERVIEW", "Interview", interview._id.toString(), null, {
     scheduledAt: parsed.data.scheduledAt,
     mode: parsed.data.mode,
   });
+  if (nannyId) {
+    const scheduledAt = new Date(parsed.data.scheduledAt).toLocaleString("pt-AO");
+    await notify(nannyId, wasRescheduled ? "NANNY_INTERVIEW_RESCHEDULED" : "NANNY_INTERVIEW_CONFIRMED", {
+      scheduledAt,
+    });
+  }
 
   return ok(null);
 }
@@ -107,17 +119,20 @@ export async function recordInterviewOutcomeAction(
   const parsed = recordInterviewOutcomeSchema.safeParse(input);
   if (!parsed.success) return err("auth.errors.unknown");
 
-  const interview = await recordInterviewOutcome(
+  const result = await recordInterviewOutcome(
     parsed.data.interviewId,
     parsed.data.outcome,
     parsed.data.notes || "",
     parsed.data.score,
   );
-  if (!interview) return err("auth.errors.unknown");
+  if (!result) return err("auth.errors.unknown");
 
   await auditLog(auth.user.id, "RECORD_INTERVIEW_OUTCOME", "Interview", parsed.data.interviewId, null, {
     outcome: parsed.data.outcome,
   });
+  if (result.familyId) {
+    await notify(result.familyId, "FAMILY_PROCESS_UPDATE");
+  }
 
   return ok(null);
 }
@@ -129,13 +144,16 @@ export async function recommendToFamilyAction(input: RecommendToFamilyInput): Pr
   const parsed = recommendToFamilySchema.safeParse(input);
   if (!parsed.success) return err("auth.errors.unknown");
 
-  await recommendToFamily(
+  const { familyId } = await recommendToFamily(
     parsed.data.requestId,
     parsed.data.candidates.map((c) => ({ candidateId: c.candidateId, note: c.note || "" })),
   );
   await auditLog(auth.user.id, "RECOMMEND_TO_FAMILY", "NannyRequest", parsed.data.requestId, null, {
     candidateIds: parsed.data.candidates.map((c) => c.candidateId),
   });
+  if (familyId) {
+    await notify(familyId, "FAMILY_NEW_RECOMMENDATIONS");
+  }
 
   return ok(null);
 }
