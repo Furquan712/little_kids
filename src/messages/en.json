@@ -37,6 +37,7 @@
     "howItWorks": "How it works",
     "testimonials": "Testimonials",
     "contact": "Contact",
+    "about": "About us",
     "language": "Language"
   },
   "meta": {
@@ -790,6 +791,37 @@
           "title": "Start working and get paid",
           "desc": "Begin the placement on your agreed start date. The platform pays you every month and keeps a full record of your payment history."
         }
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join as a family looking for trusted care, or as a nanny ready to work.",
+      "familia": "I'm a Family",
+      "baba": "I'm a Nanny"
+    }
+  },
+  "aboutPage": {
+    "title": "About us",
+    "subtitle": "We connect Angolan families with trusted nannies, and handle everything along the way.",
+    "missionHeading": "Our mission",
+    "missionBody": "Primeiros Encantos started from a simple idea: finding a nanny you can trust shouldn't be complicated or risky. We verify backgrounds, interview every candidate, and handle the contracts and payments — so your family has peace of mind from day one.",
+    "valuesHeading": "What guides us",
+    "values": {
+      "trust": {
+        "title": "Trust first",
+        "desc": "Every nanny on the platform is interviewed by our team, with backgrounds and references verified before any contact with your family."
+      },
+      "care": {
+        "title": "Care that feels like family",
+        "desc": "We help you find not just any nanny, but the right fit for your family's routine and values."
+      },
+      "allInOne": {
+        "title": "Everything in one place",
+        "desc": "From the interview to the contract and the monthly payment, we handle every step inside the platform — no surprises."
+      },
+      "local": {
+        "title": "Made for Angola",
+        "desc": "We know all 18 provinces and work in kwanza, with a team that understands what Angolan families need."
       }
     },
     "cta": {

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 const PUBLIC_ROUTES = [
   "",
+  "/sobre",
   "/como-funciona",
   "/contacto",
   "/termos",

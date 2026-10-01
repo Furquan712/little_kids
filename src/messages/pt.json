@@ -37,6 +37,7 @@
     "howItWorks": "Como funciona",
     "testimonials": "Depoimentos",
     "contact": "Contacto",
+    "about": "Sobre nós",
     "language": "Idioma"
   },
   "meta": {
@@ -790,6 +791,37 @@
           "title": "Comece a trabalhar e receba",
           "desc": "Inicie a colocação na data combinada. A plataforma paga-lhe todos os meses e mantém um registo completo do seu histórico de pagamentos."
         }
+      }
+    },
+    "cta": {
+      "title": "Pronta para começar?",
+      "subtitle": "Junte-se como família à procura de cuidados de confiança, ou como babá pronta para trabalhar.",
+      "familia": "Sou Família",
+      "baba": "Sou Babá"
+    }
+  },
+  "aboutPage": {
+    "title": "Sobre nós",
+    "subtitle": "Ligamos famílias angolanas a babás de confiança, e tratamos de tudo pelo caminho.",
+    "missionHeading": "A nossa missão",
+    "missionBody": "A Primeiros Encantos nasceu de uma ideia simples: encontrar uma babá de confiança não devia ser complicado nem arriscado. Verificamos antecedentes, entrevistamos cada candidata e tratamos dos contratos e pagamentos — para que a sua família tenha tranquilidade desde o primeiro dia.",
+    "valuesHeading": "O que nos guia",
+    "values": {
+      "trust": {
+        "title": "Confiança em primeiro lugar",
+        "desc": "Toda babá na plataforma é entrevistada pela nossa equipa, com antecedentes e referências verificados antes de qualquer contacto com a sua família."
+      },
+      "care": {
+        "title": "Cuidado que parece de família",
+        "desc": "Ajudamos a encontrar não apenas qualquer babá, mas a pessoa certa para a rotina e os valores da sua família."
+      },
+      "allInOne": {
+        "title": "Tudo num só lugar",
+        "desc": "Da entrevista ao contrato e ao pagamento mensal, tratamos de cada etapa dentro da plataforma — sem surpresas."
+      },
+      "local": {
+        "title": "Feito para Angola",
+        "desc": "Conhecemos as 18 províncias e trabalhamos em kwanzas, com uma equipa que entende as necessidades das famílias angolanas."
       }
     },
     "cta": {

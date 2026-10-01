@@ -21,6 +21,7 @@ export default function Footer() {
 
   const EXPLORE_LINKS = [
     { label: tNav("home"), href: "/#top" },
+    { label: tNav("about"), href: "/sobre" },
     { label: tNav("howItWorks"), href: "/como-funciona" },
     { label: tNav("contact"), href: "/contacto" },
   ];
