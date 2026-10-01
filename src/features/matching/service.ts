@@ -96,6 +96,11 @@ export async function getRequestDetail(requestId: string): Promise<RequestDetail
     },
     childrenAges: request.childrenAges ?? [],
     needs: request.needs ?? "",
+    schedule: (request.schedule ?? []).map((s: { day: string; from: string; to: string }) => ({
+      day: s.day,
+      from: s.from,
+      to: s.to,
+    })),
     liveIn: request.liveIn ?? null,
     startDate: request.startDate ? request.startDate.toISOString() : null,
     budgetMin: request.budgetMin ?? null,
@@ -217,6 +222,11 @@ export async function listInvitationsForNanny(nannyUserId: string): Promise<Nann
       contactStatus: candidate.contactStatus,
       childrenAges: request?.childrenAges ?? [],
       needs: request?.needs ?? "",
+      schedule: (request?.schedule ?? []).map((s: { day: string; from: string; to: string }) => ({
+        day: s.day,
+        from: s.from,
+        to: s.to,
+      })),
       liveIn: request?.liveIn ?? null,
       startDate: request?.startDate ? request.startDate.toISOString() : null,
       budgetMin: request?.budgetMin ?? null,

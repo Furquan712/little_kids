@@ -25,6 +25,8 @@ export type CandidateSummary = {
   } | null;
 };
 
+export type ScheduleSlot = { day: string; from: string; to: string };
+
 export type RequestDetail = {
   id: string;
   status: string;
@@ -36,6 +38,7 @@ export type RequestDetail = {
   };
   childrenAges: number[];
   needs: string;
+  schedule: ScheduleSlot[];
   liveIn: string | null;
   startDate: string | null;
   budgetMin: number | null;
@@ -62,6 +65,7 @@ export type NannyInvitation = {
   contactStatus: string;
   childrenAges: number[];
   needs: string;
+  schedule: ScheduleSlot[];
   liveIn: string | null;
   startDate: string | null;
   budgetMin: number | null;

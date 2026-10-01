@@ -8,6 +8,7 @@ import { RequestDetailPanel } from "@/features/matching/components/RequestDetail
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatScheduleSummary } from "@/lib/schedule";
 
 export default async function AdminRequestDetailPage({
   params,
@@ -24,6 +25,8 @@ export default async function AdminRequestDetailPage({
   const t = await getTranslations("admin.requests");
   const tStatus = await getTranslations("familyDashboard.requestStatus");
   const tContract = await getTranslations("contracts.detail");
+  const tDays = await getTranslations("nannyProfile.availability.days");
+  const scheduleSummary = formatScheduleSummary(request.schedule, (day) => tDays(day as never));
   const placementId = request.status === "APPROVED" || request.status === "CONTRACTED"
     ? await getPlacementIdByRequestId(id)
     : null;
@@ -67,6 +70,9 @@ export default async function AdminRequestDetailPage({
             </p>
             <p>
               {t("needs")}: {request.needs || "—"}
+            </p>
+            <p>
+              {t("scheduleLabel")}: {scheduleSummary || "—"}
             </p>
             <p>
               {t("liveIn")}: {request.liveIn ?? "—"}

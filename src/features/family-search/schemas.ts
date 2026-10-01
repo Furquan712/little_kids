@@ -1,7 +1,15 @@
 import { z } from "zod";
 import { PROVINCE_NAMES } from "@/lib/angola-locations";
-import { AGE_GROUPS } from "@/features/nanny-profile/schemas";
+import { AGE_GROUPS, DAYS } from "@/features/nanny-profile/schemas";
 import { NANNY_LANGUAGES } from "@/lib/languages";
+
+export { DAYS };
+
+const scheduleSlotSchema = z.object({
+  day: z.enum(DAYS),
+  from: z.string().min(1),
+  to: z.string().min(1),
+});
 
 export const searchFiltersSchema = z.object({
   province: z.enum(PROVINCE_NAMES).optional(),
@@ -23,6 +31,7 @@ export const requestFormSchema = z
     targetNannyId: z.string().optional().or(z.literal("")),
     childrenAges: z.array(z.number().min(0).max(18)).min(1, "REQUIRED"),
     needs: z.string().trim().min(1, "REQUIRED"),
+    schedule: z.array(scheduleSlotSchema).optional(),
     liveIn: z.enum(["LIVE_IN", "LIVE_OUT"], { message: "REQUIRED" }),
     startDate: z.string().min(1, "REQUIRED"),
     budgetMin: z.number().min(0),

@@ -7,11 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { respondToInvitationAction } from "../actions";
+import { formatScheduleSummary } from "@/lib/schedule";
 import type { NannyInvitation } from "../types";
 
 export function InvitationCard({ invitation }: { invitation: NannyInvitation }) {
   const t = useTranslations("nannyInvitations");
+  const tDays = useTranslations("nannyProfile.availability.days");
   const router = useRouter();
+  const scheduleSummary = formatScheduleSummary(invitation.schedule, (day) => tDays(day as never));
   const [isPending, startTransition] = useTransition();
 
   function respond(accept: boolean) {
@@ -37,6 +40,9 @@ export function InvitationCard({ invitation }: { invitation: NannyInvitation }) 
           </p>
           <p>
             {t("liveIn")}: {invitation.liveIn ?? "—"}
+          </p>
+          <p className="sm:col-span-2">
+            {t("scheduleLabel")}: {scheduleSummary || "—"}
           </p>
           <p>
             {t("startDate")}:{" "}

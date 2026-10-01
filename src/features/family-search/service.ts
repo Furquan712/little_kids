@@ -157,6 +157,7 @@ export async function createNannyRequest(familyId: string, input: RequestFormInp
     targetNannyId,
     childrenAges: input.childrenAges,
     needs: input.needs,
+    schedule: input.schedule ?? [],
     liveIn: input.liveIn,
     startDate: new Date(input.startDate),
     budgetMin: input.budgetMin,
