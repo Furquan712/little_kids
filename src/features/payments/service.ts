@@ -69,6 +69,10 @@ function buildBillingLines(
 async function loadPlacementBillingInputs(placementId: string) {
   const placement = await Placement.findById(placementId);
   if (!placement) return null;
+  // DRAFT means no contract has been fully signed yet — there is no
+  // legitimate billing schedule until checkAndActivatePlacement() flips
+  // this to ACTIVE, even though the Contract docs already exist.
+  if (placement.status === "DRAFT") return null;
 
   const [familyContract, nannyContract, family, nanny, payments] = await Promise.all([
     Contract.findOne({ placementId, party: "FAMILY" }),

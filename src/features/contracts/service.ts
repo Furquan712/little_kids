@@ -325,6 +325,9 @@ export async function checkAndActivatePlacement(placementId: string) {
   const placement = await Placement.findById(placementId);
   if (!placement) return;
 
+  placement.status = "ACTIVE";
+  await placement.save();
+
   await NannyProfile.findOneAndUpdate({ userId: placement.nannyId }, { status: "PLACED" });
   await NannyRequest.findByIdAndUpdate(placement.requestId, { status: "CONTRACTED" });
 
