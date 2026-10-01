@@ -44,5 +44,5 @@ Not deployed yet — going live is a separate decision. Before it happens:
 - [ ] Wire up error tracking (e.g. Sentry)
 - [ ] Create the real admin account(s) for launch
 - [ ] Remove/replace all seed data in the production database
-- [ ] Have the Terms of Service and Privacy Policy pages (`/termos`, `/privacidade`) reviewed by a licensed lawyer — they currently hold placeholder text
+- [ ] Have `/termos` and `/privacidade` reviewed by a licensed lawyer before launch — `/privacidade` still holds placeholder text, and `/termos` holds real content but should be re-confirmed against the company's actual legal entity name
 - [ ] Decide how the payment-reminder worker (`npm run cron`) runs continuously in production (a long-running process, or a hosted cron trigger hitting an API route)
