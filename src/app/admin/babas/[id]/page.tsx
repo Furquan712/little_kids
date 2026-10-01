@@ -69,6 +69,7 @@ export default async function AdminNannyDetailPage({
             }
           />
           <Field label="Verificada" value={detail.profile.verified ? "Sim" : "Não"} />
+          <Field label="Entrevistada" value={detail.profile.interviewed ? "Sim" : "Não"} />
         </CardContent>
       </Card>
 

@@ -87,6 +87,9 @@ export async function getPublicNannyProfile(nannyUserId: string): Promise<Public
   const badges = documents
     .filter((d) => d.visibility === "FAMILY_BADGE" && d.reviewStatus === "ACCEPTED")
     .map((d) => ({ type: d.type, label: d.type === "CERTIFICATE" ? "Certificado" : "Referência" }));
+  if (profile.interviewed) {
+    badges.unshift({ type: "INTERVIEWED", label: "Entrevistada pela equipa" });
+  }
 
   const card = toPublicNannyCard({
     userId: nannyUserId,
