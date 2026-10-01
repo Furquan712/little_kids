@@ -3,6 +3,7 @@ import { User } from "@/models/User";
 import { Notification } from "@/models/Notification";
 import { getEmailService } from "@/lib/email";
 import { getSmsProvider } from "@/lib/sms";
+import { renderEmailHtml } from "@/lib/email/template";
 import { BRAND_NAME } from "@/lib/brand";
 
 export type NotificationType =
@@ -191,7 +192,12 @@ export async function notify(userId: string, type: NotificationType, data: Notif
         to: user.email,
         toName: user.fullName,
         subject: `${content.title} — ${BRAND_NAME}`,
-        html: `<p>Olá ${user.fullName},</p><p>${content.body}</p><p><a href="${fullLink}">${fullLink}</a></p>`,
+        html: renderEmailHtml({
+          title: content.title,
+          bodyHtml: `<p style="margin:0 0 8px;">Olá ${user.fullName},</p><p style="margin:0;">${content.body}</p>`,
+          ctaLabel: "Ver na plataforma",
+          ctaUrl: fullLink,
+        }),
       });
       channelsSent.push("EMAIL");
     } catch (error) {

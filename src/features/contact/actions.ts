@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { type Result, ok, err } from "@/lib/result";
 import { rateLimit } from "@/lib/rate-limit";
 import { getEmailService } from "@/lib/email";
+import { renderEmailHtml } from "@/lib/email/template";
 import { contactMessageSchema, type ContactMessageInput } from "./schemas";
 
 export async function sendContactMessageAction(input: ContactMessageInput): Promise<Result<null>> {
@@ -22,7 +23,10 @@ export async function sendContactMessageAction(input: ContactMessageInput): Prom
     await getEmailService().send({
       to: inbox,
       subject: `Nova mensagem de contacto — ${parsed.data.name}`,
-      html: `<p><strong>De:</strong> ${parsed.data.name} (${parsed.data.email})</p><p>${parsed.data.message.replace(/\n/g, "<br />")}</p>`,
+      html: renderEmailHtml({
+        title: "Nova mensagem de contacto",
+        bodyHtml: `<p style="margin:0 0 8px;"><strong>De:</strong> ${parsed.data.name} (${parsed.data.email})</p><p style="margin:0;">${parsed.data.message.replace(/\n/g, "<br />")}</p>`,
+      }),
     });
   } catch {
     return err("contactPage.errors.unknown");
