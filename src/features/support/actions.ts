@@ -85,7 +85,7 @@ export async function replyToTicketAction(input: ReplyMessageInput): Promise<Res
   if (!result.ok) return err("auth.errors.unknown");
 
   if (session.user.role === "ADMIN") {
-    await notify(result.ticket.openedById.toString(), "TICKET_REPLY");
+    await notify(result.ticket.openedById.toString(), "TICKET_REPLY", { ticketId: parsed.data.ticketId });
   }
 
   return ok(null);
@@ -117,7 +117,7 @@ export async function resolveTicketAction(input: ResolveTicketInput): Promise<Re
   await auditLog(authResult.user.id, "RESOLVE_TICKET", "SupportTicket", parsed.data.ticketId, null, {
     resolution: parsed.data.resolution,
   });
-  await notify(ticket.openedById.toString(), "TICKET_RESOLVED");
+  await notify(ticket.openedById.toString(), "TICKET_RESOLVED", { ticketId: parsed.data.ticketId });
 
   return ok(null);
 }
@@ -137,7 +137,7 @@ export async function resolveReplacementTicketAction(
   await auditLog(authResult.user.id, "RESOLVE_REPLACEMENT_TICKET", "SupportTicket", parsed.data.ticketId, null, {
     newRequestId: result.newRequestId,
   });
-  await notify(result.openedById, "TICKET_RESOLVED");
+  await notify(result.openedById, "TICKET_RESOLVED", { ticketId: parsed.data.ticketId });
   await notifyAdmins("ADMIN_NEW_REQUEST", {});
 
   return ok({ newRequestId: result.newRequestId });

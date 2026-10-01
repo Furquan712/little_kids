@@ -153,6 +153,18 @@ const TEMPLATES: Record<NotificationType, (data: NotificationData) => Notificati
   }),
 };
 
+// Ticket pages live under a role-specific dashboard path (there is no
+// role-agnostic "/suporte" route) — the recipient's role is already known
+// here since notify() just loaded their User doc, so resolve the real link
+// rather than leaving the TICKET_* templates' placeholder "/suporte" above.
+const TICKET_NOTIFICATION_TYPES = new Set<NotificationType>(["TICKET_REPLY", "TICKET_RESOLVED"]);
+
+function dashboardPathForRole(role: string): string {
+  if (role === "NANNY") return "/baba";
+  if (role === "FAMILY") return "/familia";
+  return "/admin";
+}
+
 /**
  * Writes the in-app notification and best-effort dispatches email/SMS
  * through Brevo. Channel failures are swallowed (logged only) so a Brevo
@@ -165,7 +177,10 @@ export async function notify(userId: string, type: NotificationType, data: Notif
   if (!user) return;
 
   const content = TEMPLATES[type](data);
-  const link = (data.link as string) || content.link;
+  let link = (data.link as string) || content.link;
+  if (TICKET_NOTIFICATION_TYPES.has(type) && data.ticketId) {
+    link = `${dashboardPathForRole(user.role)}/suporte/${data.ticketId}`;
+  }
   const fullLink = `${process.env.APP_BASE_URL ?? ""}${link}`;
 
   const channelsSent: string[] = ["IN_APP"];
