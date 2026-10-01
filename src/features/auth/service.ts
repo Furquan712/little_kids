@@ -150,6 +150,29 @@ export async function verifyPhoneOtp(userId: string, code: string) {
   return { status: "OK" as const };
 }
 
+/**
+ * The phone-verification page only has the phone number and the code the
+ * user typed in (no session, same as email-link verification having no
+ * session) — look up the user by phone first, then delegate.
+ */
+export async function verifyPhoneOtpByPhone(phone: string, code: string) {
+  await connectToDatabase();
+
+  const user = await User.findOne({ phone: phone.trim() });
+  if (!user) return { status: "INVALID" as const };
+
+  return verifyPhoneOtp(user._id.toString(), code);
+}
+
+export async function resendPhoneOtp(phone: string) {
+  await connectToDatabase();
+
+  const user = await User.findOne({ phone: phone.trim() });
+  if (!user || !user.phone || user.phoneVerifiedAt) return;
+
+  await sendPhoneOtp(user._id.toString(), user.phone);
+}
+
 export async function requestPasswordReset(identifier: string) {
   await connectToDatabase();
 

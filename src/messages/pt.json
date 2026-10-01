@@ -176,7 +176,8 @@
       "loginLink": "Entrar",
       "selectProvince": "Selecione a província",
       "selectCity": "Selecione a cidade",
-      "success": "Registo efetuado. Verifique o seu email para confirmar a conta."
+      "success": "Registo efetuado. Verifique o seu email para confirmar a conta.",
+      "verifyPhoneLink": "Verificar o seu número de telefone"
     },
     "login": {
       "title": "Entrar",
@@ -209,6 +210,15 @@
       "success": "Email verificado com sucesso.",
       "invalidToken": "Este link é inválido.",
       "expired": "Este link expirou. Solicite um novo."
+    },
+    "verifyPhone": {
+      "title": "Verificação de telefone",
+      "subtitle": "Introduza o código de 6 dígitos que enviámos por SMS.",
+      "codeLabel": "Código de verificação",
+      "submit": "Verificar telefone",
+      "resend": "Reenviar código",
+      "resendSuccess": "Foi enviado um novo código.",
+      "success": "Telefone verificado com sucesso."
     },
     "errors": {
       "invalidCredentials": "Email/telefone ou palavra-passe incorretos.",

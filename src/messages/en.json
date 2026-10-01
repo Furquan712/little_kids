@@ -176,7 +176,8 @@
       "loginLink": "Log in",
       "selectProvince": "Select a province",
       "selectCity": "Select a city",
-      "success": "Registration complete. Check your email to confirm your account."
+      "success": "Registration complete. Check your email to confirm your account.",
+      "verifyPhoneLink": "Verify your phone number"
     },
     "login": {
       "title": "Log in",
@@ -209,6 +210,15 @@
       "success": "Email verified successfully.",
       "invalidToken": "This link is invalid.",
       "expired": "This link has expired. Please request a new one."
+    },
+    "verifyPhone": {
+      "title": "Phone verification",
+      "subtitle": "Enter the 6-digit code we sent you by SMS.",
+      "codeLabel": "Verification code",
+      "submit": "Verify phone",
+      "resend": "Resend code",
+      "resendSuccess": "A new code has been sent.",
+      "success": "Phone verified successfully."
     },
     "errors": {
       "invalidCredentials": "Incorrect email/phone or password.",

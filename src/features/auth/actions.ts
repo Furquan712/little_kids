@@ -19,6 +19,8 @@ import {
   resetPasswordSchema,
   accountSettingsSchema,
   changePasswordSchema,
+  verifyPhoneSchema,
+  resendPhoneOtpSchema,
   type RegisterNannyInput,
   type RegisterFamilyInput,
   type LoginInput,
@@ -26,11 +28,15 @@ import {
   type ResetPasswordInput,
   type AccountSettingsInput,
   type ChangePasswordInput,
+  type VerifyPhoneInput,
+  type ResendPhoneOtpInput,
 } from "./schemas";
 import {
   registerNanny,
   registerFamily,
   verifyEmailToken as verifyEmailTokenService,
+  verifyPhoneOtpByPhone,
+  resendPhoneOtp,
   requestPasswordReset,
   resetPassword as resetPasswordService,
 } from "./service";
@@ -130,6 +136,32 @@ export async function verifyEmailAction(token: string): Promise<Result<null>> {
   const result = await verifyEmailTokenService(token);
   if (result.status === "INVALID") return err("auth.errors.tokenInvalid");
   if (result.status === "EXPIRED") return err("auth.errors.tokenExpired");
+  return ok(null);
+}
+
+export async function verifyPhoneAction(input: VerifyPhoneInput): Promise<Result<null>> {
+  const parsed = verifyPhoneSchema.safeParse(input);
+  if (!parsed.success) return err("auth.errors.unknown");
+
+  const ip = await clientIp();
+  const rl = rateLimit(`phone-otp:${parsed.data.phone}:${ip}`, 8, 60_000);
+  if (!rl.allowed) return err("auth.errors.rateLimited");
+
+  const result = await verifyPhoneOtpByPhone(parsed.data.phone, parsed.data.code);
+  if (result.status === "INVALID") return err("auth.errors.tokenInvalid");
+  if (result.status === "EXPIRED") return err("auth.errors.tokenExpired");
+  return ok(null);
+}
+
+export async function resendPhoneOtpAction(input: ResendPhoneOtpInput): Promise<Result<null>> {
+  const parsed = resendPhoneOtpSchema.safeParse(input);
+  if (!parsed.success) return err("auth.errors.unknown");
+
+  const ip = await clientIp();
+  const rl = rateLimit(`resend-otp:${ip}`, 5, 60_000);
+  if (!rl.allowed) return err("auth.errors.rateLimited");
+
+  await resendPhoneOtp(parsed.data.phone);
   return ok(null);
 }
 

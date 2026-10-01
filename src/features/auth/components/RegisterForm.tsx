@@ -35,6 +35,7 @@ type FormValues = {
 export function RegisterForm({ role }: { role: RegisterRole }) {
   const t = useTranslations();
   const [submitted, setSubmitted] = useState(false);
+  const [submittedPhone, setSubmittedPhone] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
 
   const schema = role === "NANNY" ? registerNannySchema : registerFamilySchema;
@@ -75,6 +76,7 @@ export function RegisterForm({ role }: { role: RegisterRole }) {
       return;
     }
 
+    setSubmittedPhone(values.phone || null);
     setSubmitted(true);
   }
 
@@ -85,6 +87,14 @@ export function RegisterForm({ role }: { role: RegisterRole }) {
           <CheckCircle2 className="h-6 w-6" />
         </span>
         <p className="text-plat-ink">{t("auth.register.success")}</p>
+        {submittedPhone && (
+          <Link
+            href={`/verificar-telefone?phone=${encodeURIComponent(submittedPhone)}`}
+            className="font-semibold text-plat-primary-strong hover:underline"
+          >
+            {t("auth.register.verifyPhoneLink")}
+          </Link>
+        )}
       </div>
     );
   }
