@@ -26,6 +26,11 @@ export async function connectToDatabase() {
   if (!cache.promise) {
     cache.promise = mongoose.connect(MONGODB_URI!, {
       bufferCommands: false,
+      // Fail fast on a degraded connection rather than hanging for minutes
+      // on the driver's default retry/backoff window — a slow response is
+      // worse than a quick, retryable error.
+      serverSelectionTimeoutMS: 10_000,
+      socketTimeoutMS: 20_000,
     });
   }
 

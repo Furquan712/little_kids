@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/features/contact/components/ContactForm";
 import { Heart } from "lucide-react";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("contactPage");
+  return { title: t("title"), description: t("subtitle") };
+}
 
 export default async function ContactPage() {
   const t = await getTranslations("contactPage");

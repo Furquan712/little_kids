@@ -5,6 +5,7 @@ import { Payment } from "@/models/Payment";
 import { User } from "@/models/User";
 import { NannyProfile } from "@/models/NannyProfile";
 import { getStorageService } from "@/lib/storage";
+import { notify } from "@/lib/notify";
 import { monthKey, dueDateForPeriod, enumeratePeriods, lastNMonthKeys } from "@/lib/billing";
 import type { RecordPaymentInput } from "./schemas";
 import type {
@@ -68,6 +69,10 @@ function buildBillingLines(
 async function loadPlacementBillingInputs(placementId: string) {
   const placement = await Placement.findById(placementId);
   if (!placement) return null;
+  // DRAFT means no contract has been fully signed yet — there is no
+  // legitimate billing schedule until checkAndActivatePlacement() flips
+  // this to ACTIVE, even though the Contract docs already exist.
+  if (placement.status === "DRAFT") return null;
 
   const [familyContract, nannyContract, family, nanny, payments] = await Promise.all([
     Contract.findOne({ placementId, party: "FAMILY" }),
@@ -194,6 +199,18 @@ export async function recordPayment(input: RecordPaymentInput, recordedById: str
     paidAt: new Date(input.paidAt),
     recordedById,
   });
+
+  if (input.direction === "OUT_TO_NANNY") {
+    await notify(placement.nannyId.toString(), "NANNY_PAYMENT_COMPLETED", {
+      amount: input.amount,
+      periodMonth: input.periodMonth,
+    });
+  } else {
+    await notify(placement.familyId.toString(), "FAMILY_PAYMENT_RECEIPT", {
+      amount: input.amount,
+      periodMonth: input.periodMonth,
+    });
+  }
 
   return { ok: true as const, payment };
 }

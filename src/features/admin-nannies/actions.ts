@@ -2,6 +2,7 @@
 
 import { requireRole } from "@/lib/rbac";
 import { auditLog } from "@/lib/audit";
+import { notify } from "@/lib/notify";
 import { type Result, ok, err } from "@/lib/result";
 import { refineSalaryRange } from "@/features/nanny-profile/schemas";
 import {
@@ -29,6 +30,7 @@ export async function approveNannyAction(nannyUserId: string): Promise<Result<nu
   if (!result) return err("auth.errors.unknown");
 
   await auditLog(auth.user.id, "APPROVE_NANNY", "NannyProfile", nannyUserId, result.before, result.after);
+  await notify(nannyUserId, "NANNY_PROFILE_APPROVED");
   return ok(null);
 }
 
@@ -50,6 +52,7 @@ export async function requestCorrectionAction(input: CorrectionNoteInput): Promi
     result.before,
     result.after,
   );
+  await notify(parsed.data.nannyUserId, "NANNY_PROFILE_NEEDS_CORRECTION", { note: parsed.data.note });
   return ok(null);
 }
 

@@ -22,6 +22,7 @@ export default async function AdminFamilyDetailPage({
 
   const t = await getTranslations("admin.families");
   const tStatus = await getTranslations("familyDashboard.requestStatus");
+  const tCommon = await getTranslations("common");
 
   return (
     <div className="flex flex-col gap-6">
@@ -67,7 +68,7 @@ export default async function AdminFamilyDetailPage({
               <Badge>{tStatus(request.status as never)}</Badge>
             </Link>
           ))}
-          {detail.requests.length === 0 && <p className="text-plat-ink-muted">—</p>}
+          {detail.requests.length === 0 && <p className="text-plat-ink-muted">{tCommon("noResults")}</p>}
         </CardContent>
       </Card>
     </div>

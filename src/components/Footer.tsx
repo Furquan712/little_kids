@@ -17,9 +17,11 @@ const SOCIALS = [
 export default function Footer() {
   const t = useTranslations("home.footer");
   const tNav = useTranslations("nav");
+  const tLegal = useTranslations("legal");
 
   const EXPLORE_LINKS = [
     { label: tNav("home"), href: "/#top" },
+    { label: tNav("about"), href: "/sobre" },
     { label: tNav("howItWorks"), href: "/como-funciona" },
     { label: tNav("contact"), href: "/contacto" },
   ];
@@ -59,7 +61,7 @@ export default function Footer() {
 
             <Link
               href="/registrar/familia"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-6 py-3 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-rose px-6 py-3 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
             >
               {t("cta")} <ArrowUpRight className="h-4 w-4" />
             </Link>
@@ -78,7 +80,7 @@ export default function Footer() {
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-sm transition-transform hover:-translate-y-1 hover:text-rose"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-sm transition-transform hover:-translate-y-1 hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
                   >
                     <Icon className="h-5 w-5" />
                   </a>
@@ -94,7 +96,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm text-ink transition-colors hover:text-rose"
+                  className="rounded font-body text-sm text-ink transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
                 >
                   {link.label}
                 </Link>
@@ -109,7 +111,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm text-ink transition-colors hover:text-rose"
+                  className="rounded font-body text-sm text-ink transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
                 >
                   {link.label}
                 </Link>
@@ -122,9 +124,25 @@ export default function Footer() {
       <Rainbow className="pointer-events-none absolute -bottom-2 right-6 hidden h-16 w-28 opacity-70 sm:right-10 lg:block" />
 
       <div className="border-t border-ink/10 py-6">
-        <p className="text-center font-body text-xs text-body">
-          © {new Date().getFullYear()} {BRAND_NAME}. {t("rights")}
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-5 sm:flex-row sm:justify-between sm:px-8">
+          <p className="font-body text-xs text-body">
+            © {new Date().getFullYear()} {BRAND_NAME}. {t("rights")}
+          </p>
+          <div className="flex gap-4 font-body text-xs text-body">
+            <Link
+              href="/termos"
+              className="transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
+            >
+              {tLegal("terms.title")}
+            </Link>
+            <Link
+              href="/privacidade"
+              className="transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
+            >
+              {tLegal("privacy.title")}
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

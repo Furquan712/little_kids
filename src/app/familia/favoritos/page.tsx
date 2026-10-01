@@ -9,6 +9,7 @@ export default async function FavoritesPage() {
 
   const favorites = await listFavoriteCards(auth.user.id);
   const t = await getTranslations("familySearch.favorite");
+  const tCommon = await getTranslations("common");
 
   return (
     <div className="flex flex-col gap-6">
@@ -18,7 +19,7 @@ export default async function FavoritesPage() {
           <NannyCard key={nanny.id} nanny={nanny} />
         ))}
       </div>
-      {favorites.length === 0 && <p className="text-plat-ink-muted">—</p>}
+      {favorites.length === 0 && <p className="text-plat-ink-muted">{tCommon("noResults")}</p>}
     </div>
   );
 }

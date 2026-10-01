@@ -82,6 +82,7 @@ export async function getNannyDetail(nannyUserId: string) {
       bio: profile.bio ?? "",
       status: profile.status,
       verified: profile.verified,
+      interviewed: profile.interviewed ?? false,
       correctionNotes: (profile.correctionNotes ?? []).map((n: { field: string; note: string; createdAt?: Date }) => ({
         field: n.field,
         note: n.note,

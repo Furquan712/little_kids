@@ -1,6 +1,7 @@
 "use server";
 
 import { requireRole } from "@/lib/rbac";
+import { notifyAdmins } from "@/lib/notify";
 import { type Result, ok, err } from "@/lib/result";
 import {
   personalStepSchema,
@@ -107,5 +108,6 @@ export async function submitForReviewAction(): Promise<Result<null>> {
   if (!result.ok) {
     return err(result.error === "INCOMPLETE_PROFILE" ? "nannyProfile.review.incompleteNotice" : "nannyProfile.review.lockedNotice");
   }
+  await notifyAdmins("ADMIN_NANNY_SUBMITTED", { nannyName: auth.user.fullName });
   return ok(null);
 }

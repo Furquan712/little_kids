@@ -105,16 +105,16 @@ export function RecordPaymentForm({ placementId }: { placementId: string }) {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label>{t("payments.record.periodMonth")}</Label>
-            <Input type="month" {...register("periodMonth")} />
+            <Label htmlFor="periodMonth">{t("payments.record.periodMonth")}</Label>
+            <Input id="periodMonth" type="month" {...register("periodMonth")} />
             {errors.periodMonth && (
               <p className="text-sm text-plat-danger">{t(fieldErrorKey(errors.periodMonth.message))}</p>
             )}
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label>{t("payments.record.amount")}</Label>
-            <Input type="number" min={1} {...register("amount", { valueAsNumber: true })} />
+            <Label htmlFor="amount">{t("payments.record.amount")}</Label>
+            <Input id="amount" type="number" min={1} {...register("amount", { valueAsNumber: true })} />
           </div>
 
           <div className="flex flex-col gap-1.5">
@@ -134,13 +134,13 @@ export function RecordPaymentForm({ placementId }: { placementId: string }) {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label>{t("payments.record.reference")}</Label>
-            <Input {...register("reference")} />
+            <Label htmlFor="reference">{t("payments.record.reference")}</Label>
+            <Input id="reference" {...register("reference")} />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label>{t("payments.record.paidAt")}</Label>
-            <Input type="date" {...register("paidAt")} />
+            <Label htmlFor="paidAt">{t("payments.record.paidAt")}</Label>
+            <Input id="paidAt" type="date" {...register("paidAt")} />
             {errors.paidAt && <p className="text-sm text-plat-danger">{t(fieldErrorKey(errors.paidAt.message))}</p>}
           </div>
 

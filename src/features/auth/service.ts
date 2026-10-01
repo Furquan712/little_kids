@@ -7,6 +7,8 @@ import { VerificationToken } from "@/models/VerificationToken";
 import { generateUrlToken, generateOtpCode, hashToken } from "@/lib/tokens";
 import { getEmailService } from "@/lib/email";
 import { getSmsProvider } from "@/lib/sms";
+import { renderEmailHtml } from "@/lib/email/template";
+import { notify } from "@/lib/notify";
 import { BRAND_NAME } from "@/lib/brand";
 import type { RegisterNannyInput, RegisterFamilyInput } from "./schemas";
 
@@ -38,7 +40,12 @@ export async function sendEmailVerification(userId: string, email: string, fullN
     to: email,
     toName: fullName,
     subject: `Confirme o seu email — ${BRAND_NAME}`,
-    html: `<p>Olá ${fullName},</p><p>Confirme o seu email clicando no link abaixo:</p><p><a href="${link}">${link}</a></p>`,
+    html: renderEmailHtml({
+      title: "Confirme o seu email",
+      bodyHtml: `<p style="margin:0;">Olá ${fullName}, confirme o seu email clicando no botão abaixo.</p>`,
+      ctaLabel: "Confirmar email",
+      ctaUrl: link,
+    }),
   });
 }
 
@@ -105,6 +112,8 @@ export async function registerFamily(input: RegisterFamilyInput) {
     await sendPhoneOtp(user._id.toString(), user.phone);
   }
 
+  await notify(user._id.toString(), "FAMILY_REGISTRATION_CONFIRMED");
+
   return user;
 }
 
@@ -147,6 +156,29 @@ export async function verifyPhoneOtp(userId: string, code: string) {
   return { status: "OK" as const };
 }
 
+/**
+ * The phone-verification page only has the phone number and the code the
+ * user typed in (no session, same as email-link verification having no
+ * session) — look up the user by phone first, then delegate.
+ */
+export async function verifyPhoneOtpByPhone(phone: string, code: string) {
+  await connectToDatabase();
+
+  const user = await User.findOne({ phone: phone.trim() });
+  if (!user) return { status: "INVALID" as const };
+
+  return verifyPhoneOtp(user._id.toString(), code);
+}
+
+export async function resendPhoneOtp(phone: string) {
+  await connectToDatabase();
+
+  const user = await User.findOne({ phone: phone.trim() });
+  if (!user || !user.phone || user.phoneVerifiedAt) return;
+
+  await sendPhoneOtp(user._id.toString(), user.phone);
+}
+
 export async function requestPasswordReset(identifier: string) {
   await connectToDatabase();
 
@@ -165,7 +197,12 @@ export async function requestPasswordReset(identifier: string) {
       to: user.email,
       toName: user.fullName,
       subject: `Redefinir palavra-passe — ${BRAND_NAME}`,
-      html: `<p>Olá ${user.fullName},</p><p>Clique no link para redefinir a sua palavra-passe:</p><p><a href="${link}">${link}</a></p><p>Este link expira em 1 hora.</p>`,
+      html: renderEmailHtml({
+        title: "Redefinir palavra-passe",
+        bodyHtml: `<p style="margin:0;">Olá ${user.fullName}, clique no botão abaixo para redefinir a sua palavra-passe. Este link expira em 1 hora.</p>`,
+        ctaLabel: "Redefinir palavra-passe",
+        ctaUrl: link,
+      }),
     });
   } else if (user.phone) {
     await getSmsProvider().send({

@@ -16,6 +16,7 @@
     "no": "No",
     "close": "Close",
     "genericError": "Something went wrong. Please try again.",
+    "retry": "Try again",
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "collapseSidebar": "Collapse menu",
@@ -36,6 +37,7 @@
     "howItWorks": "How it works",
     "testimonials": "Testimonials",
     "contact": "Contact",
+    "about": "About us",
     "language": "Language"
   },
   "meta": {
@@ -174,7 +176,8 @@
       "loginLink": "Log in",
       "selectProvince": "Select a province",
       "selectCity": "Select a city",
-      "success": "Registration complete. Check your email to confirm your account."
+      "success": "Registration complete. Check your email to confirm your account.",
+      "verifyPhoneLink": "Verify your phone number"
     },
     "login": {
       "title": "Log in",
@@ -207,6 +210,15 @@
       "success": "Email verified successfully.",
       "invalidToken": "This link is invalid.",
       "expired": "This link has expired. Please request a new one."
+    },
+    "verifyPhone": {
+      "title": "Phone verification",
+      "subtitle": "Enter the 6-digit code we sent you by SMS.",
+      "codeLabel": "Verification code",
+      "submit": "Verify phone",
+      "resend": "Resend code",
+      "resendSuccess": "A new code has been sent.",
+      "success": "Phone verified successfully."
     },
     "errors": {
       "invalidCredentials": "Incorrect email/phone or password.",
@@ -414,6 +426,7 @@
       "requirementsTitle": "Requirements",
       "childrenAges": "Children's ages",
       "needs": "Needs",
+      "scheduleLabel": "Days and hours needed",
       "liveIn": "Arrangement",
       "startDate": "Start date",
       "budget": "Budget",
@@ -461,6 +474,7 @@
     "title": "Interview invitations",
     "childrenAges": "Children's ages",
     "needs": "Needs",
+    "scheduleLabel": "Days and hours needed",
     "liveIn": "Arrangement",
     "startDate": "Start date",
     "budget": "Budget",
@@ -525,6 +539,7 @@
       "generalTitle": "Request a nanny",
       "childrenAges": "Children's ages",
       "needs": "Needs",
+      "scheduleLabel": "Days and hours needed",
       "liveIn": "Arrangement",
       "startDate": "Start date",
       "budgetMin": "Minimum budget (AOA)",
@@ -798,6 +813,37 @@
       "baba": "I'm a Nanny"
     }
   },
+  "aboutPage": {
+    "title": "About us",
+    "subtitle": "We connect Angolan families with trusted nannies, and handle everything along the way.",
+    "missionHeading": "Our mission",
+    "missionBody": "Primeiros Encantos started from a simple idea: finding a nanny you can trust shouldn't be complicated or risky. We verify backgrounds, interview every candidate, and handle the contracts and payments — so your family has peace of mind from day one.",
+    "valuesHeading": "What guides us",
+    "values": {
+      "trust": {
+        "title": "Trust first",
+        "desc": "Every nanny on the platform is interviewed by our team, with backgrounds and references verified before any contact with your family."
+      },
+      "care": {
+        "title": "Care that feels like family",
+        "desc": "We help you find not just any nanny, but the right fit for your family's routine and values."
+      },
+      "allInOne": {
+        "title": "Everything in one place",
+        "desc": "From the interview to the contract and the monthly payment, we handle every step inside the platform — no surprises."
+      },
+      "local": {
+        "title": "Made for Angola",
+        "desc": "We know all 18 provinces and work in kwanza, with a team that understands what Angolan families need."
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join as a family looking for trusted care, or as a nanny ready to work.",
+      "familia": "I'm a Family",
+      "baba": "I'm a Nanny"
+    }
+  },
   "apiAnalysis": {
     "title": "API Analysis",
     "subtitle": "Live usage and quota for the external services this platform depends on.",
@@ -838,6 +884,268 @@
       "images": "Images (photos & signatures)",
       "documents": "Documents (IDs, certificates, contracts, receipts)",
       "rateLimit": "Admin API rate limit"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "You have no notifications yet.",
+    "markAllRead": "Mark all as read",
+    "unreadBadge": "unread"
+  },
+  "support": {
+    "title": "Support",
+    "newTicket": "New ticket",
+    "empty": "You have no support tickets yet.",
+    "types": {
+      "ISSUE": "Issue",
+      "COMPLAINT": "Complaint",
+      "REPLACEMENT": "Replacement request"
+    },
+    "statuses": {
+      "OPEN": "Open",
+      "IN_PROGRESS": "In progress",
+      "RESOLVED": "Resolved"
+    },
+    "form": {
+      "typeLabel": "Type",
+      "placementLabel": "Related placement (optional)",
+      "placementNone": "Not related to a placement",
+      "messageLabel": "Message",
+      "submit": "Open ticket"
+    },
+    "thread": {
+      "replyPlaceholder": "Write a reply…",
+      "send": "Send",
+      "resolutionLabel": "Resolution note",
+      "resolve": "Resolve",
+      "resolveAsReplacement": "Resolve & request a replacement nanny",
+      "assign": "Assign to me",
+      "assignedTo": "Assigned to",
+      "unassigned": "Unassigned",
+      "statusLabel": "Status"
+    },
+    "admin": {
+      "queueTitle": "Support tickets",
+      "filterStatus": "Status",
+      "filterType": "Type",
+      "allStatuses": "All statuses",
+      "allTypes": "All types",
+      "openedBy": "Opened by",
+      "noTickets": "No tickets match these filters."
+    },
+    "replacement": {
+      "success": "The placement was marked as replaced and a new request was created with the family's original requirements."
+    }
+  },
+  "legal": {
+    "backHome": "Back to home",
+    "terms": {
+      "title": "Terms & Conditions",
+      "lastUpdated": "Last updated: September 2026",
+      "intro": [
+        "Welcome to First Moments Childcare Angola.",
+        "These Terms & Conditions explain the terms that apply when you visit our website, request our services, or make a booking with us.",
+        "By using our website or booking our services, you agree to these Terms & Conditions."
+      ],
+      "sections": [
+        {
+          "heading": "1. About First Moments",
+          "blocks": [
+            { "type": "p", "text": "First Moments Childcare Angola is a professional childcare service connecting families with carefully selected childcare professionals." },
+            { "type": "p", "text": "Our services may include:" },
+            { "type": "ul", "items": ["Babysitting", "Regular childcare", "Nanny services", "Newborn and infant care", "Evening and overnight childcare", "Event childcare", "Holiday childcare", "Homework and activity support", "Other childcare services agreed with the family"] },
+            { "type": "p", "text": "Services and availability may vary depending on location and caregiver availability." }
+          ]
+        },
+        {
+          "heading": "2. Booking Our Services",
+          "blocks": [
+            { "type": "p", "text": "A service request submitted through our website does not automatically constitute a confirmed booking." },
+            { "type": "p", "text": "A booking is confirmed once:" },
+            { "type": "ul", "items": ["We have received the information required to arrange the service", "A suitable caregiver has been identified and accepted", "The booking details have been confirmed", "Any required payment or deposit has been received"] },
+            { "type": "p", "text": "We reserve the right to decline a booking if we cannot provide a suitable caregiver or if the requested service falls outside our scope." }
+          ]
+        },
+        {
+          "heading": "3. Information Provided by Parents",
+          "blocks": [
+            { "type": "p", "text": "Parents or legal guardians are responsible for providing accurate and complete information about the child." },
+            { "type": "p", "text": "This may include information regarding:" },
+            { "type": "ul", "items": ["Age and date of birth", "Allergies", "Dietary requirements", "Medical conditions", "Medication", "Daily routines", "Sleeping arrangements", "Behavioral or developmental considerations", "Emergency contacts", "Authorized persons"] },
+            { "type": "p", "text": "Please inform us immediately if any important information changes." },
+            { "type": "p", "text": "Providing incomplete or inaccurate information may affect our ability to provide safe and appropriate care." }
+          ]
+        },
+        {
+          "heading": "4. Our Caregivers",
+          "blocks": [
+            { "type": "p", "text": "We aim to select caregivers based on experience, suitability, availability and the requirements of each position." },
+            { "type": "p", "text": "Our screening process may include:" },
+            { "type": "ul", "items": ["Identity verification", "Interviews", "Reference checks", "Experience verification", "Skills assessments", "First-aid training", "Child-safeguarding training"] },
+            { "type": "p", "text": "The specific screening requirements may vary depending on the position." },
+            { "type": "p", "text": "While we take reasonable steps to select suitable caregivers, screening cannot guarantee that an incident will never occur." }
+          ]
+        },
+        {
+          "heading": "5. Child Safety",
+          "blocks": [
+            { "type": "p", "text": "The safety and wellbeing of children is central to our service." },
+            { "type": "p", "text": "First Moments has a zero-tolerance approach to:" },
+            { "type": "ul", "items": ["Abuse", "Violence", "Neglect", "Exploitation", "Harassment", "Inappropriate conduct toward children"] },
+            { "type": "p", "text": "Any serious safeguarding concern will be taken seriously and may be reported to the appropriate authorities where required or appropriate." }
+          ]
+        },
+        {
+          "heading": "6. Responsibilities of Parents and Guardians",
+          "blocks": [
+            { "type": "p", "text": "Parents and guardians agree to:" },
+            { "type": "ul", "items": ["Provide accurate information about their child", "Inform us of relevant health and safety concerns", "Provide necessary food, clothing, medication and child-related items", "Provide a safe environment for the caregiver", "Provide emergency contact information", "Treat caregivers with dignity and respect", "Pay agreed fees within the specified timeframe", "Follow our booking and cancellation procedures"] }
+          ]
+        },
+        {
+          "heading": "7. Fees and Payments",
+          "blocks": [
+            { "type": "p", "text": "All applicable fees will be communicated to the Client before a booking is confirmed." },
+            { "type": "p", "text": "The price may depend on factors such as:" },
+            { "type": "ul", "items": ["Duration", "Number of children", "Time of day", "Type of service", "Location", "Special requirements", "Overnight or emergency services"] },
+            { "type": "p", "text": "Additional hours or special requests may incur additional fees." }
+          ]
+        },
+        {
+          "heading": "8. Cancellation and Rescheduling",
+          "blocks": [
+            { "type": "p", "text": "Our cancellation and rescheduling conditions will be communicated during the booking process." },
+            { "type": "p", "text": "Cancellation fees may apply depending on how close to the scheduled service the cancellation is made." },
+            { "type": "p", "text": "We may consider genuine emergencies on a case-by-case basis." }
+          ]
+        },
+        {
+          "heading": "9. Caregiver Replacement",
+          "blocks": [
+            { "type": "p", "text": "If a caregiver becomes unavailable, we will make reasonable efforts to provide a suitable replacement." },
+            { "type": "p", "text": "However, we cannot guarantee that a replacement will always be available, particularly for last-minute bookings." },
+            { "type": "p", "text": "If we are unable to provide an appropriate replacement, the Client may be offered a refund or service credit in accordance with our booking policy." }
+          ]
+        },
+        {
+          "heading": "10. Additional Hours",
+          "blocks": [
+            { "type": "p", "text": "Caregivers are scheduled according to the agreed booking time." },
+            { "type": "p", "text": "If additional childcare is required, the Client must request the additional time through First Moments whenever possible." },
+            { "type": "p", "text": "Additional hours may be subject to availability and additional charges." }
+          ]
+        },
+        {
+          "heading": "11. Transportation",
+          "blocks": [
+            { "type": "p", "text": "Transportation is not included in standard childcare services unless specifically agreed in advance." },
+            { "type": "p", "text": "A caregiver will not transport a child without the necessary authorization and an approved arrangement." }
+          ]
+        },
+        {
+          "heading": "12. Medical Emergencies",
+          "blocks": [
+            { "type": "p", "text": "Our caregivers are not medical professionals unless specifically engaged and qualified for a medical role." },
+            { "type": "p", "text": "In the event of an emergency, a caregiver may contact emergency services and the child's designated emergency contact." },
+            { "type": "p", "text": "Parents should provide relevant emergency and medical information before the service begins." }
+          ]
+        },
+        {
+          "heading": "13. Photography and Social Media",
+          "blocks": [
+            { "type": "p", "text": "We respect the privacy of children and families." },
+            { "type": "p", "text": "We will not use photographs or videos of a child for our marketing, advertising or social media without appropriate parental or legal-guardian consent." }
+          ]
+        },
+        {
+          "heading": "14. Confidentiality",
+          "blocks": [
+            { "type": "p", "text": "Information shared with First Moments in connection with childcare services is treated as confidential." },
+            { "type": "p", "text": "This may include:" },
+            { "type": "ul", "items": ["Family information", "Home addresses", "Contact details", "Medical information", "Children's information", "Security information", "Photographs", "Private family matters"] },
+            { "type": "p", "text": "Information will only be disclosed where appropriate, authorized, legally required, or necessary to protect someone's safety." }
+          ]
+        },
+        {
+          "heading": "15. Direct Hiring of Caregivers",
+          "blocks": [
+            { "type": "p", "text": "Caregivers introduced to families through First Moments are part of our professional network." },
+            { "type": "p", "text": "If a family wishes to permanently employ or directly contract a caregiver introduced through First Moments, the family must contact us regarding our applicable placement process and fees." }
+          ]
+        },
+        {
+          "heading": "16. Complaints and Concerns",
+          "blocks": [
+            { "type": "p", "text": "We encourage families to contact us as soon as possible if they have a concern about our service or a caregiver." },
+            { "type": "p", "text": "We may investigate concerns and take appropriate action, which may include:" },
+            { "type": "ul", "items": ["Caregiver reassignment", "Additional training", "Increased supervision", "Suspension", "Replacement", "Termination of a caregiver's engagement"] }
+          ]
+        },
+        {
+          "heading": "17. Website Use",
+          "blocks": [
+            { "type": "p", "text": "You agree to use our website lawfully and responsibly." },
+            { "type": "p", "text": "You must not:" },
+            { "type": "ul", "items": ["Submit false or misleading information", "Attempt to interfere with website security", "Use the website for fraudulent purposes", "Copy our content without permission", "Misuse our brand, logo or materials"] }
+          ]
+        },
+        {
+          "heading": "18. Intellectual Property",
+          "blocks": [
+            { "type": "p", "text": "The First Moments name, logo, website design, written content, photographs, graphics and other original materials are protected by applicable intellectual-property laws." },
+            { "type": "p", "text": "They may not be copied, reproduced or commercially used without our prior written permission." }
+          ]
+        },
+        {
+          "heading": "19. Changes to These Terms",
+          "blocks": [
+            { "type": "p", "text": "We may update these Terms & Conditions from time to time." },
+            { "type": "p", "text": "When we make changes, we will update the \"Last updated\" date at the top of this page." }
+          ]
+        },
+        {
+          "heading": "20. Applicable Law",
+          "blocks": [
+            { "type": "p", "text": "These Terms & Conditions are intended to operate in accordance with the applicable laws of the Republic of Angola." },
+            { "type": "p", "text": "Where a dispute cannot be resolved directly between the parties, it may be referred to the appropriate competent authority or court." }
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: September 2026",
+      "placeholderNotice": "This is placeholder text pending review by a licensed lawyer in Angola, including compliance with Angola's data protection law (Lei n.º 22/11). Do not treat it as final legal language.",
+      "sections": [
+        {
+          "heading": "1. Information we collect",
+          "body": "We collect the information you provide at registration (name, contact details, city/province), nanny profile details (experience, availability, salary expectations), and documents nannies upload for verification (ID, references, certificates, and — with explicit consent — medical records)."
+        },
+        {
+          "heading": "2. How we use it",
+          "body": "We use this information to run matching, schedule interviews, generate contracts, record payments and send you notifications about your account and placements."
+        },
+        {
+          "heading": "3. Who can see what",
+          "body": "ID documents and medical records are visible to our admin team only — never to families. Certificates and references may be shown to families as a “Verified” badge without the underlying files. Nanny contact details (email, phone, WhatsApp) are never shared with families; all communication is routed through the platform."
+        },
+        {
+          "heading": "4. Third-party services",
+          "body": "We use Brevo to send transactional emails and SMS, and Cloudinary to store uploaded documents and photos. These providers process data on our behalf and do not use it for their own purposes."
+        },
+        {
+          "heading": "5. Data retention",
+          "body": "We retain account and placement data for as long as your account is active, and as required to meet legal and accounting obligations afterwards."
+        },
+        {
+          "heading": "6. Your rights",
+          "body": "You may request a copy of your data, ask us to correct it, or request account deletion by contacting us through the Contact page."
+        },
+        {
+          "heading": "7. Contact",
+          "body": "Questions about this policy can be sent through our Contact page."
+        }
+      ]
     }
   }
 }

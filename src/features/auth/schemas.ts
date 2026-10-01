@@ -57,6 +57,22 @@ export const forgotPasswordSchema = z.object({
 
 export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
 
+export const verifyPhoneSchema = z.object({
+  phone: z.string().trim().min(1, "REQUIRED"),
+  code: z
+    .string()
+    .trim()
+    .regex(/^\d{6}$/, "REQUIRED"),
+});
+
+export type VerifyPhoneInput = z.infer<typeof verifyPhoneSchema>;
+
+export const resendPhoneOtpSchema = z.object({
+  phone: z.string().trim().min(1, "REQUIRED"),
+});
+
+export type ResendPhoneOtpInput = z.infer<typeof resendPhoneOtpSchema>;
+
 export const resetPasswordSchema = z
   .object({
     token: z.string().min(1),

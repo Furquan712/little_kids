@@ -9,8 +9,13 @@ const placementSchema = new Schema(
     endDate: { type: Date },
     status: {
       type: String,
-      enum: ["ACTIVE", "ENDED", "TERMINATED", "REPLACED"],
-      default: "ACTIVE",
+      enum: ["DRAFT", "ACTIVE", "ENDED", "TERMINATED", "REPLACED"],
+      // A placement is created the moment an admin builds a contract, before
+      // either party has signed anything — defaulting to ACTIVE here would
+      // let billing/overdue logic treat an unsigned contract as a live
+      // obligation. checkAndActivatePlacement() flips this to ACTIVE once
+      // both contracts are actually SIGNED.
+      default: "DRAFT",
     },
   },
   { timestamps: true },

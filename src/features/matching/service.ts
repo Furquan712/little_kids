@@ -96,6 +96,11 @@ export async function getRequestDetail(requestId: string): Promise<RequestDetail
     },
     childrenAges: request.childrenAges ?? [],
     needs: request.needs ?? "",
+    schedule: (request.schedule ?? []).map((s: { day: string; from: string; to: string }) => ({
+      day: s.day,
+      from: s.from,
+      to: s.to,
+    })),
     liveIn: request.liveIn ?? null,
     startDate: request.startDate ? request.startDate.toISOString() : null,
     budgetMin: request.budgetMin ?? null,
@@ -217,6 +222,11 @@ export async function listInvitationsForNanny(nannyUserId: string): Promise<Nann
       contactStatus: candidate.contactStatus,
       childrenAges: request?.childrenAges ?? [],
       needs: request?.needs ?? "",
+      schedule: (request?.schedule ?? []).map((s: { day: string; from: string; to: string }) => ({
+        day: s.day,
+        from: s.from,
+        to: s.to,
+      })),
       liveIn: request?.liveIn ?? null,
       startDate: request?.startDate ? request.startDate.toISOString() : null,
       budgetMin: request?.budgetMin ?? null,
@@ -248,6 +258,7 @@ export async function scheduleInterview(candidateId: string, scheduledAt: string
   await connectToDatabase();
 
   let interview = await Interview.findOne({ candidateId });
+  const wasRescheduled = Boolean(interview);
   if (interview) {
     interview.scheduledAt = new Date(scheduledAt);
     interview.mode = mode as never;
@@ -271,7 +282,7 @@ export async function scheduleInterview(candidateId: string, scheduledAt: string
     }
   }
 
-  return interview;
+  return { interview, wasRescheduled, nannyId: candidate?.nannyId?.toString() ?? null };
 }
 
 export async function recordInterviewOutcome(
@@ -292,11 +303,14 @@ export async function recordInterviewOutcome(
   await interview.save();
 
   const candidate = await RequestCandidate.findById(interview.candidateId);
+  let familyId: string | null = null;
   if (candidate) {
     await NannyProfile.findOneAndUpdate({ userId: candidate.nannyId }, { interviewed: true });
+    const request = await NannyRequest.findById(candidate.requestId);
+    familyId = request?.familyId?.toString() ?? null;
   }
 
-  return interview;
+  return { interview, familyId };
 }
 
 export async function recommendToFamily(
@@ -321,7 +335,8 @@ export async function recommendToFamily(
     }
   }
 
-  await NannyRequest.findByIdAndUpdate(requestId, { status: "PROPOSED" });
+  const request = await NannyRequest.findByIdAndUpdate(requestId, { status: "PROPOSED" });
+  return { familyId: request?.familyId?.toString() ?? null };
 }
 
 export async function getFamilyRequestDetail(

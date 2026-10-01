@@ -49,7 +49,10 @@ export default function SiteHeader() {
       </div>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         {/* Logo */}
-        <Link href="/#top" className="group flex flex-col">
+        <Link
+          href="/#top"
+          className="group flex flex-col rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
+        >
           <span className="relative flex items-center gap-2 font-heading text-xl font-semibold leading-none text-ink sm:text-2xl">
             <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-rose/20 sm:h-11 sm:w-11">
               <Image src="/images/logo.png" alt={BRAND_NAME} fill sizes="44px" className="object-cover" priority />
@@ -65,7 +68,7 @@ export default function SiteHeader() {
         <nav className="hidden items-center gap-7 font-body text-[15px] text-ink xl:flex">
           {NAV_LINKS.map((link) => {
             const isRoute = !link.href.includes("#");
-            const className = `relative pb-1 transition-colors hover:text-rose ${
+            const className = `relative rounded pb-1 transition-colors hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose ${
               active === link.key ? "text-rose" : ""
             }`;
             const content = (
@@ -91,19 +94,19 @@ export default function SiteHeader() {
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
           <Link
             href="/login"
-            className="font-body text-sm font-medium text-ink hover:text-rose"
+            className="rounded font-body text-sm font-medium text-ink hover:text-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
           >
             {t("nav.login")}
           </Link>
           <Link
             href="/registrar/baba"
-            className="inline-flex shrink-0 items-center rounded-full border border-rose px-4 py-2 font-body text-sm font-semibold text-rose transition-all hover:bg-rose hover:text-white"
+            className="inline-flex shrink-0 items-center rounded-full border border-rose px-4 py-2 font-body text-sm font-semibold text-rose transition-all hover:bg-rose hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
           >
             {t("nav.souBaba")}
           </Link>
           <Link
             href="/registrar/familia"
-            className="inline-flex shrink-0 items-center rounded-full bg-rose px-4 py-2 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg hover:shadow-rose/40"
+            className="inline-flex shrink-0 items-center rounded-full bg-rose px-4 py-2 font-body text-sm font-semibold text-white shadow-md shadow-rose/30 transition-all hover:-translate-y-0.5 hover:bg-rose-dark hover:shadow-lg hover:shadow-rose/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
           >
             {t("nav.souFamilia")}
           </Link>
@@ -114,7 +117,7 @@ export default function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -131,7 +134,7 @@ export default function SiteHeader() {
         <nav className="flex flex-col gap-1 px-5 pb-5 font-body text-ink">
           {NAV_LINKS.map((link) => {
             const isRoute = !link.href.includes("#");
-            const className = `rounded-xl px-3 py-2.5 transition-colors ${
+            const className = `rounded-xl px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose ${
               active === link.key ? "bg-blush-soft text-rose" : "hover:bg-blush-soft"
             }`;
             const handleClick = () => {
@@ -152,21 +155,21 @@ export default function SiteHeader() {
             <Link
               href="/login"
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft"
+              className="rounded-xl px-3 py-2.5 transition-colors hover:bg-blush-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose"
             >
               {t("nav.login")}
             </Link>
             <Link
               href="/registrar/baba"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full border border-rose px-3 py-2.5 text-center font-semibold text-rose transition-colors hover:bg-rose hover:text-white"
+              className="mt-2 rounded-full border border-rose px-3 py-2.5 text-center font-semibold text-rose transition-colors hover:bg-rose hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
             >
               {t("nav.souBaba")}
             </Link>
             <Link
               href="/registrar/familia"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-rose px-3 py-2.5 text-center font-semibold text-white transition-colors hover:bg-rose-dark"
+              className="rounded-full bg-rose px-3 py-2.5 text-center font-semibold text-white transition-colors hover:bg-rose-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
             >
               {t("nav.souFamilia")}
             </Link>

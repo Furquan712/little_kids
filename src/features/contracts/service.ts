@@ -6,33 +6,11 @@ import { Signature } from "@/models/Signature";
 import { User } from "@/models/User";
 import { NannyProfile } from "@/models/NannyProfile";
 import { getStorageService } from "@/lib/storage";
-import { getEmailService } from "@/lib/email";
 import { renderContractPdf } from "@/lib/pdf/contractTemplate";
 import { hashToken } from "@/lib/tokens";
-import { BRAND_NAME } from "@/lib/brand";
+import { notify } from "@/lib/notify";
 import type { CreateContractInput } from "./schemas";
 import type { ContractSummary, PlacementContracts, AdminContractListItem, ContractTerms } from "./types";
-
-/**
- * Best-effort email notification for a contract event. Phase 7 formalizes
- * this into a unified notify() service (in-app + email/SMS); until then,
- * these direct sends cover the "notification to the party" requirement
- * for the events the PRD explicitly attributes to Phase 5.
- */
-async function notifyParty(userId: unknown, party: "FAMILY" | "NANNY", subject: string, message: string) {
-  const user = await User.findById(userId as string);
-  if (!user?.email) return;
-
-  const viewPath = party === "FAMILY" ? "/familia/contratos" : "/baba/contratos";
-  const link = `${process.env.APP_BASE_URL}${viewPath}`;
-
-  await getEmailService().send({
-    to: user.email,
-    toName: user.fullName,
-    subject,
-    html: `<p>Olá ${user.fullName},</p><p>${message}</p><p><a href="${link}">${link}</a></p>`,
-  });
-}
 
 function computeFinancials(nannySalary: number, commissionType: "PERCENTAGE" | "FIXED", commissionValue: number) {
   const commissionAmount =
@@ -229,11 +207,10 @@ export async function sendContract(contractId: string) {
   const placement = await Placement.findById(contract.placementId);
   if (placement) {
     const partyUserId = contract.party === "FAMILY" ? placement.familyId : placement.nannyId;
-    await notifyParty(
-      partyUserId,
-      contract.party,
-      `O seu contrato está pronto para revisão — ${BRAND_NAME}`,
-      "O seu contrato está pronto para revisão e assinatura na plataforma.",
+    await notify(
+      partyUserId.toString(),
+      contract.party === "FAMILY" ? "FAMILY_CONTRACT_READY" : "NANNY_CONTRACT_READY",
+      {},
     );
   }
 
@@ -289,12 +266,7 @@ export async function signContractOnline(
   await contract.save();
 
   if (contract.party === "NANNY") {
-    await notifyParty(
-      userId,
-      "NANNY",
-      `O seu contrato foi assinado — ${BRAND_NAME}`,
-      "Confirmamos a assinatura do seu contrato de trabalho.",
-    );
+    await notify(userId, "NANNY_CONTRACT_SIGNED", {});
   }
 
   await checkAndActivatePlacement(contract.placementId.toString());
@@ -334,12 +306,7 @@ export async function signContractInPerson(
   await contract.save();
 
   if (contract.party === "NANNY") {
-    await notifyParty(
-      partyUserId,
-      "NANNY",
-      `O seu contrato foi assinado — ${BRAND_NAME}`,
-      "Confirmamos a assinatura (em pessoa) do seu contrato de trabalho.",
-    );
+    await notify(partyUserId.toString(), "NANNY_CONTRACT_SIGNED", {});
   }
 
   await checkAndActivatePlacement(contract.placementId.toString());
@@ -358,15 +325,13 @@ export async function checkAndActivatePlacement(placementId: string) {
   const placement = await Placement.findById(placementId);
   if (!placement) return;
 
+  placement.status = "ACTIVE";
+  await placement.save();
+
   await NannyProfile.findOneAndUpdate({ userId: placement.nannyId }, { status: "PLACED" });
   await NannyRequest.findByIdAndUpdate(placement.requestId, { status: "CONTRACTED" });
 
-  await notifyParty(
-    placement.familyId,
-    "FAMILY",
-    `O seu contrato foi assinado por todas as partes — ${BRAND_NAME}`,
-    "Ambas as partes assinaram o contrato. A colocação está agora ativa.",
-  );
+  await notify(placement.familyId.toString(), "FAMILY_CONTRACT_SIGNED_ALL", {});
 }
 
 export async function editContract(placementId: string, input: CreateContractInput) {

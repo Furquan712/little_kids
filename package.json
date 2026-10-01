@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "seed": "tsx --env-file=.env.local scripts/seed.ts"
+    "seed": "tsx --env-file=.env.local scripts/seed.ts",
+    "cron": "tsx --env-file=.env.local scripts/cron.ts",
+    "test:e2e": "node --env-file=.env.local node_modules/.bin/playwright test"
   },
   "dependencies": {
     "@getbrevo/brevo": "^6.0.3",
@@ -31,6 +33,7 @@
     "next": "16.3.5",
     "next-auth": "^5.0.0-beta.32",
     "next-intl": "^4.14.6",
+    "node-cron": "^4.6.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-hook-form": "^7.88.0",
@@ -40,6 +43,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
