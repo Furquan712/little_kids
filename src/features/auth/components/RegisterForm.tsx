@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { User, Mail, Phone, MessageCircle, Lock, ArrowRight, Heart, Users, CheckCircle2 } from "lucide-react";
+import { User, Mail, Phone, MessageCircle, Lock, ArrowRight, Heart, Users, CheckCircle2, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
@@ -36,6 +36,7 @@ export function RegisterForm({ role }: { role: RegisterRole }) {
   const t = useTranslations();
   const [submitted, setSubmitted] = useState(false);
   const [submittedPhone, setSubmittedPhone] = useState<string | null>(null);
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
 
   const schema = role === "NANNY" ? registerNannySchema : registerFamilySchema;
@@ -77,24 +78,39 @@ export function RegisterForm({ role }: { role: RegisterRole }) {
     }
 
     setSubmittedPhone(values.phone || null);
+    setSubmittedEmail(values.email || null);
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center gap-3 rounded-2xl border border-plat-border bg-plat-bg-pink/40 p-8 text-center">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-plat-success/15 text-plat-success">
-          <CheckCircle2 className="h-6 w-6" />
+      <div className="flex flex-col items-center gap-4 rounded-3xl border border-plat-border bg-gradient-to-b from-plat-bg-pink/50 to-white px-8 py-12 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-plat-success/15 text-plat-success">
+          <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
         </span>
-        <p className="text-plat-ink">{t("auth.register.success")}</p>
-        {submittedPhone && (
-          <Link
-            href={`/verificar-telefone?phone=${encodeURIComponent(submittedPhone)}`}
-            className="font-semibold text-plat-primary-strong hover:underline"
-          >
-            {t("auth.register.verifyPhoneLink")}
-          </Link>
-        )}
+        <div className="flex flex-col gap-1.5">
+          <h2 className="font-heading text-2xl font-semibold text-plat-ink">{t("auth.register.successTitle")}</h2>
+          <p className="max-w-sm font-body text-sm leading-relaxed text-plat-ink-muted">
+            {submittedEmail
+              ? t("auth.register.successBodyWithEmail", { email: submittedEmail })
+              : t("auth.register.successBody")}
+          </p>
+        </div>
+
+        <div className="mt-2 flex w-full max-w-xs flex-col gap-2.5">
+          <Button asChild className="h-11 rounded-full bg-plat-primary text-sm font-semibold shadow-md shadow-plat-primary/30 hover:bg-plat-primary-hover">
+            <Link href="/login">
+              {t("auth.register.goToLogin")} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+          {submittedPhone && (
+            <Button asChild variant="outline" className="h-11 rounded-full text-sm font-semibold">
+              <Link href={`/verificar-telefone?phone=${encodeURIComponent(submittedPhone)}`}>
+                <PhoneCall className="h-4 w-4" /> {t("auth.register.verifyPhoneLink")}
+              </Link>
+            </Button>
+          )}
+        </div>
       </div>
     );
   }
