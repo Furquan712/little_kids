@@ -177,6 +177,10 @@
       "selectProvince": "Select a province",
       "selectCity": "Select a city",
       "success": "Registration complete. Check your email to confirm your account.",
+      "successTitle": "Thank you for signing up!",
+      "successBody": "We've sent a confirmation email. Check your inbox (and spam folder) to activate your account.",
+      "successBodyWithEmail": "We've sent a confirmation email to {email}. Check your inbox (and spam folder) to activate your account.",
+      "goToLogin": "Go to login",
       "verifyPhoneLink": "Verify your phone number"
     },
     "login": {

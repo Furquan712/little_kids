@@ -77,11 +77,23 @@ export async function registerNanny(input: RegisterNannyInput) {
 
   await NannyProfile.create({ userId: user._id, province: input.province, city: input.city });
 
+  // The account is already created at this point — a verification
+  // channel being unreachable (e.g. the Brevo account has no SMS add-on)
+  // must never undo that or block the user from landing on the success
+  // screen. Best-effort, logged, not re-thrown.
   if (user.email) {
-    await sendEmailVerification(user._id.toString(), user.email, user.fullName);
+    try {
+      await sendEmailVerification(user._id.toString(), user.email, user.fullName);
+    } catch (error) {
+      console.error("registerNanny: sendEmailVerification failed", error);
+    }
   }
   if (user.phone) {
-    await sendPhoneOtp(user._id.toString(), user.phone);
+    try {
+      await sendPhoneOtp(user._id.toString(), user.phone);
+    } catch (error) {
+      console.error("registerNanny: sendPhoneOtp failed", error);
+    }
   }
 
   return user;
@@ -105,14 +117,28 @@ export async function registerFamily(input: RegisterFamilyInput) {
 
   await FamilyProfile.create({ userId: user._id, needDescription: input.needDescription || "" });
 
+  // Same reasoning as registerNanny(): the account already exists, so a
+  // notification channel failing must not block the success screen.
   if (user.email) {
-    await sendEmailVerification(user._id.toString(), user.email, user.fullName);
+    try {
+      await sendEmailVerification(user._id.toString(), user.email, user.fullName);
+    } catch (error) {
+      console.error("registerFamily: sendEmailVerification failed", error);
+    }
   }
   if (user.phone) {
-    await sendPhoneOtp(user._id.toString(), user.phone);
+    try {
+      await sendPhoneOtp(user._id.toString(), user.phone);
+    } catch (error) {
+      console.error("registerFamily: sendPhoneOtp failed", error);
+    }
   }
 
-  await notify(user._id.toString(), "FAMILY_REGISTRATION_CONFIRMED");
+  try {
+    await notify(user._id.toString(), "FAMILY_REGISTRATION_CONFIRMED");
+  } catch (error) {
+    console.error("registerFamily: notify FAMILY_REGISTRATION_CONFIRMED failed", error);
+  }
 
   return user;
 }

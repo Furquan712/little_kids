@@ -161,7 +161,12 @@ export async function resendPhoneOtpAction(input: ResendPhoneOtpInput): Promise<
   const rl = rateLimit(`resend-otp:${ip}`, 5, 60_000);
   if (!rl.allowed) return err("auth.errors.rateLimited");
 
-  await resendPhoneOtp(parsed.data.phone);
+  try {
+    await resendPhoneOtp(parsed.data.phone);
+  } catch (error) {
+    console.error("resendPhoneOtpAction: resendPhoneOtp failed", error);
+    return err("auth.errors.unknown");
+  }
   return ok(null);
 }
 

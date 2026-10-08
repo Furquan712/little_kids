@@ -31,7 +31,7 @@ test.describe("Nanny registration and approval", () => {
     await page.locator("#consent").click();
     await page.locator('form button[type="submit"]').click();
 
-    await expect(page.getByText("Registo efetuado")).toBeVisible({ timeout: 10_000 });
+    await expect(page.getByText("Obrigado por se registar!")).toBeVisible({ timeout: 10_000 });
 
     // --- Approval half: use a seeded nanny forced into PENDING_REVIEW, ---
     // since the fresh account above is email/OTP-gated and can't log in
